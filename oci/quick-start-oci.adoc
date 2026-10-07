@@ -17,7 +17,7 @@ Segui questi passaggi per iniziare.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"] Aggiungi credenziali e autorizzazioni
 [role="quick-margin-para"]
-link:add-credentials.html["Aggiungi le credenziali a un account"]. Ciò include la selezione delle funzionalità del carico di lavoro e la creazione delle policy IAM per le autorizzazioni richieste.
+link:add-credentials-oci.html["Aggiungi le credenziali a un account"]. Ciò include la selezione delle funzionalità del carico di lavoro e la creazione delle policy IAM per le autorizzazioni richieste.
 
 [role="quick-margin-para"]
 Seleziona il criterio di autorizzazione predefinito link:permissions-oci.html["vista, pianificazione e analisi"].
