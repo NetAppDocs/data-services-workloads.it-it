@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/learn-custom-rules.html 
+keywords: custom rules, byor, bring your own rules, fsx, ontap, well architected, organizational standards 
+summary: Impara a definire e gestire le tue regole architetturali per garantire il rispetto degli standard organizzativi insieme alle best practice di NetApp. 
+---
+= Scopri le regole personalizzate in NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le regole personalizzate ti permettono di impostare, verificare e applicare i tuoi standard architetturali, insieme alle migliori pratiche NetApp, nella dashboard Well-architected.
+
+
+
+[[overview]]
+== Panoramica
+
+Il costruttore di regole ti permette di creare regole personalizzate basate sulle best practice utilizzando un linguaggio semplice. Queste regole vengono controllate su tutte le tue risorse.
+
+Le regole personalizzate ti aiutano a far rispettare gli standard, i limiti di rischio e i requisiti operativi della tua organizzazione—cose che le regole generiche dei fornitori potrebbero non coprire completamente.
+
+
+NOTE: Se l'amministratore del tuo account ha disattivato le funzionalità AI, il costruttore di regole non sarà disponibile e non potrai creare regole personalizzate. link:../admin/manage-genai-features.html["Scopri come gestire le funzionalità di intelligenza artificiale"^].
+
+
+
+[[how-custom-rules-work]]
+== Come funzionano le regole personalizzate
+
+Le regole personalizzate utilizzano un processo guidato dall'intelligenza artificiale che trasforma le tue istruzioni in linguaggio naturale in regole chiare e strutturate. L'IA funge da traduttore e verificatore. Suggerisce una regola, spiega come ha interpretato la tua richiesta e chiede la tua approvazione prima che la regola venga salvata o programmata.
+
+Questo processo garantisce che:
+
+* La logica della regola è definita in modo chiaro e controllata per errori
+* Non viene eseguito alcun codice a formato libero
+* Puoi vedere esattamente cosa verrà valutato prima di approvare la regola
+
+
+
+
+[[limitations]]
+== Limitazioni
+
+Alle regole personalizzate si applicano le seguenti limitazioni:
+
+* Non sono disponibili correzioni automatiche. Devi correggere tu stesso le risorse non conformi usando le indicazioni fornite.
+* Ogni regola può controllare un solo tipo di risorsa. Per controllare più tipi di risorse, crea regole separate.
+* L'intervallo di valutazione più breve è di 1 ora per evitare scansioni eccessive.
+* Le regole hanno accesso in sola lettura e non possono apportare modifiche al tuo ambiente.
+
+
+
+
+[[rule-definition-model]]
+== Modello di definizione delle regole
+
+Ciascuna regola personalizzata consiste nei seguenti componenti:
+
+Nome regola:: Un nome definito dall'utente per la regola.
+Descrizione:: La tua spiegazione del perché questa regola è importante per la tua organizzazione.
+Tipo di risorsa:: La risorsa FSx da valutare (file system, volume o cache). Attualmente, un solo tipo di risorsa per regola.
+Pianificatore:: Con quale frequenza viene valutata la regola (minimo 1 ora, predefinito 24 ore).
+logica condizionale:: I criteri specifici da verificare.
+Ambito di valutazione:: Quali risorse vengono valutate (tutte le risorse applicabili nell'ambito).
+logica di correzione:: Guida manuale per affrontare le risorse non conformi.
+
+
+
+
+[[rule-lifecycle]]
+== Ciclo di vita della regola
+
+Le regole personalizzate passano attraverso i seguenti stati:
+
+Bozza:: La regola è in fase di creazione. Non viene eseguita alcuna valutazione.
+Prova a secco:: Valutazione una tantum per visualizzare in anteprima quali risorse verrebbero interessate. Usata per la convalida prima della pianificazione.
+Programmato (Abilitato):: La regola è attiva e viene eseguita secondo la pianificazione definita.
+Disattivato:: La regola è sospesa ma non eliminata. Puoi riattivarlo.
+Eliminato:: La regola è stata rimossa definitivamente.
+
+
+
+
+[[custom-rule-examples]]
+== Esempi di regole personalizzate
+
+I seguenti esempi illustrano le regole personalizzate più comuni:
+
+*Protezione del volume di produzione*:: "Tutti i volumi con tag 'Prod' devono avere una snapshot policy installata"
++
+--
+Questa regola crea automaticamente snapshot per proteggere i volumi di produzione in base ai requisiti aziendali.
+
+--
+*Tiering dei volumi di archivio*:: "Tutti i volumi con il tag 'Archive' devono avere una policy di tiering impostata su 'All'"
++
+--
+Questa regola riduce i costi spostando automaticamente i dati archiviati su storage più economico.
+
+--
+*Standard di naming del file system*:: "Tutti i file system devono seguire la convenzione di naming 'fsx-{environment}-{application}'"
++
+--
+Questa regola convalida che i file system rispettino le convenzioni di naming organizzative per una gestione più semplice e un'allocazione dei costi più semplice.
+
+--
+
+
+
+
+[[what-to-do-next]]
+== Cosa fare dopo
+
+link:create-custom-rule.html["Crea una regola personalizzata"]

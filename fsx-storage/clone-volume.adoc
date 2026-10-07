@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/clone-volume.html 
+keywords: clone volume, clone, clone data 
+summary: Clona un volume in NetApp Workload Factory per creare un volume di lettura/scrittura del volume originale per i test. 
+---
+= Clona un volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Clona un volume in NetApp Workload Factory per creare un volume di lettura/scrittura del volume originale per i test.
+
+Il clone riflette lo stato attuale, point-in-time, dei dati. Puoi anche utilizzare i cloni per consentire ad altri utenti di accedere ai dati senza dare loro accesso ai dati di produzione.
+
+.Informazioni su questa attività
+La clonazione dei volumi è supportata solo per i volumi FlexClone.
+
+Quando cloni un volume, viene creato un volume scrivibile con riferimenti agli Snapshot del volume d'origine. La creazione del clone avviene in secondi. I dati clonati non risiedono sul volume clone, ma sul volume d'origine. Tutti i nuovi dati scritti sul volume dopo la creazione del clone risiedono sul clone.
+
+Affinché un volume clonato contenga tutti i dati del volume d'origine e tutti i nuovi dati aggiunti al clone dopo la creazione, devi link:split-cloned-volume.html["dividi il clone"] dal volume d'origine. Inoltre, non puoi eliminare un volume d'origine se contiene un clone. Un clone deve essere suddiviso prima di poter eliminare un volume d'origine.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu delle azioni del volume da clonare.
+. Seleziona *Azioni di protezione dei dati*, quindi *Clona volume*.
+. Nella finestra di dialogo Clone volume, immetti un nome per il clone del volume.
+. Seleziona *Clone*.
+

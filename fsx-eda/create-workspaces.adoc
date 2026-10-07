@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/create-workspaces.html 
+keywords: manage, workspace, snapshot, project 
+summary: Un workspace in NetApp Workload Factory for EDA è una rappresentazione Perforce di un progetto basata su uno snapshot del progetto. Puoi creare workspace come parte di un progetto EDA. 
+---
+= Creare un'area di lavoro EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un'area di lavoro in NetApp Workload Factory per EDA è una rappresentazione Perforce di un progetto in uno specifico momento nel tempo. Le aree di lavoro vengono create usando come base uno snapshot del progetto. Puoi creare nuove aree di lavoro all'interno di un progetto EDA. Puoi creare aree di lavoro dall'interfaccia utente di Perforce.
+
+.Prima di iniziare
+Assicurati di aver integrato EDA con Perforce Helix Visual Client. Per ulteriori informazioni, vedi link:integrate-perforce.html["Integra EDA con Perforce"^].
+
+.Passaggi
+. Accedi a Perforce.
+. Nel menu Perforce, seleziona *Visualizza* > *WF*.
++
+La schermata di accesso di Workload Factory viene visualizzata nell'interfaccia utente di Perforce.
+
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] e poi seleziona *EDA*.
+. Seleziona *CI/CD*.
+. Seleziona *Crea progetto* e poi seleziona *Crea area di lavoro*.
+. Nella pagina Crea un progetto di spazio di lavoro, fornisci le seguenti informazioni:
++
+.. Seleziona un'istantanea da utilizzare come base per l'area di lavoro.
+.. Inserisci un nome per l'area di lavoro.
+.. Facoltativamente, inserisci un identificativo utente per rivendicare l'area di lavoro. Questo identificativo deve corrispondere all'ID utente Perforce dello sviluppatore che utilizzerà tale area di lavoro.
+
+
+. Seleziona *Crea*.
+
+
+.Risultato
+L'area di lavoro viene creata e compare nell'elenco delle aree di lavoro nella pagina Workspaces.

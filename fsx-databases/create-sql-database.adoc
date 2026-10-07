@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sql-database.html 
+keywords: create, database, creation, Microsoft SQL 
+summary: Crea un database Microsoft SQL con NetApp Workload Factory for Databases. 
+---
+= Crea un database Microsoft SQL in NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La creazione di un nuovo database Microsoft SQL ti consente di gestire la risorsa all'interno di NetApp Workload Factory for Databases.
+
+.Informazioni su questa attività
+Al momento della creazione del database, nel file system FSx for ONTAP vengono creati due nuovi volumi costituiti da LUN indipendenti per ospitare i file di dati e i file di log del database. I file del database nel nuovo database sono con thin provisioning e consumano solo pochi MB della dimensione totale allocata per il nuovo database.
+
+Se vuoi separare lo storage per il database, puoi farlo usando un _punto di montaggio virtuale_. Il punto di montaggio virtuale ti consente di consolidare i database su alcune unità comuni sull'host.
+
+La creazione di un database in workload factory richiede le autorizzazioni di visualizzazione, pianificazione e analisi. In alternativa, puoi copiare o scaricare un modello di codice parzialmente completato per completare l'operazione al di fuori di workload factory. link:../fsx-storage/permissions-reference-fsx.html["Scopri le autorizzazioni di Workload Factory"^] per decidere quale modalità vuoi utilizzare.
+
+
+NOTE: I server Microsoft SQL che utilizzano il protocollo SMB non supportano la creazione di database.
+
+.Prima di iniziare
+Completa i seguenti prerequisiti prima di creare un nuovo database.
+
+* *Credenziali e autorizzazioni*: Devi avere link:../fsx-storage/add-credentials.html["Credenziali dell'account AWS e autorizzazioni per _operations and remediation_"^] per creare un nuovo database in Workload Factory.
++
+In alternativa, puoi usare Codebox per copiare un modello, così puoi distribuire un database al di fuori di workload factory usando l'API REST. link:../admin/codebox-automation.html["Scopri di più sull'automazione di Codebox"^].
+
+* *Host Windows*: Devi avere un numero sufficiente di lettere di unità disponibili in Microsoft SQL Server per creare nuove unità per il nuovo database se usi la modalità _Quick create_.
+* *Microsoft SQL Server*: Devi disporre di un Microsoft SQL Server gestito in workload factory for Databases per ospitare il nuovo database.
+* *AWS Systems Manager*: Assicurati che il `NT Authority\SYSTEM` privilegio utente sia abilitato nell'host Microsoft SQL tramite AWS Systems Manager.
+
+
+
+
+[[create-a-database]]
+== Crea un database
+
+In Workload Factory, per completare questa attività, puoi utilizzare le modalità di distribuzione _Creazione rapida_ o _Creazione avanzata_.
+
+[role="tabbed-block"]
+====
+.Creazione rapida
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona *Microsoft SQL Server* come tipo di motore del database.
+. Seleziona un database server con un'istanza gestita di SQL Server in cui creare il database.
+. Fai clic sul menu Azioni dell'istanza gestita e quindi seleziona *Crea database utente*.
+. Nella pagina Crea database utenti, nella sezione Informazioni sul database, inserisci le seguenti informazioni:
++
+.. *Nome del database*: Inserisci il nome del database.
+.. *Regole di confronto*: Seleziona una regola di confronto per il database. In Microsoft SQL Server è selezionata la regola di confronto predefinita SQL_Latin1_General_CP1_CI_AS".
+
+
+. In Impostazioni file, fornisci quanto segue:
++
+.. *Modalità impostazioni file*: Seleziona *Creazione rapida*.
+.. *Nomi e percorsi dei file*:
++
+*** *Nome del file di dati*: Inserisci il nome del file di dati.
+*** *Nome del file di log*: Inserisci il nome del file di log.
+
+
+.. *Dimensioni dei file*: Inserisci la dimensione dei dati e la dimensione del file di log per il database.
+
+
+. Fai clic su *Create*.
++
+In alternativa, se vuoi modificare ora una di queste impostazioni predefinite, cambia *Modalità impostazioni file* in *Creazione avanzata*.
+
+
+
+--
+.Creazione avanzata
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona *Microsoft SQL Server* come tipo di motore del database.
+. Seleziona un database server con un'istanza gestita di SQL Server in cui creare il database.
+. Fai clic sul menu Azioni dell'istanza gestita e quindi seleziona *Crea database utente*.
+. Seleziona *Crea database utente*.
+. Nella pagina Crea database utenti, nella sezione Informazioni sul database, inserisci le seguenti informazioni:
++
+.. *Nome del database*: Inserisci il nome del database.
+.. *Regole di confronto*: Seleziona le regole di confronto per il database. Su Microsoft SQL Server è selezionata l'impostazione predefinita delle regole di confronto "SQL_Latin1_General_CP1_CI_AS".
+
+
+. In Impostazioni file, fornisci quanto segue:
++
+.. *Modalità impostazioni file*: Seleziona *Creazione avanzata*.
+.. *Nomi e percorsi dei file*:
++
+... *File di dati*: Seleziona una lettera di unità e inserisci il nome del file di dati.
++
+Se vuoi, fai clic sulla casella *Punto di montaggio virtuale*.
+
+... *File di log*: Seleziona una lettera di unità e inserisci il nome del file di log.
++
+Se vuoi, fai clic sulla casella *Punto di montaggio virtuale*.
+
+
+
+.. *Dimensioni dei file*: Inserisci la dimensione dei dati e la dimensione del file di log per il database.
+
+
+. Fai clic su *Create*.
+
+
+--
+====
+Se hai creato l'host del database, puoi controllare lo stato di avanzamento del processo nella scheda *Monitoraggio processi*.

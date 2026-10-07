@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/quick-start-eda.html 
+keywords: requirements, permissions, eda, builders, quick start, electronic design automation 
+summary: 'Inizia a utilizzare Workload Factory per EDA configurando il tuo ambiente, abilitando le dashboard di monitoraggio e configurando l"analisi della latenza.' 
+---
+= Guida rapida per Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Inizia a utilizzare Workload Factory per EDA configurando il tuo ambiente, abilitando le dashboard di monitoraggio e configurando l'analisi della latenza per ottimizzare le performance di FSx for ONTAP per i tuoi carichi di lavoro EDA.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"] Accedi a Workload Factory
+[role="quick-margin-para"]
+Dovrai andare link:../setup/sign-up-and-log-in.html["registrati e accedi"] alla NetApp Console.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Aggiungi credenziali e autorizzazioni per il workload EDA
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Aggiungi manualmente le credenziali a un account"] che include la selezione della funzionalità del workload EDA e link:../fsx-storage/permissions-reference-fsx.html["crea le policy IAM per le autorizzazioni richieste"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"] Configura il tuo ambiente per soddisfare i requisiti EDA
+[role="quick-margin-para"]
+Ti serve un file system FSx for ONTAP distribuito e rilevato che contenga almeno un volume configurato come condivisione NFS.
+
+[role="quick-margin-para"]
+link:requirements.html["Scopri di più sui requisiti dell'EDA"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quattro"] Abilita la dashboard Panoramica
+[role="quick-margin-para"]
+Abilita la dashboard Panoramica per monitorare lo stato di salute, la capacità e il throughput dei cluster FSx for ONTAP. Accetta la richiesta di consenso per consentire a Workload Factory di iniziare a raccogliere le metriche CloudWatch.
+
+[role="quick-margin-para"]
+link:task-activate-overview-dashboard.html["Scopri come attivare la dashboard Overview"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinque"]Configura la dashboard dei progetti
+[role="quick-margin-para"]
+Configura la dashboard Progetti per monitorare lo stato del sistema, le prestazioni e l'utilizzo dello spazio di archiviazione, consentendoti di ottimizzare efficacemente il tuo ambiente EDA.
+
+[role="quick-margin-para"]
+link:task-configure-project-dashboard.html["Scopri come configurare la dashboard dei progetti"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Sei"]Configura l'analisi della latenza di FSx for ONTAP
+[role="quick-margin-para"]
+Imposta soglie di latenza per identificare e risolvere in modo proattivo i problemi di prestazioni prima che influiscano sui tempi di esecuzione della simulazione. Configura avvisi di warning e critici, imposta notifiche email o SNS per ricevere avvisi in real-time, sfrutta l'analisi di base automatizzata e, facoltativamente, utilizza l'analisi AI per scenari complessi.
+
+[role="quick-margin-para"]
+link:task-configure-latency-monitoring.html["Scopri come configurare il monitoraggio della latenza"^]. Dopo aver rilevato gli eventi, è possibile link:task-analyze-latency-trends.html["analizzare le tendenze di latenza"^] utilizzare il grafico interattivo.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sette"] Integra con altri servizi
+[role="quick-margin-para"]
+Integra EDA con altri servizi, come un portale di servizi o Perforce Helix Core, utilizzando l'API REST di Workload Factory.
+
+[role="quick-margin-para"]
+link:integrate-perforce.html["Scopri come integrare EDA con Perforce"^].
+
+
+
+[[whats-next]]
+== E ora?
+
+* link:task-configure-latency-monitoring.html["Configurare il monitoraggio della latenza per FSx per ONTAP"]
+* link:task-configure-project-dashboard.html["Configura la dashboard dei progetti"]
+* link:learn-eda-workloads.html["Scopri i carichi di lavoro EDA"]
+* link:../get-help.html["Ottieni assistenza con EDA"]
+

@@ -1,0 +1,434 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-replication.html 
+keywords: replication, replicate, data protection, disaster recovery, data loss, initialize, cut over, cutover, data transfer, sync, replicate, cascade, cascade replication, cascade deployment, data protection, volume replication, replicate data protection volume 
+summary: Utilizza la replica per proteggere i tuoi dati dalla perdita in caso di disastro imprevisto, per migrare i tuoi dati o per implementare la replica a cascata per i volumi di protezione dei dati in un Amazon FSx for NetApp ONTAP file system 
+---
+= Replica i dati su FSx per ONTAP in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Replica i dati in NetApp Workload Factory per proteggerti dalla perdita di dati se la regione in cui risiedono i tuoi dati subisce un disastro. La replica dei dati è supportata tra i file system FSx for ONTAP e i sistemi ONTAP on-premises o Cloud Volumes ONTAP. Workload Factory supporta anche la replica a cascata per estendere la protezione dei dati ai sistemi terziari o per migrare i tuoi dati.
+
+Quando si replicano i dati e le impostazioni di configurazione di una storage VM, è necessario prima creare e inizializzare la relazione di replica e quindi attendere che i dati vengano sincronizzati almeno una volta prima di completare l'operazione di cutover.
+
+
+
+[[standard-replication]]
+== Replica standard
+
+La replica protegge i tuoi dati se un disastro colpisce la tua regione; può anche essere utilizzata per scopi di migrazione.
+
+La replica include la creazione e l'inizializzazione di una relazione di replica. Per configurare la replica, è necessario creare la relazione di replica. Per trasferire i dati tra i sistemi storage di origine e di destinazione, è necessario inizializzare la relazione di replica. Durante la migrazione dei dati e delle impostazioni di configurazione delle VM di storage, è inoltre necessario completare l'operazione di cutover.
+
+I volumi replicati nel file system di destinazione sono volumi di protezione dati (DP) e seguono il formato di denominazione: `{OriginalVolumeName}_copy`.
+
+Se si replica un volume sorgente con file immutabili, il volume di destinazione e il file system rimangono bloccati fino al termine del periodo di conservazione del volume sorgente. La funzionalità dei file immutabili è disponibile quando si link:create-volume.html["creare un volume"] per un file system FSx for ONTAP.
+
+[NOTE]
+====
+È possibile replicare un volume sorgente (read/write) o un volume di protezione dati (DP). La replica a cascata è supportata, ma un terzo hop non lo è. Scopri di più su link:https://docs.netapp.com/us-en/workload-fsx-ontap/cascade-replication.html["replicazione a cascata"].
+
+====
+
+
+[[migration-use-cases]]
+=== Casi d'uso della migrazione
+
+Per la migrazione, è possibile scegliere di replicare i dati e le impostazioni di configurazione di una singola storage VM. Se si migrano dati e impostazioni di configurazione insieme, assicurarsi che l'ultima replica del volume sia stata completata nelle ultime 24 ore. È necessario selezionare tutti i volumi nella stessa storage VM per utilizzare questa funzionalità. La policy di tiering per tutti i volumi viene impostata di default sulla policy di tiering del volume di origine, che è consigliata per i casi d'uso di migrazione.
+
+Workload Factory supporta la replica della migrazione per le VM di storage tra i seguenti sistemi di storage.
+
+* Sistemi ONTAP on-premises e file system FSx for ONTAP
+* Cloud Volumes ONTAP e FSx per ONTAP file system
+* FSx per ONTAP e FSx per ONTAP file system
++
+** Prima alla prima generazione
+** Seconda alla seconda generazione
+
+
+
+
+Per migrare i dati e le impostazioni di configurazione delle storage VM, è necessario completare tre operazioni.
+
+. <<Passaggio 1: Creare la relazione di replica,Creare la relazione di replica>>, seleziona *Migration* come caso d'uso e seleziona *Replicate storage VM configuration*.
+. <<Passaggio 2: Inizializzare la relazione di replica,Inizializza la relazione di replica>> per trasferire i dati dal sistema di origine al sistema storage di destinazione.
+. <<Fase 3: Cutover della replica per i casi d'uso di migrazione,Cut over replication per casi d'uso di migrazione>> per migrare in modo permanente dati e impostazioni di configurazione dal file system di origine al file system FSx for ONTAP di destinazione.
+
+
+
+
+[[step-1-create-the-replication-relationship]]
+== Passaggio 1: Creare la relazione di replica
+
+Replica i dati tra due file system FSx for ONTAP, tra un sistema ONTAP on-premises e un file system FSx for ONTAP, oppure tra Cloud Volumes ONTAP e un file system FSx for ONTAP.
+
+.Prima di iniziare
+Rivedi questi requisiti prima di iniziare.
+
+* Assicurarsi che sia disponibile un file system FSx for ONTAP da utilizzare come destinazione nella relazione di replica.
+* Aprire le porte TCP 11104 e 11105 per il trasferimento e la gestione sicura dei dati tra i sistemi di archiviazione. ICMP è facoltativo, ma può aiutare con i controlli di rete e la risoluzione dei problemi.
+* Il file system FSx for ONTAP utilizzato per la relazione di replica deve avere un collegamento associato. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
+* Per la replica da un sistema ONTAP on-premises a un file system FSx for ONTAP, assicurati di aver individuato il sistema ONTAP on-premises.
+* La replica non è supportata per i volumi in uno stato diverso da disponibile, creato o configurato in modo errato e quando la versione di ONTAP non è compatibile.
+* Per i casi d'uso di migrazione, assicurati che l'ultima replica per il volume sia stata completata nelle ultime 24 ore prima di creare una relazione di replica con dati e impostazioni di configurazione della storage VM.
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dalla pagina FSx for ONTAP, seleziona il file system che contiene i volumi da replicare.
+. Replica tutti i volumi di un file system oppure solo i volumi selezionati.
++
+** Per replicare tutti i volumi in un file system: dalla panoramica del file system, seleziona *Replicate data*.
+** Per replicare volumi selezionati: dalla panoramica del file system, seleziona la scheda *Volumi*.
++
+Nella tabella Volumes, seleziona uno o più volumi, quindi seleziona *Replicate data*.
+
+
+
+. Nella pagina Replica dati, in Destinazione della replica, fornisci le seguenti informazioni:
++
+.. *Caso d'uso*: Seleziona uno dei seguenti casi d'uso per la replica. A seconda del caso d'uso selezionato, Workload Factory compila il modulo con i valori consigliati in conformità con le best practice. Puoi accettare i valori consigliati o apportare modifiche durante la compilazione del modulo.
++
+*** Intelligenza artificiale (AI) e machine learning (ML): replica i tuoi dati ONTAP on-premises su Amazon FSx for NetApp ONTAP e crea punti di accesso S3 per supportare l’addestramento di AI e ML nel cloud
+*** Migrazione: trasferisce i tuoi dati al file system FSx for ONTAP di destinazione
++
+*Replica la configurazione della VM di archiviazione*: Facoltativamente, seleziona per replicare i dati e le impostazioni di configurazione di una singola VM di archiviazione. Quando migri dati e impostazioni, tutti i volumi devono completare la replica nelle ultime 24 ore e poi effettuare il cutover contemporaneamente.
+
++
+La policy di tiering per tutti i volumi viene impostata di default sulla policy di tiering del volume di origine, che è consigliata per i casi d'uso di migrazione.
+
++
+Durante la migrazione, i client accedono ai dati dal file system ONTAP. Dopo il cutover, i volumi sono disponibili tramite gli indirizzi IP del file system FSx for ONTAP di destinazione. Aggiorna tutti i client o le risorse che utilizzano ancora il vecchio indirizzo IP.
+
+*** Disaster recovery a caldo: garantisce elevata disponibilità e un rapido disaster recovery per i carichi di lavoro critici
+*** Ripristino di emergenza a freddo o da archivio:
++
+**** Disaster recovery a freddo: utilizza obiettivi di tempo di ripristino (RTO) e obiettivi del punto di ripristino (RPO) più lunghi per ridurre i costi
+**** Archivio: replica i dati per storage a lungo termine e conformità
+
+
+*** Altro
++
+Inoltre, la selezione del caso d'uso determina il criterio di replica, o il criterio SnapMirror (ONTAP). I termini utilizzati per descrivere i criteri di replica provengono da link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["Documentazione ONTAP 9"^].
+
++
+**** Per la migrazione e altre operazioni, la policy di replica si chiama _MirrorAllSnapshots_. _MirrorAllSnapshots_ è una policy asincrona per il mirroring di tutte le Snapshot e del file system attivo più recente.
+**** Per il ripristino di emergenza a caldo, a freddo o tramite archivio, la policy di replica si chiama _MirrorAndVault_. _MirrorAndVault_ è una policy asincrona e di vault per il mirroring del file system attivo più recente e degli snapshot giornalieri e settimanali.
++
+Per tutti i casi d'uso, se abiliti i Snapshot per la conservazione a lungo termine, la policy di replica predefinita è _MirrorAndVault_.
+
+
+
+
+
+.. *FSx for ONTAP file system*: seleziona credenziali, regione e nome del FSx for ONTAP file system per il file system di destinazione FSx for ONTAP.
+.. *Nome della VM di archiviazione*: Seleziona la VM di archiviazione. La VM di archiviazione che selezioni è la destinazione per tutti i volumi selezionati in questa relazione di replica.
++
+Quando i nomi delle storage VM di origine e di destinazione sono identici, creiamo un alias del file system per i nomi delle storage VM di destinazione per evitare conflitti di peering.
+
+.. *Nome del volume*: Il nome del volume di destinazione viene generato automaticamente con il seguente formato `{OriginalVolumeName}_copy`. Puoi usare il nome del volume generato automaticamente o inserire un altro nome per il volume.
+.. *Politica di tiering*: Seleziona la politica di tiering per i dati archiviati nel volume di destinazione. Per impostazione predefinita, la politica di tiering è quella consigliata per il caso d'uso che hai selezionato.
++
+_Bilanciato (Automatico)_ è il criterio di tiering predefinito quando crei un volume usando la console di Workload Factory. Per ulteriori informazioni sui criteri di tiering dei volumi, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacità di archiviazione del volume"^] nella documentazione di AWS FSx for NetApp ONTAP. Nota che Workload Factory usa nomi basati sui casi d'uso nella console di Workload Factory per i criteri di tiering e include i nomi dei criteri di tiering di FSx for ONTAP tra parentesi.
+
++
+Se hai selezionato il caso d'uso di migrazione, Workload Factory seleziona automaticamente l'opzione per copiare il criterio di tiering del volume di origine nel volume di destinazione. Puoi deselezionare l'opzione per copiare il criterio di tiering e selezionare un criterio di tiering applicabile al volume selezionato per la replica.
+
+.. *Velocità di trasferimento massima*: seleziona *Limitata* e inserisci il limite massimo di trasferimento in MB/s. In alternativa, seleziona *Illimitata*.
++
+Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire. In alternativa, consigliamo una velocità di trasferimento illimitata per i file system FSx for ONTAP per i carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery.
+
+
+
+. Nella sezione Impostazioni di replica, inserisci le seguenti informazioni:
++
+.. *Inizializza la relazione di replica*: scegli se inizializzare la relazione di replica immediatamente dopo averla creata o in un secondo momento. Tieni presente che l'inizializzazione può richiedere tempo e potresti voler eseguire il trasferimento baseline durante le ore di minore affluenza.
++
+Per inizializzare in seguito manualmente, fai riferimento alle istruzioni in <<Passaggio 2: Inizializzare la relazione di replica,Passaggio 2: Inizializzare la relazione di replica>>.
+
+.. *Intervallo di replica*: Seleziona la frequenza con cui le Snapshot vengono trasferite dal volume di origine al volume di destinazione.
+.. *Conservazione a lungo termine*: Facoltativamente, abilita gli Snapshot per la conservazione a lungo termine. La conservazione a lungo termine consente ai servizi aziendali di continuare a funzionare anche in caso di guasto completo del sito, supportando il failover trasparente delle applicazioni tramite una copia secondaria.
++
+Le repliche senza conservazione a lungo termine utilizzano la policy _MirrorAllSnapshots_. L'abilitazione della conservazione a lungo termine assegna alla replica la policy _MirrorAndVault_.
+
++
+Se abiliti la conservazione a lungo termine, seleziona un criterio esistente o creane uno nuovo per definire gli Snapshot da replicare e il numero da conservare.
+
++
+
+NOTE: Per la conservazione a lungo termine sono necessarie etichette corrispondenti tra origine e destinazione. Se vuoi, Workload Factory può creare per te le etichette mancanti.
+
++
+*** *Scegli una policy esistente*: seleziona una policy esistente.
+*** *Crea una nuova policy*: inserisci un *nome della policy*.
+
+
+.. *Snapshot immutabili*: Opzionale. Seleziona *Abilita snapshot immutabili* per impedire che gli snapshot creati in base a questa policy vengano eliminati durante il periodo di conservazione.
++
+*** Imposta il *periodo di conservazione* nel numero di ore, giorni, mesi o anni.
+*** *Criteri Snapshot*: Nella tabella, seleziona la frequenza del criterio Snapshot e il numero di copie da conservare. Puoi selezionare più di un criterio Snapshot.
+
+
+.. *Punto di accesso S3*: facoltativamente, collega un punto di accesso S3 per accedere ai dati del file system FSx for ONTAP residenti su volumi NFS o SMB/CIFS tramite le API AWS S3. È supportato solo il tipo di accesso ai file. Fornire i seguenti dettagli:
++
+*** *Nome punto di accesso S3*: Inserisci il nome del punto di accesso S3.
+*** *Utente*: Seleziona un utente esistente con accesso al volume o crea un nuovo utente.
+*** *Tipo di utente*: seleziona *UNIX* o *Windows* come tipo di utente.
+*** *Configurazione di rete*: Selezionare *Internet* o *Virtual private cloud (VPC)*. Il tipo di rete scelto determina se il punto di accesso è accessibile da Internet o limitato a una specifica VPC.
+*** *Abilita tabella inventario*: quando si abilita la tabella inventario sul volume, il sistema genera metadati per tutti gli oggetti accessibili al punto di accesso S3 e comporta costi di richiesta AWS S3. Per ulteriori informazioni, consulta link:https://aws.amazon.com/s3/pricing/["Documentazione sui prezzi di Amazon S3"^].
+
+
+.. *Tag del punto di accesso S3*: Facoltativamente, puoi aggiungere fino a 50 tag.
+
+
+
+
+. Seleziona *Crea*.
+
+
+.Risultato
+La relazione di replica appare nella scheda *Relazioni di replica* nel file system FSx for ONTAP di destinazione.
+
+Se hai creato una relazione di replica per scopi di migrazione, devi eseguire il cutover di tutti i volumi e della relativa storage VM associata per completare la migrazione dei dati e delle impostazioni di configurazione della storage VM nel file system FSx for ONTAP di destinazione.
+
+
+
+[[step-2-initialize-the-replication-relationship]]
+== Passaggio 2: Inizializzare la relazione di replica
+
+Inizializza una relazione di replica tra i volumi di origine e di destinazione per trasferire lo snapshot e tutti i blocchi di dati in NetApp Workload Factory.
+
+L'inizializzazione esegue un trasferimento baseline: crea un'istantanea del volume di origine, quindi trasferisce l'istantanea e tutti i blocchi di dati a cui fa riferimento al volume di destinazione.
+
+.Prima di iniziare
+Valuta attentamente il momento migliore per completare questa operazione. L'inizializzazione può richiedere molto tempo. Potresti preferire eseguire il trasferimento baseline nelle ore di minor traffico.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx per ONTAP*, selezionare il menu delle azioni del file system da aggiornare e quindi selezionare *Gestisci*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, selezionare il menu Azioni della relazione di replica da inizializzare.
+. Seleziona *Inizializza*.
+. Nella finestra di dialogo Inizializza relazione, selezionare *Inizializza*.
++
+Quando lo stato della replica mostra *Idle*, il trasferimento dei dati è completato.
+
+
+
+
+
+[[step-3-cut-over-replication-for-migration-use-cases]]
+== Fase 3: Cutover della replica per i casi d'uso di migrazione
+
+Dopo aver creato la relazione di replica per un caso d'uso di migrazione, è necessario eseguire il cutover della replica per completare la migrazione dei dati e delle impostazioni di configurazione della storage VM al file system FSx for ONTAP di destinazione. Il cutover della replica migra in modo permanente i dati e le impostazioni di configurazione della storage VM dal file system di origine al file system FSx for ONTAP di destinazione. Durante il cutover, i dati vengono replicati per l'ultima volta. La storage VM di origine va offline quando inizia il cutover.
+
+
+
+[[plan-for-the-cutover-operation]]
+=== Pianifica l'operazione di cutover
+
+Considerare quanto segue quando si pianifica l'operazione di cutover per i casi d'uso di migrazione.
+
+* *Supporto della versione di replica*: i sistemi storage di origine e di destinazione devono avere la stessa versione principale di ONTAP. Ad esempio, se il sistema di origine esegue la versione di ONTAP 9.18.1, anche il sistema di destinazione deve eseguire una versione di 9.18.1.
+* *Impostazioni di configurazione della VM di archiviazione*:
++
+** L'operazione di cutover non migra tutte le impostazioni di configurazione della VM di storage alla VM di storage di destinazione. Ad esempio, le impostazioni iSCSI, MTU del dominio broadcast e DNS non vengono migrate. Aggiorna queste impostazioni manualmente sulla VM di storage di destinazione dopo il cutover. Per ulteriori dettagli, fare riferimento alla sezione <<Aggiornare le impostazioni di configurazione dopo cutover,Aggiornare le impostazioni di configurazione dopo cutover>>.
+** Se la VM di archiviazione utilizza l'autenticazione tramite tunnel di dominio, configura e abilita un tunnel di dominio sul file system prima di avviare la migrazione.
+
+
+* *Cloni*: I cloni vengono migrati come volumi individuali e, pertanto, occuperanno più spazio sul file system FSx for ONTAP di destinazione. Si consiglia di eliminare i cloni prima del cutover per evitare un aumento della capacità sul sistema di destinazione.
+* *Volumi cache*: Per ONTAP FlexCache 9.17.x o versioni precedenti. Le VM di storage di origine che contengono volumi cache non sono supportate per cutover. Rimuovere la relazione ONTAP FlexCache prima del cutover per evitare errori di migrazione.
+* *Punti di accesso AWS S3*: la replica di cutover per i casi d'uso di migrazione non è supportata per i volumi con punti di accesso S3. Eliminare i punti di accesso S3 dal volume di origine per evitare errori di migrazione.
+* *ONTAP S3 configurations*: La replica di cutover per i casi d'uso di migrazione non è supportata per i vserver con configurazioni ONTAP S3. Rimuovere le configurazioni ONTAP S3, inclusi object-store-server, bucket, utenti, gruppi o policy sul vserver, per evitare errori di migrazione.
+* *Numeri di serie LUN e iSCSI target IQN*: I numeri di serie LUN e l'iSCSI target IQN cambiano durante cutover.
+
+
+.Prima di iniziare
+Rivedi questi requisiti prima di iniziare.
+
+* Interrompere l'accesso dei client alla storage VM prima di eseguire il cutover della replica.
+* Assicurarsi che tutti i volumi di origine non stiano servendo alcun dato prima di eseguire il cutover della replica.
+* Assicurarsi che i dati siano sincronizzati tra i volumi di origine e di destinazione prima di eseguire il cutover della replica.
+* Il file system FSx for ONTAP utilizzato per la relazione di replica deve avere un collegamento associato. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
++
+** Nel gruppo di sicurezza associato al file system FSx for ONTAP, per la connettività del collegamento, devono essere aperte le seguenti porte: porta 443 (HTTPS) e porta 22 (SSH).
+
+
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona il file system che contiene il volume o i volumi da replicare.
+. Seleziona la scheda *Replication relationships*.
+. Nella tabella Relazioni di replicazione, seleziona la relazione di replicazione su cui eseguire il cutover, quindi seleziona *Cut over replication*.
+. Rivedere le informazioni nella finestra di dialogo Cut over replication e quindi digitare _cut over_ per confermare.
+
+
+. Seleziona *cutover*.
+
+
+.Risultato
+Dopo aver avviato cutover, la macchina virtuale di archiviazione di origine va offline.
+
+
+
+[[update-configuration-settings-after-cutover]]
+=== Aggiornare le impostazioni di configurazione dopo cutover
+
+Dopo aver eseguito il cutover della replica per i casi d'uso di migrazione, aggiornare le seguenti impostazioni di configurazione della storage VM sulla storage VM di destinazione.
+
+* Per iSCSI:
++
+** Ricrea l'igroup
+** Aggiorna la mappatura LUN
+** Accedere a ciascun client SAN e aggiornare le impostazioni iSCSI/MPIO per il nuovo target e rimuovere i vecchi indirizzi IP del target vserver
+
+
+* Verificare che le impostazioni MTU del dominio broadcast siano conformi alle aspettative
+* Verificare che le impostazioni DNS siano conformi alle aspettative
+* Ricrea le relazioni della cache (relazioni ONTAP FlexCache) se erano presenti volumi di cache nella VM di archiviazione di origine.
+
+
+Se necessario, link:change-tiering-policy.html["modificare la tiering policy"] per il/i volume/i di destinazione dopo cutover.
+
+
+
+[[cascade-replication-for-data-protection-volumes]]
+== Replica a cascata per volumi di protezione dati
+
+NetApp Workload Factory supporta la replica dei volumi di protezione dei dati, chiamati anche _deployment a cascata_. Un _deployment a cascata_ consiste in una catena di relazioni in cui un volume di origine viene replicato su un volume secondario (primo passaggio) e il volume secondario viene replicato su un volume terziario (secondo passaggio). Se il volume secondario non è disponibile, puoi sincronizzare la relazione tra i volumi primario e terziario senza eseguire un nuovo trasferimento baseline.
+
+Questa funzionalità è supportata per i file system FSx for ONTAP con versione di ONTAP 9.6 e successive. Fai riferimento a link:https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html#snapmirror-disaster-recovery-relationships["Documentazione ONTAP per le versioni di ONTAP compatibili"^].
+
+Scopri di più su link:https://docs.netapp.com/us-en/ontap/data-protection/supported-deployment-config-concept.html#how-cascade-deployments-work["come funzionano le implementazioni a cascata"^].
+
+.Prima di iniziare
+Prima di iniziare, tieni presente quanto segue:
+
+* Tieni presente che i volumi che fanno parte di una configurazione a cascata potrebbero impiegare più tempo per risincronizzarsi.
+* Se il volume di origine della relazione è un volume di protezione dei dati ed è la destinazione di un'altra relazione, l'inversione della relazione di replica non è supportata.
+* È supportata una sola replica di un volume di protezione dei dati (o un secondo hop). Non è considerata best practice creare una seconda replica di un volume di protezione dei dati (o un terzo hop).
+* Aprire le porte TCP 11104 e 11105 per il trasferimento e la gestione sicura dei dati tra i sistemi di archiviazione. ICMP è facoltativo, ma può aiutare con i controlli di rete e la risoluzione dei problemi.
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona il menu Azioni del file system che contiene i volumi da replicare, quindi seleziona *Gestisci*.
+. Dalla panoramica del file system, seleziona la scheda *Volumi*.
+. Nella tabella Volumi, seleziona uno o più volumi di protezione dei dati (volumi DP/replicati), quindi seleziona *Replica dati*.
+. Nella pagina Replica dati, in Destinazione della replica, fornisci le seguenti informazioni:
++
+.. *Caso d'uso*: Seleziona uno dei seguenti casi d'uso per la replica. A seconda del caso d'uso selezionato, Workload Factory compila il modulo con i valori consigliati in conformità con le best practice. Puoi accettare i valori consigliati o apportare modifiche durante la compilazione del modulo.
++
+*** Intelligenza artificiale (AI) e machine learning (ML): replica i tuoi dati ONTAP on-premises su Amazon FSx for NetApp ONTAP e crea punti di accesso S3 per supportare l’addestramento di AI e ML nel cloud
+*** Migrazione: trasferisce i tuoi dati al file system FSx for ONTAP di destinazione
++
+*Replica la configurazione della VM di archiviazione*: Facoltativamente, seleziona per replicare i dati e le impostazioni di configurazione di una singola VM di archiviazione. Quando migri dati e impostazioni, tutti i volumi devono completare la replica nelle ultime 24 ore e poi effettuare il cutover contemporaneamente.
+
++
+La policy di tiering per tutti i volumi viene impostata di default sulla policy di tiering del volume di origine, che è consigliata per i casi d'uso di migrazione.
+
++
+Durante la migrazione, i client accedono ai dati dal file system ONTAP. Dopo il cutover, i volumi sono disponibili tramite gli indirizzi IP del file system FSx for ONTAP di destinazione. Aggiorna tutti i client o le risorse che utilizzano ancora il vecchio indirizzo IP.
+
+*** Disaster recovery a caldo: garantisce elevata disponibilità e un rapido disaster recovery per i carichi di lavoro critici
+*** Ripristino di emergenza a freddo o da archivio:
++
+**** Disaster recovery a freddo: utilizza obiettivi di tempo di ripristino (RTO) e obiettivi del punto di ripristino (RPO) più lunghi per ridurre i costi
+**** Archivio: replica i dati per storage a lungo termine e conformità
+
+
+*** Altro
++
+Inoltre, la selezione del caso d'uso determina il criterio di replica, o il criterio SnapMirror (ONTAP). I termini utilizzati per descrivere i criteri di replica provengono da link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["Documentazione ONTAP 9"^].
+
++
+**** Per la migrazione e altre operazioni, la policy di replica si chiama _MirrorAllSnapshots_. _MirrorAllSnapshots_ è una policy asincrona per il mirroring di tutte le Snapshot e del file system attivo più recente.
+**** Per il ripristino di emergenza a caldo, a freddo o tramite archivio, la policy di replica si chiama _MirrorAndVault_. _MirrorAndVault_ è una policy asincrona e di vault per il mirroring del file system attivo più recente e degli snapshot giornalieri e settimanali.
++
+Per tutti i casi d'uso, se abiliti i Snapshot per la conservazione a lungo termine, la policy di replica predefinita è _MirrorAndVault_.
+
+
+
+
+
+.. *FSx for ONTAP file system*: seleziona credenziali, regione e nome del FSx for ONTAP file system per il file system di destinazione FSx for ONTAP.
+.. *Nome della VM di archiviazione*: Seleziona la VM di archiviazione. La VM di archiviazione che selezioni è la destinazione per tutti i volumi selezionati in questa relazione di replica.
++
+Quando i nomi delle storage VM di origine e di destinazione sono identici, creiamo un alias del file system per i nomi delle storage VM di destinazione per evitare conflitti di peering.
+
+.. *Nome del volume*: Il nome del volume di destinazione viene generato automaticamente con il seguente formato `{OriginalVolumeName}_copy`. Puoi usare il nome del volume generato automaticamente o inserire un altro nome per il volume.
+.. *Politica di tiering*: Seleziona la politica di tiering per i dati archiviati nel volume di destinazione. Per impostazione predefinita, la politica di tiering è quella consigliata per il caso d'uso che hai selezionato.
++
+_Bilanciato (Automatico)_ è il criterio di tiering predefinito quando crei un volume usando la console di Workload Factory. Per ulteriori informazioni sui criteri di tiering dei volumi, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacità di archiviazione del volume"^] nella documentazione di AWS FSx for NetApp ONTAP. Nota che Workload Factory usa nomi basati sui casi d'uso nella console di Workload Factory per i criteri di tiering e include i nomi dei criteri di tiering di FSx for ONTAP tra parentesi.
+
++
+Se hai selezionato il caso d'uso di migrazione, Workload Factory seleziona automaticamente l'opzione per copiare il criterio di tiering del volume di origine nel volume di destinazione. Puoi deselezionare l'opzione per copiare il criterio di tiering e selezionare un criterio di tiering applicabile al volume selezionato per la replica.
+
+.. *Velocità di trasferimento massima*: seleziona *Limitata* e inserisci il limite massimo di trasferimento in MB/s. In alternativa, seleziona *Illimitata*.
++
+Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire. In alternativa, consigliamo una velocità di trasferimento illimitata per i file system FSx for ONTAP per i carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery.
+
+
+
+. Nella sezione Impostazioni di replica, inserisci le seguenti informazioni:
++
+.. *Inizializza la relazione di replica*: scegli se inizializzare la relazione di replica immediatamente dopo averla creata o in un secondo momento. Tieni presente che l'inizializzazione può richiedere tempo e potresti voler eseguire il trasferimento baseline durante le ore di minore affluenza.
++
+Per inizializzare in seguito manualmente, fai riferimento alle istruzioni in <<Passaggio 2: Inizializzare la relazione di replica,Passaggio 2: Inizializzare la relazione di replica>>.
+
+.. *Intervallo di replica*: Seleziona la frequenza con cui le Snapshot vengono trasferite dal volume di origine al volume di destinazione.
+.. *Conservazione a lungo termine*: Facoltativamente, abilita gli Snapshot per la conservazione a lungo termine. La conservazione a lungo termine consente ai servizi aziendali di continuare a funzionare anche in caso di guasto completo del sito, supportando il failover trasparente delle applicazioni tramite una copia secondaria.
++
+Le repliche senza conservazione a lungo termine utilizzano la policy _MirrorAllSnapshots_. L'abilitazione della conservazione a lungo termine assegna alla replica la policy _MirrorAndVault_.
+
++
+Se abiliti la conservazione a lungo termine, seleziona un criterio esistente o creane uno nuovo per definire gli Snapshot da replicare e il numero da conservare.
+
++
+
+NOTE: Per la conservazione a lungo termine sono necessarie etichette corrispondenti tra origine e destinazione. Se vuoi, Workload Factory può creare per te le etichette mancanti.
+
++
+*** *Scegli una policy esistente*: seleziona una policy esistente.
+*** *Crea una nuova policy*: inserisci un *nome della policy*.
+
+
+.. *Snapshot immutabili*: Opzionale. Seleziona *Abilita snapshot immutabili* per impedire che gli snapshot creati in base a questa policy vengano eliminati durante il periodo di conservazione.
++
+*** Imposta il *periodo di conservazione* nel numero di ore, giorni, mesi o anni.
+*** *Criteri Snapshot*: Nella tabella, seleziona la frequenza del criterio Snapshot e il numero di copie da conservare. Puoi selezionare più di un criterio Snapshot.
+
+
+.. *Punto di accesso S3*: facoltativamente, collega un punto di accesso S3 per accedere ai dati del file system FSx for ONTAP residenti su volumi NFS o SMB/CIFS tramite le API AWS S3. È supportato solo il tipo di accesso ai file. Fornire i seguenti dettagli:
++
+*** *Nome punto di accesso S3*: Inserisci il nome del punto di accesso S3.
+*** *Utente*: Seleziona un utente esistente con accesso al volume o crea un nuovo utente.
+*** *Tipo di utente*: seleziona *UNIX* o *Windows* come tipo di utente.
+*** *Configurazione di rete*: Selezionare *Internet* o *Virtual private cloud (VPC)*. Il tipo di rete scelto determina se il punto di accesso è accessibile da Internet o limitato a una specifica VPC.
+*** *Abilita tabella inventario*: quando si abilita la tabella inventario sul volume, il sistema genera metadati per tutti gli oggetti accessibili al punto di accesso S3 e comporta costi di richiesta AWS S3. Per ulteriori informazioni, consulta link:https://aws.amazon.com/s3/pricing/["Documentazione sui prezzi di Amazon S3"^].
+
+
+.. *Tag del punto di accesso S3*: Facoltativamente, puoi aggiungere fino a 50 tag.
+
+
+. Seleziona *Crea*.
+
+
+.Risultato
+Il volume o i volumi replicati vengono replicati e vengono visualizzati nella scheda *Relazioni di replica* del file system FSx for ONTAP di destinazione.
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+link:change-tiering-policy.html["Modificare la policy di tiering"] per il/i volume di destinazione dopo cutover.

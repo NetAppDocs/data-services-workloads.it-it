@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-file-system-settings.html 
+keywords: create fsx tags, create tags, edit fsx tags, fsx tags, reset fsx admin password 
+summary: Puoi aggiungere, aggiornare o rimuovere i tag del file system FSx for ONTAP in qualsiasi momento. 
+---
+= Gestisci le impostazioni del file system FSx for ONTAP in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci le impostazioni di un file system FSx for ONTAP in NetApp Workload Factory. Puoi gestire i tag del file system, reimpostare la password di fsxadmin quando necessario e aggiornare la capacità di throughput secondo le esigenze.
+
+
+
+[[manage-fsx-for-ontap-file-system-tags]]
+== Gestisci i tag del file system FSx for ONTAP
+
+I tag possono aiutarti a categorizzare le tue risorse. Puoi aggiungere, modificare e rimuovere i tag per un file system in qualsiasi momento in NetApp Workload Factory.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. Nell'*Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage file system tags*.
+. Nella finestra di dialogo *Gestisci tag del file system*, aggiungi, modifica o rimuovi i tag secondo necessità.
++
+Il numero massimo di tag che puoi applicare a un file system è 50.
+
+. Seleziona *Applica*.
+
+
+
+
+[[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
+== Reimposta la password fsxadmin di un file system FSx for ONTAP
+
+Reimposta la password di fsxadmin in NetApp Workload Factory quando necessario.
+
+Se durante la creazione del file system hai specificato un utente alternativo, puoi reimpostare la password di fsxadmin solo nella console AWS.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. Nell'*Inventory*, seleziona il menu delle azioni del file system per cui vuoi reimpostare la password di fsxadmin, quindi seleziona *Manage*.
+. Dalla panoramica del file system, seleziona il menu Azioni.
++
+image:screenshot-reset-fsxadmin-password.png["Uno screenshot del menu Azioni nella scheda Panoramica di un file system."]
+
+. Seleziona *Reimposta la password di fsxadmin*.
+. Nella finestra di dialogo Reset fsxadmin password, inserisci una nuova password fsxadmin e reinseriscila per confermare.
+. Seleziona *Applica*.
+
+
+
+
+[[update-throughput-capacity-for-an-fsx-for-ontap-file-system]]
+== Aggiorna la capacità di throughput per un file system FSx for ONTAP
+
+Aggiorna la capacità di throughput per un file system FSx for ONTAP in NetApp Workload Factory secondo necessità.
+
+Per i limiti della capacità di throughput, fai riferimento a link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["Quote"^]nella documentazione di AWS FSx for NetApp ONTAP.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. Nella sezione *Inventario*, seleziona il menu delle azioni del file system di cui vuoi aggiornare la capacità di throughput, quindi seleziona *Gestisci*.
+. Nella sezione Informazioni, seleziona l'icona a forma di matita accanto a *Capacità di throughput*. L'icona a forma di matita appare accanto alla freccia del menu a discesa quando il mouse passa sulla riga *Capacità di throughput*.
+. Nella finestra di dialogo Capacità di throughput, seleziona la capacità di throughput necessaria.
+. Seleziona *Applica* per salvare le modifiche
+

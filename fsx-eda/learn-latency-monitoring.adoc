@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/learn-latency-monitoring.html 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis 
+summary: 'Scopri come il monitoraggio della latenza in Workload Factory per EDA ti aiuta a rilevare e analizzare i problemi di performance con i volumi Amazon FSx for ONTAP utilizzando l"analisi di base automatizzata e l"analisi AI opzionale.' 
+---
+= Scopri il monitoraggio della latenza in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il monitoraggio della latenza in Workload Factory per EDA ti aiuta a individuare e risolvere i rallentamenti delle performance nei volumi Amazon FSx for ONTAP. Tiene traccia della latenza in lettura e scrittura usando le metriche di CloudWatch e analizza automaticamente i dati per aiutarti a identificare la causa dei problemi di performance.
+
+
+
+[[how-latency-monitoring-works]]
+== Come funziona il monitoraggio della latenza
+
+L'analisi della latenza raccoglie le metriche di CloudWatch per l'attività di lettura e scrittura su tutti i volumi FSx for ONTAP collegati al tuo account AWS. Controlla continuamente queste metriche rispetto ai limiti definiti per rilevare tempestivamente eventuali problemi di performance.
+
+Se la latenza aumenta, Workload Factory analizza automaticamente le metriche di ritardo QoS di ONTAP per identificare la causa principale del rallentamento. Per problemi più complessi che coinvolgono dati o componenti del cluster, puoi eseguire un'analisi AI facoltativa che fornisce la probabile causa principale, identifica i client interessati e suggerisce i passaggi da seguire per risolvere il problema.
+
+
+NOTE: Se l'amministratore del tuo account ha disattivato le funzionalità di intelligenza artificiale, visualizzerai un messaggio e non potrai utilizzare l'analisi basata sull'IA. Contatta il tuo amministratore o link:../admin/manage-genai-features.html["Scopri come amministrare l'AI"^].
+
+
+
+[[alert-generation]]
+=== Generazione di avvisi
+
+Un avviso si attiva solo quando queste condizioni sono vere per l'intero intervallo di tempo selezionato: la latenza rimane al di sopra della sua soglia e gli IOPS rimangono al di sopra della loro soglia. Richiedere entrambe riduce i falsi allarmi, assicurando che la latenza si verifichi mentre il sistema sta gestendo un carico di lavoro reale.
+
+È possibile configurare soglie separate per:
+
+* Operazioni di lettura
+* Operazioni di scrittura
+* Gravità dell'avvertimento
+* Gravità critica
+
+
+Tutti gli eventi rilevati vengono visualizzati nella tabella degli eventi di latenza. Se le notifiche sono configurate, ricevi anche un'email o un messaggio Amazon SNS con i dettagli relativi ai volumi interessati. Puoi controllare la frequenza con cui ricevi le notifiche: ogni giorno per file system oppure ogni 20 minuti.
+
+
+
+[[understanding-alerts]]
+== Comprensione degli avvisi
+
+Comprendere come vengono attivati gli avvisi aiuta a configurare le soglie appropriate e a interpretare i risultati.
+
+
+
+[[metrics-collected]]
+=== Metriche raccolte
+
+Il sistema raccoglie le seguenti metriche CloudWatch per ogni volume:
+
+* *Soglia di latenza di lettura*: calcolata come 1000 * m2/(m1+0.000001) dove m1 = DataReadOperations e m2 = DataReadOperationTime
+* *Soglia di latenza di scrittura*: calcolata come 1000 * m2/(m1+0.000001) dove m1 = DataWriteOperations e m2 = DataWriteOperationTime
+
+
+
+
+[[alert-trigger-conditions]]
+=== Condizioni di attivazione dell'avviso
+
+Un avviso viene attivato quando vengono soddisfatte tutte le seguenti condizioni:
+
+* La soglia di latenza è superata per il tipo di operazione (lettura o scrittura).
+* La soglia IOPS è stata superata per il tipo di operazione.
+* Entrambe le condizioni persistono per tutti i punti dati all'interno dell'intervallo di tempo configurato.
+
+
+Ad esempio, con le soglie di avviso predefinite, un avviso di lettura viene attivato solo se la latenza di lettura supera i 6 ms E gli IOPS di lettura superano i 100 ops/sec per tutti i punti dati entro un periodo di 10 minuti.
+
+
+
+[[event-severity]]
+=== Gravità dell'evento
+
+* *Eventi di avviso*: indicano una latenza elevata che potrebbe richiedere attenzione
+* *Eventi critici*: indicano una grave latenza che richiede un'indagine immediata
+
+
+
+
+[[latency-analysis]]
+== Analisi della latenza
+
+Workload Factory offre due livelli di analisi per aiutarti a risolvere i problemi di latenza.
+
+
+
+[[basic-analysis]]
+=== Analisi di base
+
+Quando si verifica un evento di latenza, Workload Factory esegue automaticamente un'analisi di base per individuarne la causa. Utilizza le metriche ONTAP QoS delay center per vedere quale componente è responsabile del rallentamento, come FlexCache, il pool di capacità, i limiti QoS, i dischi, i dati, il cluster o un altro sottosistema. Questo permette di identificare rapidamente la fonte della latenza senza bisogno di indagini manuali.
+
+
+NOTE: Puoi vedere un'analisi dettagliata dei componenti solo quando un collegamento è associato al file system FSx for ONTAP. Se non c'è un collegamento, puoi comunque visualizzare i grafici per latenza, IOPS e throughput.
+
+
+NOTE: I valori di latenza dall'analisi QoS di ONTAP e CloudWatch potrebbero differire leggermente perché raccolgono i dati in modi diversi. L'analisi di base utilizza i dati di ONTAP per identificare la causa principale.
+
+
+
+[[ai-analysis]]
+=== Analisi AI
+
+Mentre un'analisi di base può identificare la fonte della latenza, situazioni più complesse che coinvolgono dati o componenti del cluster spesso richiedono un'indagine più approfondita. L'analisi basata sull'intelligenza artificiale fornisce questa risoluzione dei problemi più approfondita, individuando criticità come volumi sovraccarichi, configurazioni inadeguate o la necessità di aumentare la capacità—problematiche che un'analisi di base potrebbe non rilevare.
+
+La disponibilità dell'analisi tramite IA dipende dalla configurazione del tuo account:
+
+* *NetApp-crediti AI gestiti abilitati*: Puoi eseguire analisi AI senza ulteriori configurazioni Bedrock.
+* *Disabilitato dall'amministratore*: le opzioni AI non sono disponibili.
+
+
+Se i crediti AI gestiti da NetApp sono abilitati ma il tuo budget mensile è stato raggiunto, l'analisi AI non è disponibile e viene visualizzato un messaggio.
+
+Quando esegui un'analisi basata sull'IA, il sistema fornisce:
+
+* *Potenziale causa principale*: Spiegazione dettagliata di cosa sta causando il problema di latenza
+* *Clienti interessati*: Elenco dei nomi delle istanze EC2 interessate dalla latenza
+* *Possibili misure correttive*: Due o più azioni specifiche per risolvere il problema
+
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+* link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"]
+* link:task-analyze-latency-issues.html["Analizza i problemi di latenza"]
+* link:task-analyze-latency-trends.html["Analizza le tendenze della latenza"]
+

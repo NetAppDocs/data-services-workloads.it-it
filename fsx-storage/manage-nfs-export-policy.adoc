@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-nfs-export-policy.html 
+keywords: NFS, nfs, export policy, change export policy, update export policy, modify export policy 
+summary: Gestisci la policy di esportazione NFS per un volume che utilizza i protocolli NFSv3 o NFSv4.1 in NetApp Workload Factory. 
+---
+= Gestisci la policy di esportazione NFS per un volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci la policy di esportazione NFS per un volume che utilizza i protocolli NFSv3 o NFSv4.1 in NetApp Workload Factory.
+
+.Informazioni su questa attività
+Per gestire la policy di esportazione di un volume, aggiungi regole della policy di esportazione che specificano la specifica del client, il controllo degli accessi, l'accesso dei super utenti e la versione NFS. Puoi aggiungere più di una policy di esportazione e assegnare loro una priorità.
+
+.Prima di iniziare
+Determina le specifiche del client per le regole della policy di esportazione. I valori validi per la specifica del client sono i seguenti:
+
+* indirizzi IP
+* Indirizzi IP con maschere di sottorete
+* Indirizzi IP con maschera di rete
+* Un nome di netgroup preceduto dal carattere "@"
+* Un domain name preceduto da un punto "."
+* nomi host
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni per il volume di cui vuoi modificare la policy di esportazione NFS.
+. Seleziona *Azioni avanzate*, quindi *Modifica policy di esportazione NFS*.
+. Nella pagina Modifica policy di esportazione NFS, fornisci le seguenti informazioni:
++
+.. *Controllo degli accessi*: Seleziona *policy di esportazione personalizzata* o *policy di esportazione esistente*.
++
+In alternativa, puoi selezionare *Nessun accesso al volume*.
+
+.. *Nome della policy di esportazione*: Facoltativamente, inserisci un nome per la policy di esportazione.
+.. *Aggiungi regola della policy di esportazione*: Fornisci i seguenti dettagli e classifica le policy a partire da #1 come regola prioritaria:
++
+... *Specifica del client*: Separa più valori con virgole.
+... *Controllo degli accessi*: Seleziona *Lettura/Scrittura*, *Sola lettura* o *Nessun accesso* dal menu a discesa.
+... *Accesso super utente*: Seleziona *Sì* o *No*.
+... *Versione NFS*: Seleziona *Tutte*, *NFSv3* o *NFSv4*.
+
+
+
+
+. Seleziona *Applica*.
+

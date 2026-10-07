@@ -1,0 +1,185 @@
+---
+sidebar: sidebar 
+permalink: register-support.html 
+keywords: support registration, register for support, support, nss account, add nss account, NetApp Console 
+summary: Prima di poter aprire una richiesta di assistenza con il supporto tecnico NetApp, devi aggiungere un account NetApp Support Site alla NetApp Console e poi registrarti per il supporto. 
+---
+= Registrati per ricevere supporto con NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+La registrazione al supporto è necessaria per ricevere supporto tecnico specifico per la NetApp Console e le sue soluzioni di storage e servizi dati. La registrazione al supporto è inoltre necessaria per abilitare i principali flussi di lavoro per i sistemi Cloud Volumes ONTAP.
+
+La registrazione al supporto non abilita il supporto NetApp per un cloud provider file service. Per supporto tecnico relativo a un cloud provider file service, alla sua infrastruttura o a qualsiasi soluzione che utilizza tale servizio, consulta la sezione "Getting help" nella documentazione di quel prodotto.
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+
+
+[[support-registration-overview]]
+== Panoramica sulla registrazione al supporto
+
+Esistono due modalità di registrazione per attivare il diritto al supporto:
+
+* Registrare il numero di serie del tuo account NetApp Console (il tuo numero di serie di 20 cifre 960xxxxxxxxx che si trova nella pagina Support Resources nella Console).
++
+Questo codice funge da ID di abbonamento unico per il supporto per qualsiasi servizio all'interno della Console. Ogni account della Console deve essere registrato.
+
+* Registrare i numeri di serie di Cloud Volumes ONTAP associati a un abbonamento nel marketplace del tuo cloud provider (si tratta di numeri di serie di 20 cifre del tipo 909201xxxxxxxx).
++
+Questi numeri di serie sono comunemente chiamati numeri di serie PAYGO e vengono generati dalla NetApp Console al momento del deployment di Cloud Volumes ONTAP.
+
+
+
+La registrazione di entrambi i tipi di numeri di serie abilita funzionalità come l'apertura di ticket di supporto e la generazione automatica di casi. La registrazione si completa aggiungendo gli account NetApp Support Site (NSS) alla Console, come descritto di seguito.
+
+
+
+[[register-netapp-console-for-netapp-support]]
+== Registra la NetApp Console per il supporto NetApp
+
+Per registrarti al supporto e attivare il diritto al supporto, un utente del tuo account NetApp Console deve associare un account NetApp Support Site al proprio login Console. Come ti registri al supporto NetApp dipende dal fatto che tu abbia già o meno un account del NetApp Support Site (NSS).
+
+
+
+[[existing-customer-with-an-nss-account]]
+=== Cliente già in possesso di un account NSS
+
+Se sei un cliente NetApp con un account NSS, devi semplicemente registrarti per il supporto tramite la Console.
+
+.Passaggi
+. Seleziona *Amministrazione* > *Credenziali*.
+. Seleziona *Credenziali utente*.
+. Seleziona *Aggiungi credenziali NSS* e segui il prompt di autenticazione del sito di supporto NetApp (NSS).
+. Per confermare che la procedura di registrazione sia andata a buon fine, seleziona l'icona Guida e seleziona *Supporto*.
++
+La pagina *Risorse* dovrebbe mostrare che il tuo account Console è registrato per il supporto.
+
++
+Tieni presente che gli altri utenti della Console non visualizzeranno lo stesso stato di registrazione al supporto se non hanno associato un account del NetApp Support Site al proprio login. Tuttavia, ciò non significa che il tuo account non sia registrato per il supporto. Finché almeno un utente dell'organizzazione ha seguito questi passaggi, il tuo account è stato registrato.
+
+
+
+
+
+[[existing-customer-but-no-nss-account]]
+=== Cliente esistente ma senza account NSS
+
+Se sei già un cliente NetApp con licenze e numeri di serie esistenti ma _non_ hai un account NSS, devi creare un account NSS e associarlo al tuo accesso alla Console.
+
+.Passaggi
+. Crea un account del sito di supporto NetApp completando il https://mysupport.netapp.com/site/user/registration["NetApp Support Site Modulo di registrazione utente"^]
++
+.. Assicurati di selezionare il livello utente appropriato, che in genere è *NetApp Customer/End User*.
+.. Assicurati di copiare il numero di serie dell'account Console (960xxxx) utilizzato sopra nel campo del numero di serie. Questo velocizzerà l'elaborazione dell'account.
+
+
+. Associa il tuo nuovo account NSS al tuo login della Console completando i passaggi sotto <<Cliente già in possesso di un account NSS>>.
+
+
+
+
+[[brand-new-to-netapp]]
+=== Nuovo di zecca su NetApp
+
+Se sei nuovo su NetApp e non hai un account NSS, segui ogni passaggio qui sotto.
+
+.Passaggi
+. Nell'angolo in alto a destra della Console, seleziona l'icona Guida e seleziona *Supporto*.
+. Trova il numero di serie del tuo ID account nella pagina di registrazione del supporto.
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-serial-number.png["Uno screenshot del menu Help in cui Support è la prima opzione elencata"]
+
+. Vai su  https://register.netapp.com["Sito di registrazione al supporto di NetApp"^] e seleziona *Non sono un cliente NetApp registrato*.
+. Compila i campi obbligatori (quelli con un asterisco rosso).
+. Nel campo *Linea di prodotto*, seleziona *Cloud Manager* e poi seleziona il tuo cloud provider di fatturazione applicabile.
+. Copia il numero di serie del tuo account dal passaggio 2 qui sopra, completa il controllo di sicurezza e poi conferma di aver letto l'Informativa globale sulla privacy dei dati di NetApp.
++
+Un'email viene inviata immediatamente alla casella di posta fornita per finalizzare questa transazione sicura. Assicurati di controllare la cartella spam se l'email di convalida non arriva entro pochi minuti.
+
+. Conferma l'azione direttamente dall'email.
++
+Confermando invii la tua richiesta a NetApp e ti viene consigliato di creare un account NetApp Support Site.
+
+. Crea un account del sito di supporto NetApp completando il https://mysupport.netapp.com/site/user/registration["NetApp Support Site Modulo di registrazione utente"^]
++
+.. Assicurati di selezionare il livello utente appropriato, che in genere è *NetApp Customer/End User*.
+.. Assicurati di copiare il numero di serie dell'account (960xxxx) utilizzato sopra nel campo del numero di serie. Questo velocizzerà l'elaborazione.
+
+
+
+
+.Dopo aver finito
+NetApp dovrebbe contattarti durante questo processo. Si tratta di una procedura di onboarding da effettuare una sola volta per i nuovi utenti.
+
+Una volta che hai il tuo account del sito di supporto NetApp, associa l’account al tuo login della Console completando i passaggi in <<Cliente già in possesso di un account NSS>>.
+
+
+
+[[associate-nss-credentials-for-cloud-volumes-ontap-support]]
+== Associa le credenziali NSS per il supporto di Cloud Volumes ONTAP
+
+L'associazione delle credenziali del sito di supporto NetApp al tuo account Console è necessaria per abilitare i seguenti flussi di lavoro chiave per Cloud Volumes ONTAP:
+
+* Registrare i sistemi Cloud Volumes ONTAP pay-as-you-go per il supporto
++
+Fornire il tuo account NSS è necessario per attivare il supporto per il tuo sistema e per accedere alle risorse di supporto tecnico di NetApp.
+
+* Implementazione di Cloud Volumes ONTAP quando porti la tua licenza (BYOL)
++
+Devi fornire il tuo account NSS così la Console può caricare la chiave di licenza e attivare l'abbonamento per il periodo che hai acquistato. Questo include gli aggiornamenti automatici per i rinnovi del periodo.
+
+* Aggiornare il software Cloud Volumes ONTAP all'ultima versione
+
+
+L'associazione delle credenziali NSS al tuo account NetApp Console è diversa dall'associazione dell'account NSS a un login utente di Console.
+
+Queste credenziali NSS sono associate al tuo ID account Console specifico. Gli utenti che appartengono all'organizzazione Console possono accedere a queste credenziali da *Supporto > Gestione NSS*.
+
+* Se hai un account cliente, puoi aggiungere uno o più account NSS.
+* Se hai un account partner o rivenditore, puoi aggiungere uno o più account NSS, ma non possono essere aggiunti insieme ad account a livello cliente.
+
+
+.Passaggi
+. Nell'angolo in alto a destra della Console, seleziona l'icona Guida e seleziona *Supporto*.
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-help-support.png["Uno screenshot del menu Help in cui Support è la prima opzione elencata"]
+
+. Seleziona *Gestione NSS > Aggiungi account NSS*.
+. Quando richiesto, seleziona *Continua* per essere reindirizzato a una pagina di accesso Microsoft.
++
+NetApp usa Microsoft Entra ID come provider di identità per i servizi di autenticazione specifici per il supporto e le licenze.
+
+. Nella pagina di accesso, inserisci l'indirizzo email e la password registrati sul NetApp Support Site per completare la procedura di autenticazione.
++
+Queste azioni consentono alla Console di utilizzare il tuo account NSS per attività come il download delle chiavi di licenza, la verifica degli aggiornamenti software e le future registrazioni per il supporto tecnico.
+
++
+Nota quanto segue:
+
++
+** L'account NSS deve essere un account di livello cliente (non un account ospite o temporaneo). Puoi avere più account NSS di livello cliente.
+** Può esistere un solo account NSS se si tratta di un account di livello partner. Se provi ad aggiungere account NSS di livello cliente e ne esiste già uno di livello partner, riceverai il seguente messaggio di errore:
++
+"Il tipo di cliente NSS non è consentito per questo account perché sono già presenti utenti NSS di tipo diverso."
+
++
+Lo stesso vale se hai già account NSS a livello cliente e provi ad aggiungere un account a livello partner.
+
+** Dopo un accesso riuscito, NetApp memorizzerà il nome utente NSS.
++
+Si tratta di un ID generato dal sistema che corrisponde al tuo indirizzo email. Nella pagina *Gestione NSS*, puoi visualizzare il tuo indirizzo email dal image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Un'icona composta da tre punti orizzontali"] menu.
+
+** Se dovessi mai aver bisogno di aggiornare i token delle tue credenziali di accesso, c'è anche un'opzione *Aggiorna credenziali* nel menu image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Un'icona composta da tre punti orizzontali"].
++
+Utilizzando questa opzione, ti verrà richiesto di effettuare nuovamente l'accesso. Tieni presente che il token per questi account scade dopo 90 giorni. Riceverai una notifica per avvisarti di questo.
+
+
+
+

@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/calculate-evs-savings.html 
+keywords: vm workloads, deploy fsx, deploy storage for vms, evs, savings, calculate, tco, regions 
+summary: Calcola quanto puoi risparmiare utilizzando Amazon EVS con FSx for ONTAP. 
+---
+= Scopri i risparmi per Amazon Elastic VMware Service con NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Scopri i potenziali risparmi derivanti dalla migrazione dei tuoi carichi di lavoro VMware ad Amazon Elastic VMware Service (EVS). Il calcolatore ti consente di confrontare i costi di utilizzo di Amazon EVS con e senza Amazon FSx for NetApp ONTAP come storage.
+
+Se il calcolatore di risparmio determina che lo storage più conveniente è FSx for ONTAP, puoi creare una valutazione dettagliata che fornisce un piano di migrazione da rivedere prima di usarlo. Puoi quindi usare Codebox per generare modelli di Infrastructure-as-Code.
+
+
+
+[[explore-savings-for-evs-environments]]
+== Scopri i risparmi per gli ambienti EVS
+
+Segui questi passaggi per valutare i potenziali risparmi derivanti da una migrazione pianificata verso un ambiente Amazon EVS.
+
+
+NOTE: Prima di procedere, consulta l'informativa in fondo al calcolatore dei risparmi per capire meglio come vengono calcolate le stime dei prezzi.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Dal menu VMware, seleziona *Explore savings*. Viene visualizzato il calcolatore dei risparmi.
++
+Nel riquadro *Preferenze ambiente*, puoi selezionare la regione di implementazione di EVS e regolare di conseguenza le previsioni di TCO e di risparmio.
+
+. Dal menu a tendina *Regione*, seleziona la regione di implementazione di EVS per calcolare il risparmio.
+. Regola i seguenti cursori secondo necessità per visualizzare i calcoli del risparmio in real-time per i valori che scegli. Se utilizzi la tastiera, puoi effettuare piccole regolazioni usando i tasti freccia:
++
+** *Numero di CPU fisiche richieste*
+** *Memoria fisica richiesta (GiB)*
+** *Spazio di archiviazione VM richiesto (TiB)*
+
+
+. In *Piano di fatturazione EVS*, seleziona il piano che stai usando.
+. Esegui una delle seguenti operazioni:
++
+** Per usare il consulente per la migrazione a link:launch-migration-advisor-evs-manual.html["crea un piano di implementazione"] per un ambiente Amazon EVS, seleziona *Plan EVS migration*.
+** Seleziona *Chiudi* per chiudere il calcolatore TCO.
+
+
+

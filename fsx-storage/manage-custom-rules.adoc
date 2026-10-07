@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-custom-rules.html 
+keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
+summary: Visualizza, abilita, disabilita ed elimina le regole architetturali personalizzate dal catalogo delle regole. 
+---
+= Gestisci le regole personalizzate per NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il catalogo delle regole è il punto in cui gestire tutte le tue regole personalizzate. Puoi visualizzare i dettagli di ciascuna regola, verificarne i risultati e attivarla o disattivarla.
+
+
+
+[[view-the-rules-catalog]]
+== Visualizza il catalogo delle regole
+
+Il catalogo delle regole mostra tutte le regole che hai creato, il loro stato, la pianificazione e i risultati più recenti.
+
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *costruttore di regole*.
+. Fai clic su *Visualizza le tue regole* per aprire il catalogo delle regole.
+
+
+
+
+[[view-rule-results]]
+== Visualizza i risultati della regola
+
+I risultati mostrano quali risorse seguono la tua regola e quali no.
+
+.Passaggi
+. Nel catalogo delle regole, fai clic sulla regola che desideri esaminare.
+. Seleziona la scheda *All runs results*.
+. Seleziona **Visualizza dettagli** per vedere i risultati di ogni esecuzione.
+
+
+Se il controllo non è andato a buon fine per alcuni elementi, leggi il messaggio di errore per scoprirne il motivo. Le cause più comuni sono problemi di connessione, autorizzazioni mancanti o un collegamento non configurato.
+
+
+
+[[edit-a-custom-rule]]
+== Modifica una regola personalizzata
+
+Puoi modificare la logica, la pianificazione o altre impostazioni di una regola in qualsiasi momento. Quando modifichi una regola, il costruttore di regole si apre con le impostazioni correnti della regola.
+
+.Passaggi
+. Nel catalogo delle regole, fai clic sulla regola che desideri modificare.
+. Fai clic su *Modifica*.
++
+La regola passa alla modalità bozza e si apre il costruttore di regole.
+
+. Modifica il prompt della regola o usa la conversazione per migliorarla.
+. Esamina l'interpretazione aggiornata e la definizione della regola dell'AI.
++
+Il sistema mostra cosa è cambiato rispetto alla regola corrente, incluse eventuali chiamate API o la logica.
+
+. A seconda delle modifiche apportate, esegui una delle seguenti operazioni:
++
+** Se hai apportato piccole modifiche, fai clic su *Salva* per aggiornare la regola.
+** Se hai apportato modifiche significative, fai clic su *Convalida regola* per testare le modifiche, quindi fai clic su *Pianifica* per salvare e pianificare la regola oppure fai clic su *Salva come bozza* per salvare senza pianificare.
+** Per annullare le modifiche, fai clic su *Ripristina versione precedente*. La regola torna alla definizione originale e esce dalla modalità di modifica.
+
+
+

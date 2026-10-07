@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/capture-vm-configurations.html 
+keywords: vm workloads, capture vm details 
+summary: Puoi utilizzare Migration advisor VM collector script o RVTools per acquisire le tue configurazioni VM correnti. Ti consigliamo di utilizzare Migration advisor VM collector script perché raccoglie sia i dati di configurazione delle VM sia quelli sulle prestazioni, così ottieni il piano più accurato. 
+---
+= Acquisisci le configurazioni delle tue VM prima di migrare a VMware Cloud con i workload VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi utilizzare Migration advisor VM collector script o RVTools per acquisire le tue configurazioni VM correnti. Ti consigliamo di utilizzare Migration advisor VM collector script perché raccoglie sia i dati di configurazione delle VM sia quelli sulle prestazioni, così ottieni il piano più accurato.
+
+[role="tabbed-block"]
+====
+.Usa lo script di raccolta VM di Migration advisor
+--
+Lo script di raccolta VM di Migration advisor di NetApp raccoglie informazioni sulla configurazione delle VM dal tuo vCenter, in modo simile a quanto raccoglie RVTools; tuttavia, acquisisce i dati correnti sulle prestazioni delle VM per fornire statistiche effettive di IOPS e throughput in lettura e scrittura.
+
+Devi avviare Migration advisor per copiare lo script del raccoglitore VM di Migration advisor dalla finestra Codebox.
+
+.Prima di iniziare
+Il sistema su cui eseguirai lo script di raccolta dati deve soddisfare i seguenti requisiti:
+
+* Devi installare Microsoft PowerShell 7.0 o versione successiva. Consulta  https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4["Documentazione di Microsoft PowerShell"^] se devi installare PowerShell.
+* Devi installare VMware PowerCLI. Consulta la https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.install.doc/GUID-F02D0C2D-B226-4908-9E5C-2E783D41FE2D.html["Documentazione di VMware PowerCLI"^] se devi installare PowerCLI.
+* Devi disabilitare la verifica del certificato SSL.
+* PowerShell deve consentire l'esecuzione di script non firmati.
+
+
+Tieni presente che, se intendi acquisire statistiche a lungo termine dalle tue VM (statistiche giornaliere), devi aver attivato il livello di statistiche 3 o superiore nella console di gestione vSphere (ambiente di gestione VMware).
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Dal menu VMware, seleziona *Valuta e pianifica* e quindi *Migrazione a VMware Cloud su AWS*.
++
+Visualizzi la pagina principale di VMware migration advisor.
+
+. Seleziona *Pianifica e crea VMC*.
+. Seleziona *Iniziamo!*. Puoi scegliere di non visualizzare più questa pagina selezionando la casella di controllo.
+. Seleziona *Crea un nuovo piano di distribuzione*, seleziona l'opzione *Usa il raccoglitore di dati VMware di Migration Advisor* e seleziona *Avanti*.
++
+Si apre la pagina *Prepare for VMware Cloud on AWS migration*.
+
+. Nella finestra Codebox, scegli se image:button-download-codebox.png["il pulsante di download"] salvare lo script di raccolta delle macchine virtuali di Migration Advisor (denominato "list-vms.ps1") nel sistema di destinazione oppure se image:button-copy-codebox.png["il pulsante copia"] copiare lo script per incollarlo nel sistema appropriato.
+. Segui questi passaggi per acquisire le configurazioni delle tue VM attuali:
++
+.. Accedi al sistema in cui hai scaricato il raccoglitore di dati e su cui sono installati PowerShell e PowerCLI.
+.. Connettiti al server VMware vCenter eseguendo il seguente comando:
++
+[source, console]
+----
+Connect-VIServer -server <server_IP>
+----
++
+Sostituisci <server_IP> con l'indirizzo IP o il nome host del tuo server VMware.
+
+.. Esegui lo script di raccolta di dati che hai scaricato e specifica l'opzione di raccolta di dati per le statistiche VM "daily" o "hourly".
++
+[source, console]
+----
+./list-vms.ps1 -isLongTermDataCollectionEnabled <true | false>
+----
++
+dove:
+
++
+*** *true* raccoglie i dati IOPS e throughput delle ultime 24 ore con intervalli di 5 minuti
+*** *false* raccoglie i dati IOPS e throughput dell'ultima ora con intervalli di 20 secondi.
+
+
+
+
+
+
+.Risultato
+Lo script genera un file CSV denominato  `list-vms-yyyy-MM-dd-HH-mm-ss.csv` nella directory di lavoro corrente. Il file CSV contiene un elenco di tutte le VM e delle relative proprietà, insieme ai relativi dati di IOPS e throughput.
+
+--
+.Usa il software RVTools
+--
+RVTools è un'applicazione Windows che interagisce con VCenter e server ESX (dalla versione 5.x alla 8.0) per acquisire informazioni sui tuoi ambienti virtuali VMware. Raccoglie informazioni su VM, CPU, memoria, dischi, cluster, host ESX, datastore e altro ancora. Puoi esportare queste informazioni in un file xlsx da usare con il migration advisor.
+
+link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Scopri di più su RVTools"^]
+
+.Passaggi
+. Scarica e installa RVTools 4.4.2 o versione successiva nel link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Sito web di RVTools"^]
+. Avvia RVTools e accedi al target VCenter Server.
++
+In questo modo acquisirai informazioni su quel VCenter Server.
+
+. Esporta le informazioni di VMware in un file xlsx o xls.
++
+Per i dettagli, consulta il capitolo sui "parametri della riga di comando" nel link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Documentazione di RVTools nella sezione Risorse"^].
+
+
+
+.Risultato
+Trovi il file xlsx o xls che contiene i risultati nella directory di lavoro.
+
+--
+====
+.E ora?
+link:launch-onboarding-advisor.html["Crea un piano di implementazione di VMware Cloud su AWS utilizzando il consulente per la migrazione"].

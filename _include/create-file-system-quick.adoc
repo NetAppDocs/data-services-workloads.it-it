@@ -1,0 +1,65 @@
+= 
+:allow-uri-read: 
+
+
+. Nella pagina Crea file system FSx per ONTAP, seleziona *Creazione rapida*.
++
+Puoi anche caricare una configurazione salvata.
+
+. In Configurazione generale del file system, inserisci quanto segue:
++
+.. *Credenziali AWS*: Seleziona questa opzione per aggiungere le credenziali AWS in Workload Factory oppure continua senza credenziali.
+.. *Nome del file system*: Inserisci un nome per il file system.
+.. *Regione e VPC*: Seleziona la regione e la VPC per il file system.
+.. *Tipo di implementazione*: Seleziona un tipo di implementazione.
++
+*** Implementazione Single Availability Zone (Single-AZ): garantisce la disponibilità monitorando i guasti hardware e sostituendo automaticamente i componenti dell'infrastruttura in caso di malfunzionamento. Offre un'elevata durabilità replicando automaticamente i dati all'interno di una Availability Zone per proteggerli da guasti dei componenti.
++
+Questa configurazione è consigliata per carichi di lavoro ad alte prestazioni o quando i carichi di lavoro iniziano con dimensioni ridotte e vengono gradualmente ampliati fino a raggiungere 72 GB/s di throughput e 2,4 milioni di IOPS.
+
+*** Implementazione in più zone di disponibilità (Multi-AZ): garantisce la disponibilità continua dei dati anche quando una zona di disponibilità non è disponibile. Un file system Multi-AZ è progettato per carichi di lavoro di produzione business-critical che richiedono un'elevata disponibilità dei dati di file ONTAP condivisi e necessitano di storage con replica integrata tra zone di disponibilità.
++
+Questa configurazione a singola coppia HA è consigliata per carichi di lavoro che richiedono fino a 6 GB/s di throughput o 200.000 IOPS.
+
+
+
+.. *Tag*: Facoltativamente, puoi aggiungere fino a 50 tag.
+
+
+. Nella sezione *Dettagli del file system*, fornisci le seguenti informazioni:
++
+.. *Capacità di storage SSD*: Inserisci la capacità di storage e seleziona l'unità di misura della capacità di storage.
++
+*** Nelle implementazioni di prima generazione, non puoi ridurre la capacità dopo la creazione del file system.
+*** Per le implementazioni di seconda generazione, puoi aumentare la capacità dopo la creazione del file system.
+
+
+.. *Credenziali ONTAP*: Facoltativo. Inserisci il nome utente e la password di ONTAP. La password può essere impostata ora o in seguito.
++
+Se l'utente che fornisci non è l'utente fsxadmin e in seguito devi reimpostare la password di fsxadmin, potrai farlo dalla console AWS.
+
+.. *Configurazione SMB/CIFS*: Facoltativa. Se prevedi di utilizzare il protocollo SMB/CIFS per accedere ai volumi, devi configurare Active Directory per la VM di storage durante la creazione del file system. Fornisci i seguenti dettagli per la VM di storage creata per questo file system.
++
+... *Dominio Active Directory a cui unirti*: inserisci il fully qualified domain name (FQDN) di Active Directory.
+... *Indirizzi IP DNS*: Inserisci fino a tre indirizzi IP DNS separati da virgole.
+... *Nome NetBIOS del server SMB*: inserisci il nome NetBIOS del server SMB dell'oggetto computer di Active Directory da creare per la tua storage VM. Questo è il nome di questa storage VM in Active Directory.
+... *Nome utente*: inserisci il nome utente dell'account di servizio nel tuo Active Directory esistente.
++
+Non includere un prefisso o un suffisso di dominio. Per  `EXAMPLE\ADMIN`, usa  `ADMIN`.
+
+... *Password*: Inserisci la password per l'account di servizio.
+... *Unità organizzativa*: Facoltativamente, inserisci il nome dell'unità organizzativa in cui vuoi creare l'account computer per FSx per ONTAP. L'OU è il nome del percorso distinto dell'unità organizzativa a cui vuoi unire il file system.
+... *Gruppo di amministratori delegati*: Facoltativamente, inserisci il nome del gruppo nel tuo Active Directory che può amministrare il tuo file system.
++
+Se utilizzi AWS Managed Microsoft AD, devi specificare un gruppo come AWS Delegated FSx Administrators, AWS Delegated Administrators o un gruppo personalizzato con autorizzazioni delegate per l'OU.
+
++
+Se ti stai unendo a un AD autogestito, usa il nome del gruppo nel tuo AD. Il gruppo predefinito è `Domain Admins`.
+
+
+
+
+
+. Apri il *Riepilogo* per rivedere la configurazione che hai definito. Se necessario, puoi modificare qualsiasi impostazione in questa fase prima di salvare o creare il file system.
+. Salva o crea il file system.
+

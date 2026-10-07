@@ -1,0 +1,110 @@
+= 
+:allow-uri-read: 
+
+
+. Nella pagina Crea file system FSx for ONTAP, seleziona *Creazione avanzata*.
++
+Puoi anche caricare una configurazione salvata.
+
+. In Configurazione generale del file system, inserisci quanto segue:
++
+.. *Credenziali AWS*: Seleziona questa opzione per aggiungere le credenziali AWS in Workload Factory oppure continua senza credenziali.
+.. *Nome del file system*: Inserisci un nome per il file system.
+.. *Regione e VPC*: Seleziona la regione e la VPC per il file system.
+.. *Tipo di implementazione*: seleziona un tipo di implementazione e la generazione del file system. La disponibilità di un file system di seconda generazione dipende dalla regione selezionata. Se la regione selezionata non supporta i file system FSx for ONTAP di seconda generazione, il tipo di implementazione passa alla prima generazione.
++
+*** Implementazione Single Availability Zone (Single-AZ): garantisce la disponibilità monitorando i guasti hardware e sostituendo automaticamente i componenti dell'infrastruttura in caso di malfunzionamento. Offre un'elevata durabilità replicando automaticamente i dati all'interno di una Availability Zone per proteggerli da guasti dei componenti.
++
+*Generazione del file system*: Seleziona una delle seguenti opzioni:
+
++
+**** *Seconda generazione*: questa configurazione è consigliata per carichi di lavoro ad alte prestazioni o quando i carichi di lavoro iniziano con dimensioni ridotte e si espandono gradualmente fino a 72 GB/s di throughput e 2,4 milioni di IOPS.
+**** *Prima generazione*: Questa configurazione è ideale per carichi di lavoro che richiedono fino a 4 GB/s o 160.000 IOPS. I file system di prima generazione possono solo aumentare la capacità.
+
+
+*** Implementazione in più zone di disponibilità (Multi-AZ): garantisce la disponibilità continua dei dati anche quando una zona di disponibilità non è disponibile. Un file system Multi-AZ è progettato per carichi di lavoro di produzione business-critical che richiedono un'elevata disponibilità dei dati di file ONTAP condivisi e necessitano di storage con replica integrata tra zone di disponibilità.
++
+*Generazione del file system*: Seleziona una delle seguenti opzioni:
+
++
+**** *Seconda generazione*: questa configurazione a coppia HA singola è consigliata per carichi di lavoro che richiedono fino a 6 GB/s di throughput o 200.000 IOPS. In un file system Multi-AZ di seconda generazione, la capacità può aumentare o diminuire in base alle esigenze del carico di lavoro.
+**** *Prima generazione*: Questa configurazione è ideale per carichi di lavoro che richiedono fino a 4 GB/s o 160.000 IOPS. I file system di prima generazione possono solo aumentare la capacità.
+
+
+
+
+.. *Tag*: Facoltativamente, puoi aggiungere fino a 50 tag.
+
+
+. Nella sezione Dettagli del file system, fornisci le seguenti informazioni:
++
+.. *Capacità di storage SSD*: Inserisci la capacità di storage e seleziona l'unità di misura della capacità di storage.
++
+*** Nelle implementazioni di prima generazione, non puoi ridurre la capacità dopo la creazione del file system.
+*** Per le implementazioni di seconda generazione, puoi regolare la capacità.
+
+
+.. *Capacità di throughput per coppia HA*: seleziona la capacità di throughput in base al numero di coppie HA. I file system di prima generazione supportano una sola coppia HA.
+.. *IOPS provisioned*: Seleziona una delle seguenti opzioni:
++
+*** *Automatico*: per la modalità automatica, per ogni GiB creato si aggiungono 3 IOPS.
+*** *Fornito dall'utente*: Per il provisioning fornito dall'utente, inserisci il valore IOPS.
+
+
+.. *Credenziali ONTAP*: Facoltativo. Inserisci il nome utente e la password di ONTAP. La password può essere impostata ora o in seguito.
++
+Se l'utente che fornisci non è l'utente fsxadmin e in seguito devi reimpostare la password di fsxadmin, potrai farlo dalla console AWS.
+
+.. *Credenziali della VM di storage*: facoltativo. Inserisci il tuo nome utente. La password può essere specifica per questo file system oppure puoi usare la stessa password inserita per le credenziali ONTAP. Puoi impostare la password ora o in un secondo momento.
+.. *Configurazione SMB/CIFS*: Facoltativa. Se prevedi di utilizzare il protocollo SMB/CIFS per accedere ai volumi, devi configurare Active Directory per la VM di storage durante la creazione del file system. Fornisci i seguenti dettagli per la VM di storage creata per questo file system.
++
+... *Dominio Active Directory a cui unirti*: inserisci il fully qualified domain name (FQDN) di Active Directory.
+... *Indirizzi IP DNS*: Inserisci fino a tre indirizzi IP DNS separati da virgole.
+... *Nome NetBIOS del server SMB*: inserisci il nome NetBIOS del server SMB dell'oggetto computer di Active Directory da creare per la tua storage VM. Questo è il nome di questa storage VM in Active Directory.
+... *Nome utente*: inserisci il nome utente dell'account di servizio nel tuo Active Directory esistente.
++
+Non includere un prefisso o un suffisso di dominio. Per  `EXAMPLE\ADMIN`, usa  `ADMIN`.
+
+... *Password*: Inserisci la password per l'account di servizio.
+... *Unità organizzativa*: Facoltativamente, inserisci il nome dell'unità organizzativa in cui vuoi creare l'account computer per FSx per ONTAP. L'OU è il nome del percorso distinto dell'unità organizzativa a cui vuoi unire il file system.
+... *Gruppo di amministratori delegati*: Facoltativamente, inserisci il nome del gruppo nel tuo Active Directory che può amministrare il tuo file system.
++
+Se utilizzi AWS Managed Microsoft AD, devi specificare un gruppo come AWS Delegated FSx Administrators, AWS Delegated Administrators o un gruppo personalizzato con autorizzazioni delegate per l'OU.
+
++
+Se ti stai unendo a un AD autogestito, usa il nome del gruppo nel tuo AD. Il gruppo predefinito è `Domain Admins`.
+
+
+
+
+
+. In Rete e sicurezza, fornisci quanto segue:
++
+.. *Gruppo di sicurezza*: crea o usa un gruppo di sicurezza esistente.
++
+Per un nuovo gruppo di sicurezza, consulta <<Security group details,dettagli del gruppo di sicurezza>> per una descrizione dei protocolli, delle porte e dei ruoli del gruppo di sicurezza.
+
+.. *Zone di disponibilità*: Seleziona le zone di disponibilità e le sottoreti.
++
+*** Per il nodo 1 della configurazione del cluster: seleziona una zona di disponibilità e una sottorete.
+*** Per il nodo 2 della configurazione del cluster: seleziona una zona di disponibilità e una sottorete.
+
+
+.. *Tabelle di routing VPC*: Seleziona la tabella di routing VPC per consentire l'accesso dei client ai volumi.
+.. *Intervallo di indirizzi IP dell'endpoint*: Seleziona *Intervallo di indirizzi IP mobili al di fuori della tua VPC* oppure *Inserisci un intervallo di indirizzi IP* e inserisci un intervallo di indirizzi IP.
+.. *Crittografia*: Seleziona il nome della chiave di crittografia dal menu a tendina.
+
+
+. Nella sezione Backup e manutenzione, inserisci le seguenti informazioni:
++
+.. *Backup del volume*: I backup automatici giornalieri sono abilitati per impostazione predefinita. Disabilita se desiderato.
++
+... *Periodo di conservazione dei backup automatici*: Inserisci il numero di giorni per cui conservare i backup automatici.
+... *Finestra di backup automatica giornaliera*: Seleziona *Nessuna preferenza* (viene selezionato automaticamente per te un orario di inizio per il backup giornaliero) oppure *Seleziona l'orario di inizio per i backup giornalieri* e specifica un orario di inizio.
+
+
+.. *Finestra di manutenzione settimanale*: Seleziona *Nessuna preferenza* (verrà selezionato automaticamente un orario di inizio per la finestra di manutenzione settimanale) oppure *Seleziona l'orario di inizio per la finestra di manutenzione settimanale di 30 minuti* e specifica un orario di inizio.
+
+
+. Salva o crea il file system.
+

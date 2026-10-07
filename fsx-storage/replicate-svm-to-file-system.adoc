@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/replicate-svm-to-file-system.html 
+keywords: storage VM, SVM, replication, FSx for ONTAP, Workload Factory 
+summary: 'La replica di una VM di storage in un altro file system FSx for ONTAP fornisce un livello di protezione per l"accesso ai dati in caso di perdita di dati.' 
+---
+= Replica una VM di storage in un altro file system FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La replica di una VM di storage in un altro FSx for ONTAP file system in NetApp Workload Factory fornisce un livello di protezione per l'accesso ai dati in caso di perdita di dati. Questa operazione replica tutti i volumi di una VM di storage in un altro FSx for ONTAP file system.
+
+.Prima di iniziare
+Per replicare una storage VM su un altro file system FSx for ONTAP, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona il menu Azioni del file system con la VM di storage da replicare e quindi seleziona *Manage*.
+. Nella panoramica del file system, in Storage VMs, seleziona *Manage*.
+. Nella schermata Gestisci VM di storage, seleziona il menu delle azioni della VM di storage per la quale desideri replicare una SVM, quindi seleziona *Azioni avanzate* > *Replica VM di storage*.
+. Nella pagina Replica dati, in Destinazione della replica, fornisci le seguenti informazioni:
++
+.. *FSx for ONTAP file system*: seleziona credenziali, regione e nome del FSx for ONTAP file system per il file system di destinazione FSx for ONTAP.
+.. *Nome della VM di storage*: seleziona la VM di storage dal menu a discesa.
+.. *Nome del volume*: Il nome del volume di destinazione viene generato automaticamente con il seguente formato `{OriginalVolumeName}_copy`.
+.. *Politica di tiering*: Seleziona la politica di tiering per i dati archiviati nel volume di destinazione.
++
+_Auto_ è la policy di tiering predefinita quando crei un volume utilizzando l'interfaccia utente di Workload Factory FSx for ONTAP. Per ulteriori informazioni sulle policy di tiering dei volumi, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacità di archiviazione del volume"^]la documentazione di AWS FSx for NetApp ONTAP.
+
+.. *Velocità di trasferimento massima*: seleziona *Limitata* e inserisci il limite massimo di trasferimento in MB/s. In alternativa, seleziona *Illimitata*.
++
+Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire. In alternativa, per i file system FSx for ONTAP per carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery, consigliamo una velocità di trasferimento illimitata.
+
+
+
+. Nella sezione Impostazioni di replica, inserisci le seguenti informazioni:
++
+.. *Intervallo di replica*: Seleziona la frequenza con cui le Snapshot vengono trasferite dal volume di origine al volume di destinazione.
+.. *Conservazione a lungo termine*: Facoltativamente, abilita gli snapshot per la conservazione a lungo termine.
++
+Se abiliti la conservazione a lungo termine, seleziona un criterio esistente o creane uno nuovo per definire gli Snapshot da replicare e il numero da conservare.
+
++
+... Per *Scegli una policy esistente*, seleziona una policy esistente dal menu a discesa.
+... Per *Creare una nuova policy*, inserisci quanto segue:
++
+.... *Nome della policy*: Inserisci un nome per la policy.
+.... *Criteri Snapshot*: Nella tabella, seleziona la frequenza del criterio Snapshot e il numero di copie da conservare. Puoi selezionare più di un criterio Snapshot.
+
+
+
+
+
+
+. Seleziona *Crea*.
+
+
+.Risultato
+Tutti i volumi all'interno della macchina virtuale di archiviazione vengono replicati nel file system di destinazione.

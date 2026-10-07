@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: admin/troubleshoot-custom-dashboards-fsx.html 
+keywords: troubleshooting, dashboard errors, dashboard issues, failed creation, failed to load, dashboard not loading 
+summary: Risolvi i problemi più comuni relativi alle dashboard personalizzate, inclusi errori di configurazione, problemi di caricamento dei dati e problemi di accesso. 
+---
+= Risolvi i problemi dei dashboard personalizzati in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Usa queste informazioni per risolvere i problemi comuni che potresti incontrare quando crei o usi dashboard personalizzate.
+
+
+
+[[dashboard-creation-failed]]
+== Creazione dashboard non riuscita
+
+**Problema:** Vedi il messaggio di errore "Impossibile comprendere la richiesta e generare il codice" quando crei una dashboard.
+
+**Causa:** Il sistema non è riuscito a comprendere la tua richiesta o non è stato in grado di creare la visualizzazione dalla tua richiesta.
+
+**Soluzione:** Prova quanto segue:
+
+* Riscrivi la tua richiesta con dettagli più chiari su ciò che vuoi monitorare.
+* Inizia con uno dei prompt di esempio in link:create-custom-dashboard-fsx.html["Crea una dashboard personalizzata"].
+* Suddividi le esigenze di monitoraggio complesse in diverse dashboard più semplici.
+* Specifica i carichi di lavoro, le metriche, gli intervalli di tempo o le dimensioni che vuoi monitorare.
+
+
+
+
+[[dashboard-failed-to-load-data]]
+== Impossibile caricare i dati della dashboard
+
+**Problema:** La dashboard è stata creata, ma mostra errori durante il caricamento dei dati.
+
+**Causa:** Questo accade solitamente a causa di problemi di autorizzazione o fonti di dati non disponibili.
+
+**Soluzione:**
+
+* **Verifica le autorizzazioni:** Assicurati che il tuo account Workload Factory abbia accesso in lettura ai carichi di lavoro e alle risorse utilizzate dalla dashboard. Esamina i requisiti di autorizzazione in link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["Credenziali e autorizzazioni AWS"].
+* **Verifica le credenziali:** Conferma che le tue credenziali AWS siano valide e non scadute. Per i dettagli, consulta link:../fsx-storage/add-credentials.html["Aggiungi credenziali AWS"].
+
+
+
+
+[[dashboard-not-loading-or-loading-slowly]]
+== La dashboard non si carica o si carica lentamente
+
+**Problema:** La dashboard si carica lentamente o alcuni widget non vengono visualizzati.
+
+**Causa:** Il caricamento lento può essere causato da problemi di rete, grandi quantità di dati o ritardi temporanei del servizio.
+
+**Soluzione:**
+
+* **Verifica la tua connessione internet:** Assicurati che la tua connessione internet sia stabile.
+* **Aggiorna il browser:** Prova ad aggiornare la pagina per vedere se la dashboard si carica correttamente.
+* **Cancella la cache e i cookie del tuo browser:** Questo può aiutare a risolvere i problemi di caricamento causati da dati obsoleti o danneggiati.
+* **Attendi e riprova:** Se il problema persiste, attendi qualche minuto e riprova.
+
+
+
+
+[[missing-dashboards]]
+== Cruscotti mancanti
+
+**Problema:** Una dashboard che hai creato non è più presente nel catalogo delle dashboard.
+
+**Causa:** Un altro utente del tuo account Workload Factory potrebbe averlo eliminato.
+
+**Soluzione:**
+
+* Assicurati di aver effettuato l'accesso all'account Workload Factory corretto.
+* Chiedi agli altri utenti del tuo account se qualcuno ha eliminato la dashboard.
+* Se necessario, ricrea la dashboard utilizzando i requisiti originali.
+
+
+Tutti gli utenti di un account Workload Factory possono visualizzare ed eliminare dashboard personalizzate. Coordina con il tuo team quando gestisci le dashboard condivise.
+
+
+
+[[additional-help]]
+== Aiuto aggiuntivo
+
+Se continui a riscontrare problemi con le dashboard personalizzate, consulta link:../get-help.html["Ottieni aiuto"] per informazioni su come contattare l'assistenza NetApp.

@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/quick-start-gcve.html 
+keywords: quick start, gcve, google cloud vmware engine, gcnv, google cloud netapp volumes 
+summary: Inizia con VMware migration advisor per spostare la tua infrastruttura attuale su Google Cloud VMware Engine utilizzando Google Cloud NetApp Volumes come datastore NFS esterni. 
+---
+= Avvio rapido per la migrazione a Google Cloud VMware Engine utilizzando il VMware workloads migration advisor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Inizia con VMware migration advisor per spostare la tua infrastruttura attuale su Google Cloud VMware Engine utilizzando Google Cloud NetApp Volumes come datastore NFS esterni.
+
+Prima di iniziare, dovresti conoscere link:../fsx-storage/permissions-reference-fsx.html["Autorizzazioni di FSx for ONTAP per NetApp Workload Factory"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"] Accedi a Workload Factory
+[role="quick-margin-para"]
+Dovrai link:../setup/sign-up-and-log-in.html["crea un account con Workload Factory"^] e accedere a NetApp Console.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Aggiungi credenziali e autorizzazioni
+[role="quick-margin-para"]
+Scegli link:../fsx-storage/permissions-reference-fsx.html["politiche di autorizzazione"] per soddisfare le tue esigenze.
+
+[role="quick-margin-para"]
+Se si sceglie di non concedere le autorizzazioni, è possibile iniziare a utilizzare Workload Factory per VMware per copiare esempi di codice parzialmente completati.
+
+[role="quick-margin-para"]
+Se scegli di concedere le autorizzazioni, dovrai link:../fsx-storage/add-credentials.html["aggiungere manualmente le credenziali a un account"] fornire un account di servizio GCP con le autorizzazioni necessarie per visualizzare e gestire le risorse di Google Cloud NetApp Volumes, la configurazione VPC e la connettività del datastore di Google Cloud VMware Engine.
+
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Scopri come aggiungere credenziali e autorizzazioni"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"] Carica i dati di inventario delle VM
+[role="quick-margin-para"]
+Puoi utilizzare il centro di pianificazione per caricare i dettagli dell'inventario relativi al tuo ambiente VM corrente. Utilizza lo script di raccolta di dati, RVTools o NetApp Data Infrastructure Insights per acquisire la configurazione VM corrente e caricare i dati nel centro di pianificazione.
+
+[role="quick-margin-para"]
+link:upload-vm-inventory.html["Scopri come caricare i dati dell'inventario delle macchine virtuali"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quattro"] Crea un piano di distribuzione utilizzando VMware migration advisor
+[role="quick-margin-para"]
+Avvia il VMware migration advisor e configura l'ambiente VM che desideri creare sull'infrastruttura Google Cloud VMware Engine utilizzando Google Cloud NetApp Volumes come datastore NFS esterni.
+
+[role="quick-margin-para"]
+link:launch-migration-advisor-gcve.html["Scopri come utilizzare VMware migration advisor per creare un piano di implementazione"].

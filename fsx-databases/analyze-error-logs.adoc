@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/analyze-error-logs.html 
+keywords: analyze error logs, errors, error severity, Microsoft SQL Server error logs, Oracle database error logs, smart analysis, Agentic AI 
+summary: Analizza i log degli errori in Workload Factory for Databases. 
+---
+= Analizza i log degli errori in NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizza l'analizzatore intelligente dei log degli errori per interpretare automaticamente i log degli errori di Microsoft SQL Server e del database Oracle, in modo da poter identificare e risolvere rapidamente i problemi. L'analisi basata su Agentic AI richiede l'integrazione con Amazon Bedrock.
+
+
+
+[[about-this-task]]
+== Informazioni su questa attività
+
+L'analisi e la correzione dei log degli errori contribuiscono a mantenere lo stato e le prestazioni delle istanze di SQL Server e dei database Oracle. Interpretare efficacemente i log degli errori richiede un'analisi accurata e competenze specifiche. Il monitoraggio manuale, il rilevamento degli errori e l'analisi della causa principale richiedono molto tempo e sono soggetti a errori. Queste difficoltà possono ritardare la risoluzione dei problemi, aumentare i tempi di inattività e causare inefficienze operative. L'analizzatore intelligente dei log degli errori affronta queste problematiche offrendo i seguenti vantaggi chiave:
+
+* Raggruppamento intelligente: consolida in modo intelligente gli errori in base a unicità, gravità e categoria, semplificando il processo di risoluzione dei problemi per soluzioni più rapide ed efficaci.
+* Indagine basata sull'AI: sfrutta l'AI per analizzare gli errori in modo proattivo, fornendo informazioni chiare e fruibili per accelerare l'identificazione dei problemi senza richiedere competenze approfondite.
+* Arricchimento degli errori: arricchisce i log degli errori con riferimenti esterni, offrendo chiarezza contestuale per migliorare la comprensione e il processo decisionale.
+* Risoluzione basata sulle best practice: fornisce raccomandazioni di risoluzione personalizzate per i carichi di lavoro di SQL Server in esecuzione su FSx for ONTAP, consentendoti di risolvere i problemi con sicurezza, a prescindere dal tuo livello di competenza.
+
+
+Ogni volta che utilizzi l'analizzatore del registro degli errori, mantieni il pieno controllo del tuo ambiente beneficiando al contempo di un'analisi avanzata basata sull'intelligenza artificiale.
+
+Per utilizzare l'analizzatore del registro degli errori, devi attivare Amazon Bedrock, selezionare il modello utilizzato da Workload Factory, creare un endpoint privato per connetterti ad Amazon Bedrock, aggiungere le autorizzazioni e creare una licenza enterprise.
+
+link:https://aws.amazon.com/bedrock/pricing/["Prezzi di Amazon Bedrock"^]
+
+
+NOTE: Se l'amministratore del tuo account ha disattivato le funzionalità di intelligenza artificiale, visualizzerai un messaggio e non potrai utilizzare l'analisi basata sull'IA. Contatta il tuo amministratore o link:../admin/manage-genai-features.html["Scopri come amministrare l'AI"^].
+
+
+
+[[data-privacy-and-security]]
+=== Privacy dei dati e sicurezza
+
+Questa funzionalità garantisce privacy dei dati e sicurezza con le seguenti misure:
+
+.sovranità dei dati
+I dati di log e le aggregazioni rimangono all'interno del tuo account AWS e vengono comunicati tramite un endpoint VPC privato (Amazon Bedrock), garantendo l'assenza di esposizione a internet pubblica.
+
+.Nessun addestramento AI
+I dati dei clienti non vengono utilizzati per addestrare o migliorare i modelli. Amazon Bedrock elabora i log in tempo reale ma non viene addestrato sui tuoi dati. I risultati vengono memorizzati nel tuo ambiente solo come riferimento. Per maggiori dettagli, consulta link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Documentazione sulla protezione dei dati di Amazon Bedrock"^].
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+Per utilizzare l'analizzatore del registro degli errori, devi soddisfare i seguenti prerequisiti:
+
+* Devi link:../fsx-storage/add-credentials.html["concedere le autorizzazioni di visualizzazione, pianificazione e analisi"^]accedere al tuo account AWS per creare un nuovo host di database in Workload Factory.
+* link:../fsx-databases/register-instance.html["Registra risorse"^] in Workload Factory.
+* È inoltre necessario soddisfare i seguenti prerequisiti. Ti verrà richiesto di completare questi prerequisiti durante la procedura di analisi degli errori di log.
++
+** *Attivazione di Amazon Bedrock*
++
+Amazon Bedrock è necessario affinché l'agente AI in esecuzione sull'host SQL Server o Oracle di Workload Factory possa connettersi senza problemi a Bedrock e recuperare informazioni basate sull'AI per i log di errore identificati.
+
+** *Networking*
++
+L'endpoint VPC di Amazon Bedrock garantisce la comunicazione privata del tuo host SQL Server o Oracle con le API di Amazon Bedrock ed elimina l'esposizione a Internet pubblico. Assicurati che l'endpoint VPC di Amazon Bedrock sia associato alla subnet dell'host SQL Server o Oracle (ad esempio: vpce-050cb2f33a1380ffd).
+
+** *Autorizzazioni AWS IAM*
++
+Le seguenti autorizzazioni sono necessarie per il ruolo del profilo dell'istanza EC2 associato all'host SQL Server o Oracle e per le credenziali AWS associate a Workload Factory.
+
++
+*** Ruolo del profilo dell'istanza EC2 con autorizzazione "bedrock:InvokeModel"
++
+Questa autorizzazione consente all'istanza EC2 sull'host SQL Server o Oracle corrispondente di richiamare i modelli Bedrock per un'analisi proattiva degli errori e indicazioni per la risoluzione. Questo profilo garantisce inoltre un accesso sicuro all'IA per informazioni personalizzate.
+
+*** Credenziali AWS associate a Workload Factory: autorizzazioni "bedrock:GetFoundationModelAvailability" e "bedrock:ListInferenceProfiles"
++
+Queste autorizzazioni verificano la disponibilità e la configurazione del modello nella regione dell'host SQL Server o Oracle e garantiscono prestazioni affidabili e specifiche per la regione.
+
+
+
+** *Autorizzazione utente Oracle*
++
+La seguente autorizzazione concede l'accesso in lettura agli avvisi diagnostici estesi, consentendo l'estrazione dei dettagli di errore/traccia dai log per il rilevamento di pattern e la correzione basati sull'intelligenza artificiale: `V$DIAG_ALERT_EXT`. Questa autorizzazione è richiesta solo per i database Oracle.
+
+
+
+
+
+
+
+[[analyze-error-logs]]
+== Analizza i registri degli errori
+
+Utilizza la console Workload Factory per analizzare i log degli errori di SQL Server.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona *Microsoft SQL Server* o *Oracle* come tipo di motore di database.
+. Dalla scheda Istanze, individua l'istanza specifica di SQL Server o il database Oracle che desideri analizzare, quindi seleziona *Analizza gli errori* dal menu.
+. Dalla scheda *Analisi degli errori*, completa i seguenti prerequisiti come descritto nella console:
++
+** Amazon Bedrock
+** Rete: endpoint privato per Amazon Bedrock
+** Autorizzazioni per il ruolo del profilo dell'istanza EC2
+** Credenziali associate a Workload Database Management (wlmdb)
+
+
+. Una volta soddisfatti i prerequisiti, seleziona *Avvia indagine* per utilizzare l'analizzatore dei log degli errori e ottenere informazioni dettagliate sui log degli errori di SQL Server.
++
+Al termine della scansione, nella console vengono visualizzati gli errori, fornendo una panoramica completa dei problemi rilevati dall'analizzatore Smart del log degli errori.
+
+. Utilizza i filtri per affinare la visualizzazione degli errori in base a criteri quali gravità, intervallo di tempo e codice di errore, oppure in base a tag orientati all'infrastruttura come calcolo, storage, rete e sicurezza.
+. Esamina le informazioni dettagliate sull'errore, inclusi il messaggio di errore originale, la spiegazione basata sull'intelligenza artificiale e i passaggi correttivi suggeriti per risolvere gli errori.
+

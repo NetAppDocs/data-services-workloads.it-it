@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-volume.html 
+keywords: delete volume, volume deletion 
+summary: Elimina un volume nel tuo file system FSx for ONTAP che non ti serve più per liberare spazio. Questa operazione è irreversibile. 
+---
+= Elimina un volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Elimina un volume nel tuo file system FSx for ONTAP che non ti serve più per liberare spazio. Questa operazione è irreversibile.
+
+.Prima di iniziare
+Prima di eliminare un volume, considera quanto segue:
+
+* Relazioni di replica: devi link:manage-replication.html["eliminare tutte le relazioni di replica esistenti"] per questo volume prima di eliminare il volume, in modo che non rimangano relazioni interrotte.
+* Snapshot locali: tutti gli snapshot associati a questo file system FSx for ONTAP verranno eliminati definitivamente.
+* Backup del volume: le copie di backup del volume rimarranno e potrai ancora usarle.
+* File immutabili e snapshot: i volumi contenenti file immutabili e snapshot non possono essere eliminati fino al termine del periodo di conservazione.
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni del volume da eliminare.
+. Seleziona *Basic actions*, quindi *Delete volume*.
+. Nella finestra di dialogo Elimina volume, effettua le seguenti operazioni:
++
+.. Facoltativamente, seleziona *Esegui il backup del volume* per eseguire il backup del volume prima dell'eliminazione.
++
+Il backup rimarrà nel file system finché non lo eliminerai manualmente.
+
+.. Seleziona *Continua*.
+.. Digita "delete" per eliminare il volume.
+.. Seleziona *Delete* per confermare.
+
+
+

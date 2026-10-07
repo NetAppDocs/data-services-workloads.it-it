@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/deploy-fsx-file-system-evs.html 
+keywords: vm workloads, deploy fsx, deploy storage for vms, evs, elastic vmware service 
+summary: Dopo aver verificato che il file system FSx for ONTAP consigliato, o i file system in alcuni casi, soddisfi esattamente i tuoi requisiti, puoi usare Workload Factory per distribuire il sistema nel tuo ambiente AWS. 
+---
+= Distribuisci il file system FSx per ONTAP consigliato
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver verificato che il file system FSx for ONTAP consigliato (o, in alcuni casi, più file system) soddisfi esattamente i tuoi requisiti, puoi usare Workload Factory per distribuire il sistema nel tuo ambiente AWS.
+
+A seconda delle policy e delle autorizzazioni che hai aggiunto al tuo account Workload Factory, puoi distribuire completamente il file system FSx for ONTAP usando Workload Factory (in modalità lettura/scrittura). Se hai meno autorizzazioni (modalità di sola lettura), o nessuna autorizzazione (modalità Basic), dovrai usare il modello CloudFormation dal Codebox e distribuire tu stesso il file system FSx for ONTAP in AWS.
+
+
+
+[[requirements]]
+== Requisiti
+
+* Devi disporre di un abbonamento ad Amazon Elastic VMware Service.
+* Per creare un file system FSx for ONTAP nel tuo account AWS, devi disporre delle autorizzazioni necessarie.
+
+
+
+
+[[considerations]]
+== Considerazioni
+
+* Puoi utilizzare l'opzione Creazione rapida o Creazione avanzata. Creazione avanzata offre alcuni parametri di archiviazione aggiuntivi che puoi personalizzare. link:../fsx-storage/create-discover-systems.html["Scopri cosa offrono queste due opzioni"].
+* Nella sezione "Amazon Elastic VMware Service preferences", puoi scegliere l'ambiente di virtualizzazione EVS da collegare ai datastore esterni. Questo compila automaticamente alcuni campi con le opzioni best practice per la distribuzione. Puoi modificare queste opzioni in base alle tue esigenze.
+
+
+
+
+[[steps]]
+== Passaggi
+
+. In fondo alla pagina *Rivedi il piano*, seleziona *Distribuisci* e viene visualizzata la pagina Crea un file system FSx for ONTAP.
++
+La maggior parte dei campi che definiscono il file system FSx for ONTAP viene completata in base alle informazioni che hai fornito, ma in questa pagina devi compilare ancora alcuni campi.
+
+. Nella sezione "Configurazione generale del file system", inserisci le seguenti informazioni:
++
+.. *Credenziali AWS*: seleziona o aggiungi le credenziali che forniranno a Workload Factory le autorizzazioni necessarie per creare direttamente il tuo FSx for ONTAP file system. Puoi anche selezionare il codice CloudFormation da Codebox e distribuire tu stesso il FSx for ONTAP file system in AWS.
+.. *Nome del file system*: Inserisci il nome che desideri utilizzare per questo file system FSx for ONTAP.
+.. *Tag*: Facoltativamente, puoi aggiungere tag per categorizzare questo FSx for ONTAP file system.
+
+
+. Nella sezione "Preferenze di Amazon Elastic VMware Service", dall'elenco "ID ambiente", seleziona l'ambiente EVS a cui verranno connessi i datastore.
++
+Questo compila automaticamente i seguenti campi:
+
++
+** *VPC*
+** *Zona di disponibilità*
+** *Sottorete*
+** Nella sezione *Accesso ai datastore NFS*, se hai selezionato l'opzione *Solo gestione host EVS*, il campo *Gestione host EVS (CIDR)* viene compilato automaticamente.
+** Nella sezione *Opzioni di montaggio del datastore*, se hai scelto di montare i datastore nel cluster EVS, i campi *indirizzo VMware vCenter del cluster EVS* e *ARN segreto delle credenziali dell'amministratore vSphere* vengono compilati automaticamente.
+
+
+. Nella sezione "Rete e sicurezza", inserisci le seguenti informazioni:
++
+.. *Regione & VPC*: Seleziona la regione e il VPC in cui verrà distribuito il file system FSx for ONTAP.
+.. *Gruppo di sicurezza* (solo creazione avanzata): quando utilizzi l'opzione *Creazione avanzata*, puoi selezionare il gruppo di sicurezza predefinito per la VPC FSx for ONTAP in modo che tutto il traffico possa accedere al file system FSx for ONTAP. Puoi creare un nuovo gruppo di sicurezza o selezionarne uno esistente.
++
+Se attivi l'opzione *Adjust security group configuration to EVS NFS datastores*, Workload Factory configura il gruppo di sicurezza in base alle impostazioni per i datastore NFS EVS.
+
++
+Puoi aggiungere una regola in entrata al gruppo di sicurezza che limita i servizi AWS che possono accedere al file system FSx for ONTAP. In questo modo ridurrai il numero di servizi aperti. Queste sono le porte e i protocolli minimi:
+
++
+[cols="15,10,55"]
+|===
+| Protocolli | Porte | Scopo 
+
+
+| TCP, UDP | 111 | Portmapper (utilizzato per negoziare quali porte vengono utilizzate nelle richieste NFS) 
+
+
+| TCP, UDP | 635 | NFS mountd (riceve richieste di montaggio NFS) 
+
+
+| TCP, UDP | 2049 | traffico di rete NFS 
+
+
+| TCP, UDP | 4045 | Network Lock Manager (NLM, lockd) - Gestisce le richieste di blocco. 
+
+
+| TCP, UDP | 4046 | Network Status Monitor (NSM, statd) - Notifica ai client NFS i riavvii del server per la gestione dei lock. 
+|===
+.. *Zona di disponibilità*: Seleziona la zona di disponibilità e la sottorete.
++
+Se vuoi evitare costi per il traffico tra zone di disponibilità diverse, devi selezionare la stessa zona di disponibilità in cui è distribuito VMware SDDC.
+
+.. *Crittografia* (solo con *Advanced create*): quando usi l'opzione *Advanced create*, puoi selezionare il nome della chiave di crittografia AWS dal menu a discesa.
+.. *Accesso ai datastore NFS* (solo creazione avanzata): quando utilizzi l'opzione *Creazione avanzata*, puoi selezionare se tutti gli host possono accedere ai datastore o se solo l'host di gestione EVS può accedervi.
+
+
+. Nella sezione "Dettagli del file system", inserisci le seguenti informazioni:
++
+.. *Credenziali ONTAP*: Inserisci il nome utente e la password ONTAP.
+.. *Credenziali della VM di storage* (solo per la creazione avanzata): immetti e conferma la password della VM di storage. La password può essere specifica per questo file system oppure puoi utilizzare la stessa password immessa per le credenziali ONTAP.
+
+
+. Nella sezione "Collegamento cluster EVS", inserisci le seguenti informazioni:
++
+.. *Opzioni di montaggio del datastore*: facoltativamente, puoi abilitare l'opzione *Monta i datastore nel cluster EVS* per connettere automaticamente i datastore al cluster Amazon EVS. Questa opzione fa anche in modo che Workload Factory configuri le impostazioni dell'host VMware ESXi in modo che corrispondano alle raccomandazioni ONTAP best practice. Prima di distribuire il file system, puoi esaminare i dettagli del piano nella sezione *Riepilogo* per vedere le impostazioni che sono state modificate.
+.. *Dettagli della console vSphere del cluster EVS*: Inserisci l'indirizzo IP o il FQDN del server VMware vCenter che deve connettersi ad Amazon EVS.
+.. *vSphere secret ARN delle credenziali dell'amministratore: Scegli il secret ARN per le credenziali dell'amministratore vSphere. Queste credenziali vengono usate per montare i datastore e configurare le impostazioni VMware consigliate.
++
+Se Amazon EVS non è disponibile in questa regione, o se il tuo account non dispone delle autorizzazioni per recuperare l'elenco degli ARN dei segreti disponibili, puoi inserire manualmente un valore ARN del segreto.
+
+
+
+. Nella sezione *Riepilogo*, puoi visualizzare la configurazione del file system FSx per ONTAP e del datastore progettata da VMware Migration Advisor in base alle informazioni che hai fornito.
+. Seleziona *Crea* per distribuire il file system FSx for ONTAP. Questo processo può richiedere fino a 2 ore.
++
+Facoltativamente, nella finestra Codebox puoi selezionare *Reindirizza a CloudFormation* per creare il file system e la configurazione VM consigliata utilizzando uno stack di CloudFormation.
+
++
+In entrambi i casi, puoi monitorare l'avanzamento della creazione in CloudFormation.
+
+
+
+
+
+[[result]]
+== Risultato
+
+Il file system FSx for ONTAP è stato distribuito. Ora puoi utilizzare il modello AWS CloudFormation nel Codebox per distribuire la configurazione VM consigliata nel tuo ambiente Amazon Elastic VMware Service.

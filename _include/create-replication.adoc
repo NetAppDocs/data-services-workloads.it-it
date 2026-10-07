@@ -1,0 +1,97 @@
+= 
+:allow-uri-read: 
+
+
+. *Caso d'uso*: Seleziona uno dei seguenti casi d'uso per la replica. A seconda del caso d'uso selezionato, Workload Factory compila il modulo con i valori consigliati in conformità con le best practice. Puoi accettare i valori consigliati o apportare modifiche durante la compilazione del modulo.
++
+** Intelligenza artificiale (AI) e machine learning (ML): replica i tuoi dati ONTAP on-premises su Amazon FSx for NetApp ONTAP e crea punti di accesso S3 per supportare l’addestramento di AI e ML nel cloud
+** Migrazione: trasferisce i tuoi dati al file system FSx for ONTAP di destinazione
++
+*Replica la configurazione della VM di archiviazione*: Facoltativamente, seleziona per replicare i dati e le impostazioni di configurazione di una singola VM di archiviazione. Quando migri dati e impostazioni, tutti i volumi devono completare la replica nelle ultime 24 ore e poi effettuare il cutover contemporaneamente.
+
++
+La policy di tiering per tutti i volumi viene impostata di default sulla policy di tiering del volume di origine, che è consigliata per i casi d'uso di migrazione.
+
++
+Durante la migrazione, i client accedono ai dati dal file system ONTAP. Dopo il cutover, i volumi sono disponibili tramite gli indirizzi IP del file system FSx for ONTAP di destinazione. Aggiorna tutti i client o le risorse che utilizzano ancora il vecchio indirizzo IP.
+
+** Disaster recovery a caldo: garantisce elevata disponibilità e un rapido disaster recovery per i carichi di lavoro critici
+** Ripristino di emergenza a freddo o da archivio:
++
+*** Disaster recovery a freddo: utilizza obiettivi di tempo di ripristino (RTO) e obiettivi del punto di ripristino (RPO) più lunghi per ridurre i costi
+*** Archivio: replica i dati per storage a lungo termine e conformità
+
+
+** Altro
++
+Inoltre, la selezione del caso d'uso determina il criterio di replica, o il criterio SnapMirror (ONTAP). I termini utilizzati per descrivere i criteri di replica provengono da link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["Documentazione ONTAP 9"^].
+
++
+*** Per la migrazione e altre operazioni, la policy di replica si chiama _MirrorAllSnapshots_. _MirrorAllSnapshots_ è una policy asincrona per il mirroring di tutte le Snapshot e del file system attivo più recente.
+*** Per il ripristino di emergenza a caldo, a freddo o tramite archivio, la policy di replica si chiama _MirrorAndVault_. _MirrorAndVault_ è una policy asincrona e di vault per il mirroring del file system attivo più recente e degli snapshot giornalieri e settimanali.
++
+Per tutti i casi d'uso, se abiliti i Snapshot per la conservazione a lungo termine, la policy di replica predefinita è _MirrorAndVault_.
+
+
+
+
+
+. *FSx for ONTAP file system*: seleziona credenziali, regione e nome del FSx for ONTAP file system per il file system di destinazione FSx for ONTAP.
+. *Nome della VM di archiviazione*: Seleziona la VM di archiviazione. La VM di archiviazione che selezioni è la destinazione per tutti i volumi selezionati in questa relazione di replica.
++
+Quando i nomi delle storage VM di origine e di destinazione sono identici, creiamo un alias del file system per i nomi delle storage VM di destinazione per evitare conflitti di peering.
+
+. *Nome del volume*: Il nome del volume di destinazione viene generato automaticamente con il seguente formato `{OriginalVolumeName}_copy`. Puoi usare il nome del volume generato automaticamente o inserire un altro nome per il volume.
+. *Politica di tiering*: Seleziona la politica di tiering per i dati archiviati nel volume di destinazione. Per impostazione predefinita, la politica di tiering è quella consigliata per il caso d'uso che hai selezionato.
++
+_Bilanciato (Automatico)_ è il criterio di tiering predefinito quando crei un volume usando la console di Workload Factory. Per ulteriori informazioni sui criteri di tiering dei volumi, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacità di archiviazione del volume"^] nella documentazione di AWS FSx for NetApp ONTAP. Nota che Workload Factory usa nomi basati sui casi d'uso nella console di Workload Factory per i criteri di tiering e include i nomi dei criteri di tiering di FSx for ONTAP tra parentesi.
+
++
+Se hai selezionato il caso d'uso di migrazione, Workload Factory seleziona automaticamente l'opzione per copiare il criterio di tiering del volume di origine nel volume di destinazione. Puoi deselezionare l'opzione per copiare il criterio di tiering e selezionare un criterio di tiering applicabile al volume selezionato per la replica.
+
+. *Velocità di trasferimento massima*: seleziona *Limitata* e inserisci il limite massimo di trasferimento in MB/s. In alternativa, seleziona *Illimitata*.
++
+Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire. In alternativa, consigliamo una velocità di trasferimento illimitata per i file system FSx for ONTAP per i carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery.
+
++
+.. Nella sezione Impostazioni di replica, inserisci le seguenti informazioni:
+
+
+. *Inizializza la relazione di replica*: scegli se inizializzare la relazione di replica immediatamente dopo averla creata o in un secondo momento. Tieni presente che l'inizializzazione può richiedere tempo e potresti voler eseguire il trasferimento baseline durante le ore di minore affluenza.
++
+Per inizializzare in seguito manualmente, fai riferimento alle istruzioni in <<Passaggio 2: Inizializzare la relazione di replica,Passaggio 2: Inizializzare la relazione di replica>>.
+
+. *Intervallo di replica*: Seleziona la frequenza con cui le Snapshot vengono trasferite dal volume di origine al volume di destinazione.
+. *Conservazione a lungo termine*: Facoltativamente, abilita gli Snapshot per la conservazione a lungo termine. La conservazione a lungo termine consente ai servizi aziendali di continuare a funzionare anche in caso di guasto completo del sito, supportando il failover trasparente delle applicazioni tramite una copia secondaria.
++
+Le repliche senza conservazione a lungo termine utilizzano la policy _MirrorAllSnapshots_. L'abilitazione della conservazione a lungo termine assegna alla replica la policy _MirrorAndVault_.
+
++
+Se abiliti la conservazione a lungo termine, seleziona un criterio esistente o creane uno nuovo per definire gli Snapshot da replicare e il numero da conservare.
+
++
+
+NOTE: Per la conservazione a lungo termine sono necessarie etichette corrispondenti tra origine e destinazione. Se vuoi, Workload Factory può creare per te le etichette mancanti.
+
++
+** *Scegli una policy esistente*: seleziona una policy esistente.
+** *Crea una nuova policy*: inserisci un *nome della policy*.
+
+
+. *Snapshot immutabili*: Opzionale. Seleziona *Abilita snapshot immutabili* per impedire che gli snapshot creati in base a questa policy vengano eliminati durante il periodo di conservazione.
++
+** Imposta il *periodo di conservazione* nel numero di ore, giorni, mesi o anni.
+** *Criteri Snapshot*: Nella tabella, seleziona la frequenza del criterio Snapshot e il numero di copie da conservare. Puoi selezionare più di un criterio Snapshot.
+
+
+. *Punto di accesso S3*: facoltativamente, collega un punto di accesso S3 per accedere ai dati del file system FSx for ONTAP residenti su volumi NFS o SMB/CIFS tramite le API AWS S3. È supportato solo il tipo di accesso ai file. Fornire i seguenti dettagli:
++
+** *Nome punto di accesso S3*: Inserisci il nome del punto di accesso S3.
+** *Utente*: Seleziona un utente esistente con accesso al volume o crea un nuovo utente.
+** *Tipo di utente*: seleziona *UNIX* o *Windows* come tipo di utente.
+** *Configurazione di rete*: Selezionare *Internet* o *Virtual private cloud (VPC)*. Il tipo di rete scelto determina se il punto di accesso è accessibile da Internet o limitato a una specifica VPC.
+** *Abilita tabella inventario*: quando si abilita la tabella inventario sul volume, il sistema genera metadati per tutti gli oggetti accessibili al punto di accesso S3 e comporta costi di richiesta AWS S3. Per ulteriori informazioni, consulta link:https://aws.amazon.com/s3/pricing/["Documentazione sui prezzi di Amazon S3"^].
+
+
+. *Tag del punto di accesso S3*: Facoltativamente, puoi aggiungere fino a 50 tag.
+

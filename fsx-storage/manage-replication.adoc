@@ -1,0 +1,219 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-replication.html 
+keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
+summary: Gestisci le relazioni di replica in NetApp Workload Factory. 
+---
+= Gestisci le relazioni di replica in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci le tue relazioni di replica in NetApp Workload Factory. Puoi sospendere, riprendere, invertire, arrestare ed eliminare le relazioni di replica tra volumi di origine e di destinazione. Puoi anche modificare la pianificazione della replica del volume di origine e limitare la velocità di trasferimento per le tue relazioni di replica.
+
+
+
+[[change-the-replication-schedule-of-a-source-volume]]
+== Modifica la pianificazione della replica di un volume di origine
+
+Modifica la pianificazione della replica del volume di origine in una relazione di replica in NetApp Workload Factory.
+
+Scegli con quale frequenza le Snapshot dal volume di origine vengono trasferite al volume replicato in base agli obiettivi del punto di ripristino (RPO) richiesti.
+
+Quando un cluster ONTAP on-premises è il target della relazione di replica, non puoi modificare la pianificazione della replica.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della pianificazione della relazione di replica da modificare.
+. Seleziona *Modifica intervallo di replica*.
+. Nella finestra di dialogo Modifica intervallo di replica, seleziona la frequenza di trasferimento degli Snapshot dal volume di origine. Puoi scegliere tra le seguenti frequenze:
++
+** Ogni 5 minuti
+** Ogni ora
+** Ogni 8 ore
+** Quotidiano
+** Settimanale
+
+
+. Seleziona *Applica*.
+
+
+
+
+[[limit-the-max-transfer-rate-of-a-replication-relationship]]
+== Limita la velocità di trasferimento massima di una relazione di replica
+
+Limitare la velocità di trasferimento massima è facoltativo, ma consigliato. Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire.
+
+In alternativa, consigliamo una velocità di trasferimento illimitata per i file system FSx for ONTAP per i carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery.
+
+.Prima di iniziare
+Valuta quanta larghezza di banda allocare per la replica.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica per cui vuoi limitare la velocità di trasferimento massima.
+. Seleziona *Modifica velocità di trasferimento massima*.
+. Nella finestra di dialogo Modifica velocità di trasferimento massima, seleziona *Limitata* e immetti il limite massimo di trasferimento in MB/s.
++
+In alternativa, seleziona *Illimitato*.
+
+. Seleziona *Applica*.
+
+
+
+
+[[manually-update-snapshot-data-in-a-replication-relationship]]
+== Aggiorna manualmente i dati snapshot in una relazione di replica
+
+Una relazione di replica ha una pianificazione di replica impostata, ma puoi aggiornare manualmente i dati Snapshot trasferiti tra i volumi di origine e di destinazione in NetApp Workload Factory in qualsiasi momento.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica da aggiornare.
+. Seleziona *Aggiorna*.
+. Nella finestra di dialogo Aggiorna, seleziona *Aggiorna*.
+
+
+
+
+[[pause-a-replication-relationship]]
+== Metti in pausa una relazione di replica
+
+Metti in pausa una relazione di replica per interrompere gli aggiornamenti di replica pianificati dal volume di origine al volume di destinazione. Il volume di destinazione passa da sola lettura a lettura/scrittura. Entrambi i volumi continuano a condividere l'ultima Snapshot di replica come nuova base di riferimento per la successiva risincronizzazione.
+
+.Prima di iniziare
+Se metti in pausa un trasferimento in corso, il trasferimento non viene influenzato e la relazione passa a "Quiescing" finché il trasferimento non viene completato. Se il trasferimento corrente si interrompe, verrà considerato un trasferimento futuro e non verrà riavviato.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica da mettere in pausa.
+. Seleziona *Pausa (Quiescenza)*.
+. Nella finestra di dialogo *Disattiva relazione*, seleziona *Disattiva*.
+
+
+.Risultato
+La relazione si mette in pausa e il suo stato viene visualizzato come "In pausa".
+
+
+
+[[resume-a-paused-replication-relationship]]
+== Riprendi una relazione di replica sospesa
+
+Quando riprendi una relazione di replica, tutte le modifiche apportate al volume di destinazione mentre la replica era interrotta vengono eliminate. Il volume di destinazione passa da lettura/scrittura a sola lettura e riceve di nuovo gli aggiornamenti dal volume di origine all'intervallo di replica pianificato.
+
+
+NOTE: I dati scritti sul volume sorgente originale tra l'ultima replica dei dati e il momento in cui il volume sorgente viene disabilitato non vengono conservati.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica da riprendere.
+. Seleziona *Resume*.
+. Nella finestra di dialogo Riprendi relazione, seleziona *Riprendi*.
+
+
+.Risultato
+La relazione riprende e il suo stato è visualizzato come "Replicated".
+
+
+
+[[reverse-a-replication-relationship]]
+== Invertire una relazione di replica
+
+Inverti una relazione di replica in modo che il volume di destinazione diventi il volume di origine.
+
+Le operazioni inverse sono supportate per quanto segue:
+
+* Due file system FSx for ONTAP
+* Un file system FSx for ONTAP e un sistema ONTAP locale
+
+
+Dopo aver interrotto la replica e apportato modifiche al volume di destinazione, puoi replicare tali modifiche nel volume di origine. Questa procedura è comune negli scenari di disaster recovery, in cui lavori sul volume di destinazione per un certo periodo di tempo e vuoi invertire i ruoli dei volumi.
+
+Quando inverti e riprendi una replica, i ruoli di origine e destinazione dei volumi si scambiano: il volume di destinazione diventa il nuovo volume di origine e il volume di origine diventa il nuovo volume di destinazione. L'operazione di inversione sovrascrive anche il contenuto del nuovo volume di destinazione con il contenuto del nuovo volume di origine. Se inverti una replica due volte, viene ristabilita la direzione di replica originale.
+
+[]
+====
+NOTA:
+
+* I dati scritti sul volume sorgente originale tra l'ultima replica dei dati e il momento in cui il volume sorgente viene disabilitato non vengono conservati.
+* La replica inversa non è disponibile quando si replicano i dati e le impostazioni di configurazione della storage VM.
+
+
+====
+.Prima di iniziare
+Assicurati di conoscere i ruoli attuali e futuri dei volumi di origine e di destinazione, perché le modifiche apportate al nuovo volume di destinazione vengono sovrascritte da quelle del nuovo volume di origine. Se lo usi in modo errato, potresti causare una perdita di dati indesiderata.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica da invertire.
+. Seleziona *Relazione inversa*.
+. Nella finestra di dialogo Relazione inversa, seleziona *Inverti*.
+
+
+
+
+[[stop-a-replication-relationship]]
+== Interrompi una relazione di replica
+
+Interrompi una relazione di replica in NetApp Workload Factory. Quando interrompi una relazione di replica, gli aggiornamenti di replica pianificati dal volume di origine al volume di destinazione vengono sospesi. Il volume di destinazione passa dalla modalità di sola lettura alla modalità di lettura/scrittura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu delle azioni della relazione di replica da interrompere.
+. Seleziona *Break*.
+. Nella finestra di dialogo Interrompi replica, seleziona *Interrompi*.
+
+
+.Risultato
+Lo stato della replica del volume cambia in *Broken*. Il volume di destinazione diventa scrivibile.
+
+
+
+[[delete-a-replication-relationship]]
+== Eliminare una relazione di replica
+
+Elimina una relazione di replica in NetApp Workload Factory. Quando elimini una relazione di replica, viene rimossa la relazione di replica tra il volume di origine e il volume di destinazione. Dopo l'eliminazione della relazione di replica, entrambi i volumi continuano a esistere indipendentemente con i dati correnti che contengono.
+
+Quando elimini una relazione di replica, FSx for ONTAP elimina anche gli Snapshot di replica comuni dei volumi di origine e di destinazione.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. In *Inventory*, seleziona il menu delle azioni del file system da aggiornare e quindi seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della relazione di replica da eliminare.
+. Seleziona *Delete*.
+. Nella finestra di dialogo Elimina relazione, seleziona *Elimina*.
+

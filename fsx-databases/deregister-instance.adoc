@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/deregister-instance.html 
+keywords: Microsoft SQL Server instance, PostgreSQL server instance, Oracle database, deregister instance, unregister instance, remove instance 
+summary: Annulla la registrazione di una risorsa se non vuoi più distribuire o monitorare risorse dalla console di Workload Factory. 
+---
+= Annulla la registrazione di una risorsa in NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Annulla la registrazione di una risorsa, ad esempio un'istanza di Microsoft SQL Server o un database Oracle, se non vuoi più distribuire o monitorare risorse dalla console di NetApp Workload Factory. L'annullamento della registrazione delle risorse rimuove anche la quantità di capacità di storage FSx for ONTAP utilizzata dall'istanza.
+
+Puoi registrare nuovamente la risorsa.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona il tipo di motore: *Microsoft SQL Server*, *Oracle* o *PostgreSQL*.
+. Individua la risorsa che vuoi annullare la registrazione, seleziona il menu delle azioni e quindi seleziona *Annulla registrazione*.
+

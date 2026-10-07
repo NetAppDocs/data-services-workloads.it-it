@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/change-tiering-policy.html 
+keywords: tiering policy, change tier, change tiers, tier policy update 
+summary: Modifica il criterio di tiering in NetApp Workload Factory per riallocare i dati dal tier di storage primario dalle performance elevate al tier di storage del pool di capacità secondario. 
+---
+= Modifica il criterio di tiering di un volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In NetApp Workload Factory, puoi modificare il criterio di tiering per riallocare automaticamente i dati dal tier di storage primario dalle performance elevate al tier di storage del capacity pool secondario.
+
+.Informazioni su questa attività
+Puoi modificare il criterio di tiering di un volume in qualsiasi momento. Il criterio di tiering è definito per ciascun volume.
+
+Decidere dove archiviare i tuoi dati influisce sul risparmio sui costi.
+
+FSx for ONTAP ha due tier di storage per l'archiviazione dei dati dei volumi:
+
+* *tier di storage SSD*: Questo tier di storage primario è destinato ai dati a cui accedi più frequentemente, noti anche come dati _hot_. L'archiviazione dei dati nel tier di storage primario è più costosa rispetto al tier di storage secondario.
+* *Tier di storage del pool di capacità*: questo tier di storage secondario è destinato ai dati archiviati o ai dati a cui si accede raramente, noti anche come dati _cold_.
+
+
+Fai riferimento a link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html#storage-tiers["Gestione della capacità di storage"^] nella documentazione AWS per FSx per NetApp ONTAP per ulteriori informazioni sui tier di storage.
+
+.Prima di iniziare
+Esamina le policy di tiering disponibili prima di modificare la policy di tiering.
+
+* *Bilanciato (Auto)*: policy di tiering predefinita quando crei un volume utilizzando l'interfaccia utente. Mantiene i dati a cui accedi più di frequente nel tier di storage SSD e sposta i dati a cui accedi meno di frequente e le Snapshot nel tier di storage del capacity pool al termine del periodo di raffreddamento. Consigliato per carichi di lavoro primari generali.
+* *Ottimizzato in termini di costi (Tutti)*: sposta tutti gli snapshot e i dati nel tier di storage del pool di capacità. Consigliato per destinazioni secondarie.
+* *Prestazioni ottimizzate (solo Snapshot)*: i tier spostano solo i dati Snapshot nel tier di storage del capacity pool. Consigliato per workload a bassa latenza come i database mission-critical.
+* *None*: mantiene i dati del volume nel tier di storage SSD, impedendone lo spostamento nel tier di storage del capacity pool.
+
+
+Tieni presente che alcune policy di tiering prevedono un periodo di raffreddamento minimo associato che definisce il tempo, o _giorni di raffreddamento_, durante il quale i dati utente in un volume devono rimanere inattivi perché i dati siano considerati "freddi" e spostati nel tier di storage del capacity pool. Il periodo di raffreddamento inizia quando i dati vengono scritti sul disco.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer* > *FSx for ONTAP*.
+. Seleziona il menu Azioni del volume per cui vuoi cambiare la policy di tiering.
+. Seleziona *Azioni avanzate*, quindi *Modifica policy di tiering*.
+. Nella pagina Modifica criteri di tiering, seleziona l'opzione per copiare i criteri di tiering del volume di origine oppure seleziona uno dei seguenti criteri di tiering:
++
+** *Bilanciato (Auto)*: Inserisci il numero di giorni di raffreddamento.
+** *Ottimizzato per i costi (Tutti)*
+** *Ottimizzato per le prestazioni (solo Snapshot)*: Inserisci il numero di giorni di raffreddamento.
+** *Nessuno*
+
+
+. Seleziona *Applica*.
+

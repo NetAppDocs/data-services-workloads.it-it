@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: admin/well-architected-workloads.html 
+keywords: well-architected, best practices, well-architected file system, Amazon FSx for NetApp ONTAP, FSx for ONTAP 
+summary: 'Workload Factory analizza le configurazioni dei carichi di lavoro in termini di affidabilità, sicurezza, eccellenza operativa, ottimizzazione dei costi ed efficienza delle prestazioni, fornendo approfondimenti e raccomandazioni per aiutarti a raggiungere l"eccellenza operativa.' 
+---
+= Come NetApp Workload Factory supporta i carichi di lavoro ben strutturati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Workload Factory ti aiuta a mantenere e gestire configurazioni dei carichi di lavoro affidabili, sicure, efficienti e convenienti, in linea con il Well-Architected Framework del tuo cloud provider. Workload Factory fornisce analisi giornaliere dei carichi di lavoro, raccomandazioni e correzioni automatiche per promuovere operazioni dei carichi di lavoro sane. Automatizzando questo processo, Workload Factory riduce al minimo gli errori umani e garantisce coerenza nella gestione dei carichi di lavoro.
+
+
+
+[[how-it-works]]
+== Come funziona
+
+Workload Factory analizza quotidianamente i carichi di lavoro in esecuzione sui sistemi di cloud storage supportati. L'analisi fornisce lo stato well-architected, approfondimenti e raccomandazioni.
+
+Al termine dell'analisi giornaliera, le configurazioni vengono visualizzate come "ottimizzate" o "non ottimizzate" nella dashboard Well-architected per la distribuzione. Troverai i problemi di configurazione suddivisi per categoria e un elenco di problemi di configurazione e raccomandazioni. Puoi esaminare le raccomandazioni relative ai problemi di configurazione. Alcuni problemi possono essere risolti automaticamente da Workload Factory, mentre altri richiedono un intervento manuale. In questo caso, Workload Factory fornisce istruzioni dettagliate per aiutarti a implementare le modifiche consigliate.
+
+Puoi ignorare l'analisi delle configurazioni che non si applicano ai tuoi ambienti. Questo evita avvisi non necessari e risultati di ottimizzazione imprecisi.
+
+Puoi anche creare regole personalizzate in linguaggio naturale per convalidare i tuoi ambienti rispetto agli standard della tua organizzazione e alle best practice di NetApp. Prova le regole con una simulazione, poi pianifica la loro esecuzione su tutti i tuoi ambienti. link:https://docs.netapp.com/us-en/console-well-architected/learn-custom-rules.html["Scopri di più sulle regole personalizzate"^].
+
+
+
+[[why-it-matters]]
+== Perché è importante
+
+Workload Factory applica le best practice agli ambienti di storage, database e VMware di grandi dimensioni, combinando valutazioni continue con suggerimenti e interventi correttivi. Le correzioni automatiche applicate nella NetApp Console riducono gli errori umani, garantiscono una gestione uniforme e preservano prestazioni e affidabilità nelle tue infrastrutture di carico di lavoro.
+
+
+
+[[get-started-with-workload-factory-to-detect-and-fix-workload-misconfigurations]]
+== Inizia a utilizzare Workload Factory per rilevare e correggere le configurazioni errate dei workload
+
+Per iniziare a usare Workload Factory, registrati, aggiungi le credenziali e stabilisci la connettività per gestire le risorse AWS e ottimizzare i carichi di lavoro utilizzando Amazon FSx for NetApp ONTAP.
+
+link:../fsx-storage/quick-start-fsx.html["Avvio rapido"]
+
+.Informazioni correlate
+Le pagine seguenti forniscono indicazioni su come implementare configurazioni ben strutturate in diverse soluzioni di storage NetApp:
+
+* link:../fsx-storage/improve-configurations.html["Implementare FSx ben architettato per i file system ONTAP"]
+* link:../fsx-databases/optimize-configurations.html["Implementa configurazioni di database ben progettate"]
+* link:../fsx-vmware/view-evs-well-architected.html["Implementare configurazioni EVS ben architettate"]
+* link:../gcnv/improve-configurations.html["Implementa configurazioni di NetApp Volumes ben strutturate"]
+* link:https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-improve-configurations-cvo.html["Implementa configurazioni di sistema Cloud Volumes ONTAP ben progettate in Microsoft Azure"^]
+

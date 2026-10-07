@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/split-cloned-volume.html 
+keywords: split clone volume, FlexVol volume 
+summary: 'Separa un FlexVol volume clone dal suo volume d"origine per rendere il clone un normale FlexVol volume di lettura/scrittura.' 
+---
+= Dividi un volume clonato in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Separa un FlexVol volume clonato dal volume d'origine per rendere il clone un normale FlexVol volume di lettura/scrittura in NetApp Workload Factory.
+
+I dati sono accessibili sia sul clone che sul volume d'origine durante la divisione. Il processo di divisione aggiorna solo i metadati e richiede un'attività di I/O minima. Non viene copiato alcun blocco di dati.
+
+.Informazioni su questa attività
+L'operazione di divisione del clone prevede le seguenti fasi:
+
+* Non è possibile creare nuove copie snapshot del volume FlexClone durante l'operazione di suddivisione.
+* Un volume FlexClone non può essere separato dal volume d'origine se fa parte di una relazione di protezione dei dati.
+* Se porti il FlexClone volume offline mentre è in corso la suddivisione, l'operazione di suddivisione viene sospesa; quando riporti il FlexClone volume online, l'operazione di suddivisione riprende.
+* Dopo la divisione, sia il volume FlexVol d'origine che il clone richiedono l'intera allocazione di spazio determinata dalle rispettive garanzie di volume.
+* Dopo che un volume FlexClone viene separato dal suo volume d'origine, i due non possono essere riuniti.
+
+
+.Prima di iniziare
+Prima di suddividere un volume clonato, tieni presente quanto segue:
+
+* Per dividere un volume clonato, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+* Il volume FlexClone deve essere online quando inizia l'operazione di suddivisione.
+* Il volume d'origine deve essere online affinché lo split riesca.
+
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni del volume con il volume clonato da suddividere.
+. Seleziona *Data protection actions*, quindi *Split cloned volume*.
+. Nella finestra di dialogo Dividi volume, seleziona *Elimina*.
+
+
+.Risultato
+Il clone del volume viene separato e appare nella scheda Volumes.

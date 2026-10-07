@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshot-policy.html 
+keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
+summary: Gestisci le policy di Snapshot per i volumi FSx for ONTAP in Workload Factory. Una policy di Snapshot definisce come il sistema crea gli Snapshot per un volume. 
+---
+= Gestisci le policy di snapshot per i volumi in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci le policy di Snapshot per i volumi FSx for ONTAP in Workload Factory. Una policy di Snapshot definisce come il sistema crea gli Snapshot per un volume.
+
+Le operazioni di gestione degli Snapshot, come l'assegnazione, la modifica e l'eliminazione delle policy di Snapshot per i volumi in un file system FSx for ONTAP, sono gestite a livello di storage VM. Le policy di Snapshot possono essere condivise con una singola storage VM o con tutte le storage VM.
+
+Alcune attività di gestione richiedono di associare un collegamento al file system FSx for ONTAP. link:../setup/links-overview.html["Scopri i collegamenti di Workload Factory"^].
+
+Per impostazione predefinita, ogni volume è associato alla policy di Snapshot `default` del file system. Ti consigliamo di utilizzare questa policy per la maggior parte dei carichi di lavoro.
+
+
+
+[[assign-a-snapshot-policy-to-a-volume]]
+== Assegna una policy di Snapshot a un volume
+
+Puoi assegnare una policy di Snapshot a un singolo volume per creare Snapshot pianificati per tale volume.
+
+.Prima di iniziare
+Devi associare un collegamento per assegnare una policy di snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. Seleziona il menu delle azioni del file system che contiene il volume a cui vuoi assegnare una policy di Snapshot, quindi seleziona *Manage*.
+. Nella panoramica del file system, seleziona la scheda *Storage VMs*.
+. Dalla scheda *Storage VMs*, seleziona il menu delle azioni per la VM di storage che contiene il volume da proteggere con Snapshot pianificate, quindi *Advanced actions* e infine *Manage snapshot policies*.
+. Nella pagina di gestione delle policy di Snapshot, seleziona il menu delle azioni della policy di Snapshot e quindi seleziona *Assign policy to volume*.
+. Nella finestra di dialogo Assegna policy di Snapshot, seleziona una policy di Snapshot da assegnare al volume e controlla la pianificazione della policy.
++
+Se la policy contiene Snapshot immutabili e vuoi usarla, accetta la dichiarazione.
+
+. Seleziona *Assegna*.
+
+
+.Risultato
+La policy di Snapshot è assegnata al volume.
+
+
+
+[[change-a-snapshot-policy]]
+== Modificare una policy di Snapshot
+
+Puoi modificare il nome della policy di Snapshot, la pianificazione e il numero di copie da conservare, nonché abilitare o disabilitare gli Snapshot immutabili. Non puoi abilitare o disabilitare la condivisione della policy tra le VM di storage. Questa opzione è disponibile solo durante la creazione della policy di Snapshot.
+
+.Prima di iniziare
+Per visualizzare i criteri snapshot esistenti, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
+. Dal menu Storage, seleziona *Inventory*.
+. Seleziona il menu Azioni del file system e quindi seleziona *Gestisci*.
+. Nella panoramica del file system, seleziona la scheda *Storage VMs*.
+. Dalla scheda *Storage VMs*, seleziona il menu delle azioni per la VM di storage che contiene il volume da proteggere con Snapshot pianificate, quindi *Advanced actions* e infine *Manage snapshot policies*.
+. Nella pagina di gestione delle policy di Snapshot, seleziona il menu delle azioni per la policy di Snapshot da modificare e poi seleziona *Modifica*.
+. Nella finestra di dialogo Modifica policy di Snapshot, apporta le modifiche necessarie alla policy di Snapshot.
+. Seleziona *Applica*.
+
+
+.Risultato
+La policy di Snapshot è stata aggiornata.
+
+
+
+[[enable-immutable-snapshots]]
+== Abilita snapshot immutabili
+
+Blocca le Snapshot per impedirne l'eliminazione durante il periodo di conservazione.
+
+.Prima di iniziare
+Devi associare un collegamento per abilitare gli snapshot immutabili. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni del volume per cui vuoi bloccare gli Snapshot.
+. Seleziona *Azioni di protezione dei dati*, *Snapshot*, quindi *Rendi uno Snapshot immutabile*.
+. Nella finestra di dialogo Rendi immutabile una Snapshot, procedi come segue:
++
+.. *Nome Snapshot*: Seleziona la Snapshot da bloccare.
+.. Imposta il *periodo di conservazione* nel numero di ore, giorni, mesi o anni.
+.. Accetta l'affermazione.
+
+
+. Seleziona *Applica*.
+
+
+.Risultato
+La Snapshot del volume è ora bloccata.
+
+
+
+[[enable-long-term-snapshot-retention-in-netapp-workload-factory]]
+== Abilita la conservazione a lungo termine degli snapshot in NetApp Workload Factory
+
+In NetApp Workload Factory, puoi abilitare gli snapshot per la conservazione a lungo termine, che ti consente di replicare snapshot specifici per il disaster recovery a lungo termine.
+
+La conservazione a lungo termine consente ai servizi aziendali di continuare a funzionare anche in caso di guasto completo del sito, supportando il failover trasparente delle applicazioni tramite una copia secondaria.
+
+Gli stessi passaggi si applicano per abilitare e modificare gli Snapshot destinati alla conservazione a lungo termine.
+
+Quando un cluster ONTAP on-premises è la destinazione della relazione di replica, la modifica delle Snapshot per la conservazione a lungo termine non è supportata.
+
+
+NOTE: La modifica della conservazione a lungo termine non è disponibile quando si replicano i dati e le impostazioni di configurazione dello storage VM.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dal menu *FSx for ONTAP*, seleziona *Inventory*, quindi seleziona il menu delle azioni del file system da aggiornare e infine seleziona *Manage*.
+. Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
+. Nella scheda Relazioni di replica, seleziona il menu Azioni della pianificazione della relazione di replica da modificare.
+. Seleziona *Modifica conservazione a lungo termine*.
+. Nella finestra di dialogo Modifica conservazione a lungo termine, puoi attivare o disattivare le Snapshot per la conservazione a lungo termine.
+. Se scegli di disabilitare gli snapshot per la conservazione a lungo termine, seleziona *Applica* per completare questa operazione.
+. Se scegli di abilitare gli Snapshot per la conservazione a lungo termine, scegli se selezionare una policy esistente o crearne una nuova.
++
+.. Per utilizzare una policy esistente, selezionala dal menu a tendina.
+.. Per creare una nuova policy, inserisci quanto segue:
++
+... *Nome della policy*: Inserisci un nome per la policy.
+... *policy di Snapshot*: Seleziona una o più policy di Snapshot.
+... *Copie da conservare*: Inserisci il numero di copie Snapshot da conservare sul file system di destinazione.
+
+
+
+
+. Seleziona *Applica*.
+
+
+
+
+[[remove-a-snapshot-policy-from-a-volume]]
+== Rimuovere una policy di Snapshot da un volume
+
+Rimuovi una policy di Snapshot da un volume perché non vuoi più Snapshot del volume o perché vuoi eliminare una policy di Snapshot assegnata a più volumi. Per <<Elimina una policy di Snapshot,eliminare una policy di Snapshot>> assegnata a più di un volume, devi rimuoverla manualmente da tutti i volumi.
+
+.Prima di iniziare
+Devi associare un collegamento per rimuovere una policy snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dal menu *FSx for ONTAP*, seleziona *Inventory*, quindi seleziona il menu delle azioni del file system da aggiornare e infine seleziona *Manage*.
+. Nella panoramica del file system, seleziona la scheda *Storage VMs*.
+. Dalla scheda *Storage VMs*, seleziona il menu delle azioni per la VM di storage che contiene il volume da proteggere con Snapshot pianificate, quindi *Advanced actions* e infine *Manage snapshot policies*.
+. Nella pagina di gestione delle policy di Snapshot, seleziona il menu delle azioni della policy di Snapshot e quindi seleziona *Assign policy to volume*.
+. Nella finestra di dialogo Assegna policy di Snapshot, seleziona *None* per rimuovere la policy di Snapshot.
+. Seleziona *Assegna*.
+
+
+.Risultato
+La policy di Snapshot viene rimossa dal volume.
+
+
+
+[[delete-a-snapshot-policy]]
+== Elimina una policy di Snapshot
+
+Elimina una policy di Snapshot quando non ti serve più.
+
+Quando una policy di Snapshot è assegnata a più di un volume, devi <<Rimuovere una policy di Snapshot da un volume,rimuovilo>> manualmente da tutti i volumi per eliminare la policy di Snapshot. In alternativa, puoi <<Assegna una policy di Snapshot a un volume,assegnare una diversa policy di Snapshot>> ai volumi.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dal menu *FSx for ONTAP*, seleziona *Inventory*, quindi seleziona il menu delle azioni del file system da aggiornare e infine seleziona *Manage*.
+. Nella panoramica del file system, seleziona la scheda *Storage VMs*.
+. Dalla scheda *VM di archiviazione*, seleziona il menu delle azioni della VM di archiviazione con la policy di Snapshot da eliminare, quindi *Azioni avanzate* e infine *Gestisci policy di Snapshot*.
+. Nella pagina di gestione delle policy di Snapshot, seleziona il menu delle azioni per la policy di Snapshot da eliminare e quindi seleziona *Elimina*.
+. Nella finestra di dialogo Delete, seleziona *Delete* per eliminare il criterio.
+

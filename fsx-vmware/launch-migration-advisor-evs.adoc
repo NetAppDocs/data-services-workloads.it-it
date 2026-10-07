@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-migration-advisor-evs.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works, migration, manual, specification, deploy, deployment, plan 
+summary: Dal centro di pianificazione VMware, puoi avviare Amazon EVS migration advisor per creare un piano di migrazione personalizzato in base alle tue esigenze. 
+---
+= Crea un piano di distribuzione per Amazon EVS utilizzando il consulente per la migrazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dal centro di pianificazione VMware, puoi avviare Amazon EVS migration advisor per creare un piano di migrazione personalizzato in base alle tue esigenze.
+
+Puoi creare un piano di distribuzione per migrare le macchine virtuali ad Amazon Elastic VMware Service e utilizzare file system Amazon FSx for NetApp ONTAP personalizzati come datastore esterni. Le opzioni nel migration advisor potrebbero variare a seconda dello strumento utilizzato per raccogliere i dati dell'inventario delle VM.
+
+
+
+[[requirements]]
+== Requisiti
+
+* Per accedere a Workload Factory, devi disporre di un nome utente e di una password. Se non hai accesso, crea subito un account. Consulta le istruzioni link:quick-start-vmware.html["qui"].
+* Devi disporre di un abbonamento ad Amazon Elastic VMware Service.
+
+
+
+
+[[steps]]
+== Passaggi
+
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona dall'elenco l'inventario VM che vuoi usare per creare un piano di distribuzione e seleziona *Avvia pianificazione* nella riga corrispondente.
+. Seleziona *EVS* dal menu a tendina che appare.
++
+Compare la procedura guidata *Preparazione all'onboarding di AWS Cloud*.
+
+. Inserisci le informazioni richieste.
+
+
+[discrete]
+===== Specifica
+
+. Nella sezione _Caricamento configurazione VM_, esamina le informazioni relative al dataset che stai utilizzando per creare un piano di migrazione. La sezione *Riepilogo inventario VM* mostra, in base al file di inventario, il numero di VM e la capacità di archiviazione totale.
+. Nella sezione _Considerazioni sull'inventario delle VM_, seleziona le opzioni per filtrare l'elenco delle VM che desideri migrare:
++
+.. *Regione*: Seleziona la regione in cui verranno distribuiti i file system Amazon FSx for NetApp ONTAP. Per prestazioni ottimali ed efficienza dei costi, in genere è la stessa regione in cui è distribuito il tuo Amazon EC2 SDDC esistente.
+.. Scegli un livello di prestazioni previsto per le VM in questa regione. Ti consigliamo di iniziare con un'impostazione IOPS inferiore. Puoi aumentare gli IOPS SSD allocati dopo la creazione del file system, man mano che i carichi di lavoro vengono migrati o distribuiti:
++
+*** *Prestazioni da standard a elevate*: Per macchine virtuali con velocità di I/O medie comprese tra 20 e 5000 IOPS.
+*** *Prestazioni molto elevate*: Per macchine virtuali con velocità di I/O medie superiori a 5000 IOPS.
+*** *Prestazioni molto basse*: per macchine virtuali con velocità di I/O medie inferiori a 20 IOPS.
+
+
+
+
+. Nella sezione _Considerazioni relative alla capacità target e alla protezione_, seleziona una delle seguenti opzioni di archiviazione:
++
+.. *Archiviazione VM da considerare*: Seleziona se le dimensioni dei datastore creati per ogni VM integrata si basano sulla dimensione attualmente utilizzata (consigliato) o sulla dimensione allocata.
++
+I datastore esterni saranno implementati utilizzando i volumi del file system Amazon FSx for NetApp ONTAP.
+
+.. *Rapporto medio di riduzione dei dati*: Scegli tra i tre rapporti di riduzione dei dati più comuni. Seleziona "1:1 - Nessuna riduzione", "1:1.25 - Riduzione del 20%" o "1:1.5 - Riduzione del 33%".
++
+Seleziona *Aiutami a decidere* se non sei sicuro di quale rapporto scegliere. Viene visualizzata la finestra di dialogo _Assistente rapporto di riduzione dei dati_. Seleziona tutte le opzioni applicabili al tuo inventario di VM e al tuo ambiente di storage. L'assistente ti consiglierà un rapporto di riduzione dei dati appropriato. Seleziona *Applica* per usare il rapporto consigliato.
+
+.. *Percentuale di margine di capacità*: Inserisci la percentuale di crescita della capacità da aggiungere alla capacità dei tuoi file system FSx for ONTAP.
++
+Tieni presente che se selezioni una percentuale inferiore al 20% non potrai creare snapshot del volume per la protezione e i backup a lungo termine.
+
+.. *Protezione snapshot VM*: Abilita questa opzione per proteggere le VM con snapshot.
+
+
+. Seleziona *Avanti*.
+
+
+[discrete]
+===== Seleziona
+
+. Nella pagina *Seleziona macchine virtuali*, seleziona dall'elenco le VM che desideri includere nella migrazione AWS. Puoi filtrare l'elenco in base allo stato di alimentazione di ciascuna VM e al data center e al cluster in cui risiede la VM.
++
+Nell'elenco delle VM, puoi selezionare quali tipi di informazioni sulle VM visualizzare come colonne. Ad esempio, selezionando _IOPS di lettura di picco_ viene visualizzata una colonna con il picco di IOPS di lettura per ogni VM.
+
+. Se vuoi, puoi scegliere di ottimizzare l'implementazione in base ai costi o alla recuperabilità.
++
+** *Costo*: Workload Factory seleziona dall'elenco le macchine virtuali con una minore densità di I/O. Questo contribuisce a ridurre il fabbisogno di risorse.
+** *Recuperabilità*: Workload Factory seleziona dall'elenco le macchine virtuali più facili da copiare rapidamente in locale. Questo garantisce tempi di ripristino rapidi in caso di interruzioni.
+
+
+. Seleziona *Avanti*.
+
+
+[discrete]
+===== Progettazione
+
+* Nella pagina *assegnazione dello storage dell'istanza ClassReview*, esamina le informazioni sulla VM, le regole di classificazione dei volumi, le assegnazioni dei volumi e l'elenco dei volumi che verranno migrati durante la distribuzione, quindi seleziona *Avanti*.
+
+
+[discrete]
+===== Piano di revisione
+
+. Nella pagina *Riepilogo del piano*, esamina il risparmio mensile stimato e le stime dei costi per tutte le macchine virtuali che intendi migrare.
++
+Nella parte superiore della pagina viene stimato il risparmio mensile per i file system FSx for ONTAP e i volumi EBS. Puoi espandere ciascuna sezione per visualizzare i dettagli della configurazione consigliata del file system, la ripartizione del risparmio stimato, le ipotesi e le avvertenze tecniche.
+
++
+Per impostazione predefinita, il piano di migrazione viene salvato automaticamente nell'elenco dei piani nel centro di pianificazione.
+
+. Se vuoi, puoi esportare il piano di migrazione come file PDF o CSV selezionando *Manage plan* in alto a destra della pagina e poi *Download a report (.pdf)* o *Download VM storage deployment (.csv)*.
++
+Il file .csv crea una mappa di tutte le macchine virtuali incluse nel piano di migrazione, insieme ai volumi di storage a esse assegnati.
+
+. Quando sei pronto a procedere con il piano, seleziona *Provision* per iniziare a distribuire il file system Amazon FSx for NetApp ONTAP consigliato.
+
+
+link:deploy-fsx-file-system-evs.html["Distribuisci il file system FSx per ONTAP consigliato per i carichi di lavoro VMware"].

@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/explore-planning-center.html 
+keywords: vm workloads, netapp Workload Factory 
+summary: Puoi usare VMware planning center per gestire i dati di inventario caricati e i piani di migrazione che hai creato. 
+---
+= Esplora il centro di pianificazione VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il centro di pianificazione VMware ti consente di caricare nuovi dati di inventario delle VM e creare nuovi piani di migrazione, nonché di gestire i dati di inventario delle VM e i piani di migrazione che hai già salvato con NetApp Workload Factory.
+
+
+
+[[manage-vm-inventory-data]]
+== Gestisci i dati dell'inventario delle VM
+
+Utilizza il centro di pianificazione per creare e gestire i dati dell'inventario delle macchine virtuali.
+
+
+
+[[upload-vm-inventory-data]]
+=== Carica i dati dell'inventario delle VM
+
+Puoi caricare i dati dell'inventario delle macchine virtuali quando sei pronto a utilizzare Workload Factory per esplorare le opzioni di migrazione verso gli ambienti Amazon AWS. Consulta link:upload-vm-inventory.html["Carica i dati dell'inventario delle VM"] per istruzioni.
+
+
+
+[[rename-a-dataset]]
+=== Rinomina un dataset
+
+Puoi modificare il nome di un dataset salvato.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona il menu Azioni (...) per il dataset che desideri rinominare e seleziona *Rinomina*.
+. Inserisci un nuovo nome per il set di dati e seleziona *Salva*.
+
+
+
+
+[[delete-a-dataset]]
+=== Elimina un set di dati
+
+Quando un set di dati non è più necessario, puoi eliminarlo in qualsiasi momento.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona il menu Azioni (...) per il dataset che desideri eliminare e seleziona *Elimina*.
+. Seleziona *Cancella* per confermare l'azione.
+
+
+
+
+[[manage-migration-plans]]
+== Gestisci i piani di migrazione
+
+Utilizza il centro migrazioni per creare e gestire i piani di migrazione.
+
+
+
+[[provision-a-migration-plan]]
+=== Prepara un piano di migrazione
+
+Puoi selezionare un piano di migrazione e configurarlo in modo che le VM vengano migrate nell'ambiente Amazon AWS che preferisci.
+
+.Passaggi
+. Accedi a Workload Factory utilizzando uno dei https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] e quindi seleziona *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona *Piani di migrazione*.
+. Seleziona il menu Actions (...) per il piano di migrazione che desideri predisporre e seleziona *Provision*.
+. A seconda del piano di migrazione, fai riferimento alle istruzioni per distribuire il file system:
++
+** link:deploy-fsx-file-system.html["Distribuisci il file system per i piani Amazon VMware Cloud"]
+** link:deploy-fsx-file-system-native.html["Distribuisci il file system per i piani Amazon EC2"]
+** link:deploy-fsx-file-system-evs.html["Distribuisci il file system per i piani Amazon Elastic VMware Service"]
+
+
+
+
+
+
+[[edit-the-comment-for-a-migration-plan]]
+=== Modifica il commento per un piano di migrazione
+
+Se devi modificare i dettagli di un commento per un piano di migrazione, modifica il commento direttamente dal centro di pianificazione.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona *Piani di migrazione*.
+. Seleziona il menu Azioni (...) per il piano di migrazione che desideri modificare e seleziona *Modifica commento*.
+. Inserisci un commento e seleziona *Salva*.
+
+
+
+
+[[create-a-pdf-or-csv-report-of-a-migration-plan]]
+=== Crea un report PDF o CSV del piano di migrazione
+
+Crea un report in formato PDF o CSV con i dettagli di un piano di migrazione.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona *Piani di migrazione*.
+. Seleziona il menu Azioni (...) per il piano di migrazione per cui vuoi creare un report PDF o CSV e seleziona *Scarica piano (PDF)* oppure *Scarica report VM (CSV)*.
+. Inserisci un nome per il report e seleziona *Salva*.
+
+
+
+
+[[delete-a-migration-plan]]
+=== Elimina un piano di migrazione
+
+Quando un piano di migrazione non è più necessario, puoi eliminarlo in qualsiasi momento.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *VMware*.
++
+Compare il centro di pianificazione.
+
+. Seleziona *Piani di migrazione*.
+. Seleziona il menu Azioni (...) per il piano di migrazione che desideri eliminare e seleziona *Elimina*.
+. Conferma l'azione selezionando *Elimina*.
+

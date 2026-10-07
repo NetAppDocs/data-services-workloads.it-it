@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/set-volume-latency-thresholds.html 
+keywords: latency, latency thresholds, alerts, volume latency, read latency, write latency 
+summary: Imposta le soglie di latenza per i volumi per ricevere avvisi quando la latenza di lettura o scrittura supera i valori specificati. 
+---
+= Imposta le soglie di latenza del volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Imposta le soglie di latenza per i volumi per ricevere avvisi quando la latenza di lettura o scrittura supera i valori specificati.
+
+.Informazioni su questa attività
+È possibile configurare soglie di latenza per singolo volume al fine di monitorare le prestazioni e ricevere avvisi quando i valori di latenza superano i limiti definiti. Workload Factory monitora sia la latenza in lettura che quella in scrittura e genera avvisi quando una delle due soglie viene superata.
+
+Quando imposti le soglie di latenza, Workload Factory monitora quanto segue:
+
+* *Latenza di lettura*: Attiva un avviso quando le operazioni di lettura superano la soglia specificata in millisecondi.
+* *Latenza di scrittura*: Attiva un avviso quando le operazioni di scrittura superano la soglia specificata in millisecondi.
+
+
+Il monitoraggio della latenza utilizza i seguenti parametri predefiniti:
+
+* *Soglia IOPS*: 100 IOPS (lettura e scrittura)
+* *Intervallo di tempo*: 10 minuti
+
+
+Viene generato un avviso quando la soglia di latenza viene superata e la soglia di IOPS viene raggiunta nell'intervallo di tempo specificato.
+
+
+NOTE: Puoi visualizzare gli eventi di latenza e ricevere avvisi anche senza una connessione di collegamento. Tuttavia, per analizzare gli eventi e ricevere approfondimenti e raccomandazioni basati sull'intelligenza artificiale, devi link:create-link.html["connetti al file system tramite un collegamento"^].
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu delle azioni del volume per impostare le soglie di latenza.
+. Seleziona *Azioni di avviso*, poi *Imposta soglia di latenza*.
+. Nella finestra di dialogo Imposta soglia di latenza, configura quanto segue:
++
+.. *Latenza di lettura*: Inserisci il valore soglia in millisecondi (ms) per le operazioni di lettura.
+.. *Latenza di scrittura*: Inserisci il valore di soglia in millisecondi (ms) per le operazioni di scrittura.
+
+
+. Seleziona *Salva* per applicare le soglie di latenza.
+
+
+.Risultato
+Workload Factory monitora il volume e genera avvisi quando la latenza di lettura o scrittura supera le soglie configurate. Puoi visualizzare gli eventi di latenza da link:analyze-events.html["Schermata di analisi"].
+
+.Informazioni correlate
+* link:analyze-events.html["Analizza gli eventi FSx for ONTAP in NetApp Workload Factory"]
+* link:manage-volume-capacity.html["Regola la capacità del volume in Workload Factory"]
+

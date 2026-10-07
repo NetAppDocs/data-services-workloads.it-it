@@ -1,0 +1,257 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-volume.html 
+keywords: create volume, FSx for ONTAP volume 
+summary: Dopo aver configurato il file system FSx for ONTAP, crea i volumi FSx for ONTAP in Workload Factory. 
+---
+= Crea un volume FSx for ONTAP in Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver configurato il tuo file system FSx for ONTAP, crea volumi FSx for ONTAP in Workload Factory come risorse virtuali per raggruppare i tuoi dati.
+
+
+
+[[about-this-task]]
+== Informazioni su questa attività
+
+I volumi FSx for ONTAP raggruppano virtualmente i dati, determinano come vengono archiviati e definiscono il tipo di accesso ai tuoi dati. I volumi non consumano capacità di storage del file system. I dati archiviati in un volume consumano principalmente storage SSD. A seconda della policy di tiering del volume, i dati potrebbero consumare anche storage del capacity pool. Imposti le dimensioni di un volume quando lo crei e puoi modificarle in seguito.
+
+Per i tuoi volumi potresti utilizzare i seguenti protocolli:
+
+* SMB/CIFS: protocollo di file storage per i sistemi operativi Windows
+* NFS: protocollo file storage per sistemi operativi Unix
+* iSCSI: protocollo di storage a blocchi
+
+
+Gli endpoint S3 possono essere collegati a un volume FSx for ONTAP. Utilizzando un punto di accesso S3, puoi accedere ai dati dei file presenti su volumi SMB/CIFS o NFS tramite le API AWS S3. Questo ti consente di integrare i dati esistenti con GenAI, ML e analisi dei servizi AWS che supportano i punti di accesso S3.
+
+
+
+[[details-for-volume-settings]]
+=== Dettagli relativi alle impostazioni del volume
+
+.File immutabili
+Questa funzionalità, nota anche come SnapLock, è disabilitata per impostazione predefinita. Se abiliti i file immutabili, impedisci l'eliminazione o la sovrascrittura dei dati per un determinato periodo. Puoi abilitare questa funzionalità solo durante la creazione del volume. Dopo aver abilitato la funzionalità, non puoi più disabilitarla. Questa è una funzionalità premium per FSx for ONTAP che comporta un costo aggiuntivo. Per ulteriori informazioni, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html["Come SnapLock funziona"^] nella documentazione di Amazon FSx for NetApp ONTAP.
+
+* *Modalità di conservazione*: puoi scegliere tra due modalità di conservazione: _Enterprise_ o _Compliance_.
++
+** In modalità _Enterprise_, un amministratore di file immutabili, o SnapLock, può eliminare un file durante il relativo periodo di conservazione.
+** In modalità _Compliance_, un file WORM non può essere eliminato prima della scadenza del suo periodo di conservazione. Analogamente, il volume immutabile non può essere eliminato finché non scadono i periodi di conservazione di tutti i file al suo interno.
+
+
+* *Periodo di conservazione*: Il periodo di conservazione ha due impostazioni: _policy di conservazione_ e _periodi di conservazione_. La _policy di conservazione_ definisce per quanto tempo mantenere i file in uno stato WORM immutabile. Puoi specificare una tua policy di conservazione oppure usare la policy di conservazione predefinita (non specificata), che è di 30 anni. I _periodi di conservazione_ minimo e massimo definiscono l'intervallo di tempo consentito per bloccare i file.
++
+
+NOTE: Anche dopo la scadenza del periodo di conservazione, non puoi modificare un file WORM. Puoi solo eliminarlo o impostare un nuovo periodo di conservazione per riattivare la protezione WORM.
+
+* *Commit automatico*: Avrai la possibilità di abilitare la funzione di commit automatico. La funzione di commit automatico esegue il commit di un file nello stato WORM su un volume SnapLock se il file non è stato modificato per la durata del periodo di commit automatico. La funzione di commit automatico è disabilitata per impostazione predefinita. Devi assicurarti che i file che desideri sottoporre a commit automatico risiedano su un volume SnapLock.
+* *Eliminazione privilegiata*: un amministratore SnapLock può attivare l'eliminazione privilegiata su un volume SnapLock Enterprise per consentire l'eliminazione di un file prima della scadenza del periodo di conservazione del file. Questa funzione è disabilitata per impostazione predefinita.
+* *Modalità di aggiunta al volume*: non puoi modificare i dati esistenti in un file protetto da WORM. Tuttavia, i file immutabili ti consentono di mantenere la protezione dei dati esistenti utilizzando file WORM appendibili. Ad esempio, puoi generare file di log o conservare dati di streaming audio o video mentre vi scrivi dati in modo incrementale. link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append["Scopri di più sulla modalità volume-append"^] nella documentazione di Amazon FSx for NetApp ONTAP.
+
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+Prima di creare un volume, verifica i seguenti prerequisiti:
+
+* Devi disporre di un file system FSx per ONTAP nella console di Workload Factory.
+* Devi disporre di una storage VM.
+* Per l'accesso al protocollo, completa quanto segue:
++
+** Per configurare l'accesso al volume, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"]. Dopo aver associato il collegamento, torna a questa procedura.
+** Devi configurare l'accesso per il protocollo che selezioni, ovvero SMB/CIFS, NFS o iSCSI.
+
+
+
+
+
+
+[[create-a-volume]]
+== Crea un volume
+
+Puoi creare un volume utilizzando i seguenti strumenti disponibili in Codebox: REST API, CloudFormation e Terraform. link:../admin/use-codebox.html#how-to-use-codebox["Scopri come usare Codebox per l'automazione"].
+
+
+NOTE: Quando usi Terraform da Codebox, il codice che copi o scarichi nasconde `fsxadmin` e `vsadmin` password. Dovrai reinserire le password quando esegui il codice.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona *Crea volume*.
+. Nella pagina Crea volume, nella sezione Dettagli generali, inserisci le seguenti informazioni:
++
+.. *Nome del volume*: Inserisci un nome per il volume.
+.. *Nome della VM di storage*: Facoltativamente, inserisci un nome per la VM di storage.
+.. *Stile del volume*: Seleziona il volume *FlexVol* o *FlexGroup*.
++
+*** Un _FlexVol volume_ è un tipo di storage logico in ONTAP che consente di gestire i dati. I volumi FlexVol possono essere spostati tra aggregati o nodi all'interno della stessa macchina virtuale di storage (SVM) senza interrompere l'accesso del client. Lo stile di volume FlexVol è selezionato per impostazione predefinita.
+*** Un volume _FlexGroup_ è un container NAS scale-out che fornisce prestazioni elevate insieme alla distribuzione automatica del carico e alla scalabilità. È costituito da diversi volumi membri (costituenti), che sono volumi FlexVol sottostanti che condividono il traffico in modo trasparente.
+
+
+.. *Dimensioni del volume*: Inserisci le dimensioni del volume e l'unità di misura.
++
+Facoltativamente, abilita l'espansione automatica del volume. Questa opzione è disponibile quando selezioni *File access* come tipo di accesso al volume.
+
++
++ FlexGroup volume La dimensione dipende dal numero di componenti, richiedendo 100 GiB per componente.
+
+.. *Volume autogrow*: Facoltativamente, puoi abilitare il volume autogrow per espandere automaticamente la capacità del volume fino a quando il volume non raggiunge la dimensione massima. Questa funzione si adatta all'aumento dell'utilizzo dei dati, garantendo operazioni senza interruzioni.
++
+Specifica la dimensione massima di crescita del volume e l'unità di misura. Non puoi impostare una dimensione massima di crescita inferiore alla dimensione del volume corrente
+
+.. *Tag*: Facoltativamente, puoi aggiungere fino a 50 tag.
+
+
+. Nella sezione Accesso (solo per i file system con collegamenti associati), inserisci i seguenti dettagli:
++
+.. *Tipo di accesso*: Seleziona *Accesso ai file* o *Accesso a blocchi*. I campi aggiuntivi per configurare l'accesso al volume variano a seconda della selezione.
++
+*** *Accesso ai file*: consente a più utenti e dispositivi autorizzati di accedere al volume utilizzando i protocolli SMB/CIFS, NFS o duali (SMB/NFS).
++
+Completa i seguenti campi per configurare l'accesso ai file al volume.
+
+
+
+.. *Policy di esportazione NFS*: Fornisci i seguenti dettagli per consentire l'accesso NFS:
++
+... *Controllo degli accessi*: seleziona una *policy di esportazione personalizzata*, *policy di esportazione esistente* o *Nessun accesso al volume* dal menu a discesa.
+... *Nome della policy di esportazione*:
++
+Se hai selezionato una policy di esportazione personalizzata, seleziona il nome di una policy esistente dal menu a discesa.
+
++
+Se hai selezionato una policy di esportazione esistente, inserisci un nuovo nome per la policy.
+
+... *Aggiungi regola alla policy di esportazione*: facoltativamente, per una policy di esportazione personalizzata, puoi aggiungere regole della policy di esportazione alla policy.
+
+
+.. *SMB/CIFS share*: Fornisci le seguenti informazioni:
++
+... *Nome*: Inserisci il nome della CIFS share SMB/CIFS per fornire l'accesso.
+... *Autorizzazioni*: Seleziona Controllo completo, Lettura/Scrittura, Lettura o Nessun accesso, quindi inserisci gli utenti o i gruppi separati da un punto e virgola ( ; ). Gli utenti o i gruppi fanno distinzione tra maiuscole e minuscole e il dominio dell'utente deve essere incluso usando il formato "domain\username".
+
+
+.. *Stile di sicurezza*: Per i volumi a doppio protocollo, seleziona lo stile di sicurezza UNIX o NTFS. UNIX è lo stile di sicurezza predefinito per i volumi a doppio protocollo. Per indicazioni dettagliate sulla mappatura degli utenti in questo contesto, consulta l'articolo del blog AWS link:https://aws.amazon.com/blogs/storage/enabling-multiprotocol-workloads-with-amazon-fsx-for-netapp-ontap["Abilita i carichi di lavoro multiprotocollo con Amazon FSx for NetApp ONTAP"^].
++
+*** *Accesso a blocchi*: consente agli host che eseguono applicazioni aziendali critiche di accedere al volume utilizzando il protocollo iSCSI. L'accesso a blocchi è disponibile solo quando la distribuzione scale-out del file system ha sei coppie HA o meno.
++
+Completa i seguenti campi per configurare l'accesso a blocchi al volume.
+
++
+.... *Configurazione iSCSI*: fornisci i seguenti dettagli per configurare iSCSI per l'accesso a blocchi al volume.
++
+..... Seleziona *Crea un nuovo gruppo initiator* oppure *Associa un gruppo initiator esistente*.
+..... Seleziona il *sistema operativo host* dal menu a discesa.
+..... Inserisci un *nome del gruppo initiator* per un nuovo gruppo initiator.
+..... In Iniziatori host, aggiungi uno o più initiator host con nome qualificato iSCSI (IQN).
+
+
+
+
+
+
+.. *Punto di accesso S3*: facoltativamente, collega un punto di accesso S3 per accedere ai dati del file system FSx for ONTAP residenti su volumi NFS o SMB/CIFS tramite le API AWS S3. È supportato solo il tipo di accesso ai file. Fornire i seguenti dettagli:
++
+*** *Nome punto di accesso S3*: Inserisci il nome del punto di accesso S3.
+*** *Utente*: Seleziona un utente esistente con accesso al volume o crea un nuovo utente.
+*** *Tipo di utente*: seleziona *UNIX* o *Windows* come tipo di utente.
+*** *Configurazione di rete*: Selezionare *Internet* o *Virtual private cloud (VPC)*. Il tipo di rete scelto determina se il punto di accesso è accessibile da Internet o limitato a una specifica VPC.
+*** *Abilita tabella inventario*: quando si abilita la tabella inventario sul volume, il sistema genera metadati per tutti gli oggetti accessibili al punto di accesso S3 e comporta costi di richiesta AWS S3. Per ulteriori informazioni, consulta link:https://aws.amazon.com/s3/pricing/["Documentazione sui prezzi di Amazon S3"^].
+
+
+.. *Tag del punto di accesso S3*: Facoltativamente, puoi aggiungere fino a 50 tag o rimuovere tag.
+
+
+. In "Efficienza e protezione", fornisci i seguenti dettagli:
++
+.. *Efficienza dello storage*: Attivata per impostazione predefinita. Seleziona per disattivare la funzione.
++
+ONTAP raggiunge l'efficienza dello storage grazie alle funzionalità di deduplicazione e compressione. La deduplicazione elimina i blocchi di dati duplicati. La compressione dei dati comprime i blocchi di dati per ridurre la quantità di storage fisico necessaria.
+
+.. *policy di Snapshot*: Seleziona la policy di Snapshot per specificare la frequenza e la conservazione degli Snapshot.
++
+Di seguito sono riportate le policy predefinite di AWS. Per visualizzare le policy snapshot esistenti, devi link:create-link.html["associa un collegamento"].
+
++
+`default`:: Questa policy crea automaticamente Snapshot secondo la seguente pianificazione, eliminando le copie più vecchie per fare spazio a quelle più recenti:
++
+--
+*** Un massimo di sei Snapshot orarie acquisite cinque minuti dopo l'ora.
+*** Un massimo di due Snapshot al giorno, acquisite dal lunedì al sabato 10 minuti dopo la mezzanotte.
+*** Un massimo di due Snapshot settimanali, acquisite ogni domenica alle 00:15.
++
+
+NOTE: Gli orari degli Snapshot si basano sul fuso orario del file system, che per impostazione predefinita è il Tempo coordinato universale (UTC). Per informazioni su come modificare il fuso orario, consulta link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["Visualizzazione e impostazione del fuso orario di sistema"^] nella documentazione di supporto di NetApp.
+
+
+
+--
+`default-1weekly`:: Questa policy funziona allo stesso modo della `default` policy, tranne per il fatto che conserva solo una Snapshot della pianificazione settimanale.
+`none`:: Questa policy non crea Snapshot. Puoi assegnare questa policy ai volumi per impedire la creazione automatica di Snapshot.
+
+
+.. *Politica di tiering*: Seleziona la politica di tiering per i dati archiviati nel volume.
++
+_Bilanciato (Automatico)_ è il criterio di tiering predefinito quando crei un volume usando la console di Workload Factory. Per ulteriori informazioni sui criteri di tiering dei volumi, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacità di archiviazione del volume"^] nella documentazione di AWS FSx for NetApp ONTAP. Nota che Workload Factory usa nomi basati sui casi d'uso nella console di Workload Factory per i criteri di tiering e include i nomi dei criteri di tiering di FSx for ONTAP tra parentesi.
+
+.. *File immutabili*: L'attivazione della funzionalità dei file immutabili imposta in modo permanente i file di questo volume in uno stato WORM (write-once-read-many) immutabile. Inserisci i seguenti dettagli:
++
+... Seleziona per abilitare *File immutabili basati su SnapLock*.
+... Seleziona la casella per accettare e procedere.
+... Seleziona *Abilita*.
+... *Modalità di conservazione*: Seleziona la modalità *Enterprise* o *Compliance*.
+... *Periodo di conservazione*:
++
+**** Seleziona la politica di conservazione:
++
+***** *Non specificato*: imposta il criterio di conservazione su 30 anni.
+***** *Specifica il periodo*: Inserisci il numero di secondi, minuti, ore, giorni, mesi o anni per impostare la tua policy di conservazione.
+
+
+**** Seleziona i periodi di conservazione minimo e massimo:
++
+***** *Minimo*: Inserisci il numero di secondi, minuti, ore, giorni, mesi o anni per impostare il periodo di conservazione minimo.
+***** *Massimo*: Inserisci il numero di secondi, minuti, ore, giorni, mesi o anni per impostare il periodo di conservazione massimo.
+
+
+
+
+... *Autocommit*: Disabilita o abilita l'autocommit. Se abiliti l'autocommit, imposta il periodo di autocommit.
+... *Eliminazione privilegiata*: disabilita o abilita. Se abiliti l'eliminazione privilegiata, un amministratore SnapLock può eliminare un file prima della scadenza del periodo di conservazione.
+... *Modalità di aggiunta al volume*: Disabilita o abilita. Consente di aggiungere nuovi contenuti ai file WORM.
+
+
+.. *ARP/AI*: NetApp Autonomous Ransomware Protection with AI (ARP/AI) è abilitata per impostazione predefinita quando un collegamento è associato al file system. link:ransomware-protection.html["Scopri di più su ARP/AI"]. Accetta l'affermazione per procedere.
++
+Se la funzionalità non è disponibile, è per uno dei seguenti motivi:
+
++
+*** Il collegamento non è associato al file system. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+*** I volumi con file immutabili e i volumi con protocollo NVMe non sono supportati per ARP/AI. I volumi iSCSI sono supportati a partire da ONTAP 9.17.1.
+*** Il file system dispone già di una policy ARP/AI.
+
+
+
+
+. Nella sezione "Configurazione avanzata", inserire i seguenti dettagli. I campi in questa sezione variano a seconda dello stile di volume selezionato.
++
+.. *Percorso di giunzione*: inserisci la posizione nello spazio dei nomi della VM di storage in cui viene montato il volume. Il percorso di giunzione predefinito è `/<volume-name>`.
+.. *Nome dell'aggregato*: Solo per volumi FlexVol. Selezionare l'aggregato che ospiterà il nuovo volume.
+.. *Elenco aggregati*: Solo per i volumi FlexGroup. Aggiungi o rimuovi aggregati. Il numero minimo di aggregati è uno.
+.. *Numero di costituenti*: Solo per volumi FlexGroup. Inserisci il numero di costituenti per aggregato. Sono necessari 100 GiB per costituente.
+
+
+. Seleziona *Crea*.
+
+
+.Informazioni correlate
+* link:manage-volume-capacity.html["Regola la capacità del volume in Workload Factory"]
+* link:change-tiering-policy.html["Modifica il criterio di tiering del volume in Workload Factory"]
+* link:manage-s3-access-points.html["Gestisci i punti di accesso S3 in Workload Factory"]
+

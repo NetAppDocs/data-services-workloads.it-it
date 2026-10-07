@@ -1,0 +1,135 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-use-project-dashboard.html 
+keywords: dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization, filter dashboard 
+summary: 'Utilizza la dashboard Progetti per monitorare l"utilizzo dello storage, filtrare i dati per progetti o team e analizzare le prestazioni dei volumi per ottimizzare l"allocazione delle risorse.' 
+---
+= Utilizzare la dashboard Progetti in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizza la dashboard Progetti per monitorare l'utilizzo dello storage nei tuoi file system FSx for ONTAP e volumi. Filtra i dati per progetto, team o applicazione. Visualizza sia le prestazioni complessive che quelle per singolo volume per aiutarti a pianificare la capacità e usare le risorse in modo più efficiente.
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+Dovresti avere link:task-configure-project-dashboard.html["filtri personalizzati configurati"] per la dashboard Progetti. Se non hai configurato filtri personalizzati, puoi comunque utilizzare i filtri predefiniti (file system, tipo di volume e intervallo di tempo).
+
+
+
+[[filter-the-dashboard]]
+== Filtra la dashboard
+
+Il filtraggio ti permette di concentrarti su gruppi specifici di risorse di storage. Questo rende più facile individuare tendenze, trovare problemi e creare report per gli stakeholder. Usando più filtri insieme, puoi rispondere a domande mirate come: "Quanta storage sta usando il team del progetto ASIC?" oppure "Quali volumi nella regione US-West hanno il numero più alto di IOPS?"
+
+.Informazioni su questa attività
+È possibile filtrare le informazioni visualizzate nella dashboard utilizzando una combinazione di filtri predefiniti e qualsiasi filtro personalizzato configurato.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *EDA*.
+. Seleziona *Progetti*.
+. Seleziona i filtri che desideri applicare tra le opzioni disponibili:
++
+** Filtri predefiniti (file system, tipo di volume, intervallo di tempo)
+** Qualsiasi filtro personalizzato configurato
+
+
+. Seleziona l'icona di aggiornamento per aggiornare le informazioni del dashboard in base alle selezioni dei filtri.
+. Per una spiegazione delle informazioni visualizzate su una scheda, seleziona l'icona informativa di quella scheda.
+
+
+
+
+[[view-volume-details]]
+== Visualizza i dettagli del volume
+
+Analizzare sia le prestazioni complessive dei volumi che quelle dei singoli volumi ti aiuta a pianificare la capacità e migliorare le prestazioni. La visualizzazione "Totale" mostra le tendenze generali. La visualizzazione "Volume" ti aiuta a trovare i volumi specifici che potrebbero richiedere attenzione, ottimizzazione o più risorse.
+
+
+
+[[view-aggregated-volume-metrics]]
+=== Visualizza metriche aggregate del volume
+
+La vista Totale mostra le metriche combinate per tutti i volumi che corrispondono ai tuoi filtri.
+
+.Passaggi
+. Apri la scheda **Progetti** e assicurati che sia selezionata la scheda **Totale**. Questa è la visualizzazione predefinita.
+. Esamina le metriche visualizzate:
++
+** Capacità complessiva su tutti i volumi
+** IOPS aggregati
+** Throughput aggregato
+
+
+. Utilizza questa visualizzazione per osservare le tendenze e pianificare quanta capacità ti servirà in futuro.
+
+
+
+
+[[view-individual-volume-performance]]
+=== Visualizza le prestazioni dei singoli volumi
+
+La vista Volume mostra come si comporta ciascun volume nel tempo. Evidenzia i 10 volumi principali per ogni metrica.
+
+.Passaggi
+. Nella scheda **Progetti**, seleziona la scheda **Volume**.
+. Esamina le metriche del volume:
++
+** *Capacità volumetrica utilizzata*: Mostra i volumi con la capacità attualmente utilizzata più elevata
+** *IOPS*: Mostra i volumi con il valore medio di IOPS più elevato durante il periodo di tempo selezionato
+** *Throughput*: Mostra i volumi con il throughput medio più elevato durante il periodo di tempo selezionato
++
+
+NOTE: Se hai più di 10 volumi, gli altri non verranno visualizzati nella vista dettagliata.
+
+
+
+. Passa il mouse sopra una qualsiasi linea del volume nei grafici per visualizzare informazioni dettagliate:
++
+** *Capacità utilizzata del volume*: Nome del volume, capacità utilizzata in quel momento e capacità allocata
+** *IOPS*: Nome del volume, IOPS medi per l'intervallo di tempo e IOPS massimi per l'intervallo di tempo
+** *Throughput*: Nome del volume, throughput medio per l'intervallo di tempo e throughput massimo per l'intervallo di tempo
+
+
+. Utilizza la legenda per identificare ciascun volume. Gli stessi volumi utilizzano gli stessi colori per tutte le metriche, così puoi monitorarli facilmente.
+
+
+.Risultato
+Usa questi dati per:
+
+* Analizza i modelli di utilizzo
+* Individua i possibili colli di bottiglia
+* Individua i volumi che potrebbero dover essere ridimensionati
+* Scopri quali progetti o carichi di lavoro utilizzano più risorse
+
+
+
+
+[[best-practices]]
+== Best practice
+
+Considerare queste raccomandazioni quando si utilizza la dashboard Progetti:
+
+* Controlla regolarmente la dashboard per individuare schemi prima che si trasformino in problemi.
+* Utilizza più filtri contemporaneamente per rispondere a domande specifiche su come vengono utilizzate le risorse.
+* Guarda entrambe le visualizzazioni: usa Totale per pianificare la capacità e Volume per trovare e risolvere i problemi.
+* Modifica l'intervallo di tempo per vedere se le variazioni sono normali o fanno parte di una tendenza in crescita.
+* Registra i livelli di performance normali così è più facile individuare comportamenti insoliti in seguito.
+* Utilizza le informazioni ricavate dai dati per adeguare le risorse, ridimensionare i volumi o migliorare le prestazioni prima che i carichi di lavoro ne risentano.
+
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+* link:learn-project-dashboard.html["Scopri la dashboard dei progetti"]
+* link:task-configure-project-dashboard.html["Configura la dashboard dei progetti"]
+* link:learn-latency-monitoring.html["Scopri il monitoraggio della latenza"]
+

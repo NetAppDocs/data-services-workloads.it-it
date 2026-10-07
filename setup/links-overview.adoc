@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: setup/links-overview.html 
+keywords: links, accounts, connectivity, 
+summary: Un collegamento a Workload Factory crea un rapporto di fiducia e connettività tra un account Workload Factory e uno o più sistemi di cloud storage. 
+---
+= Scopri i collegamenti di NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un collegamento NetApp Workload Factory crea una relazione di trust e connettività tra un account Workload Factory e uno o più sistemi cloud storage. Questo ti consente di monitorare e gestire alcune funzionalità del sistema storage direttamente dalle chiamate REST API di ONTAP che non sono disponibili tramite l'API del cloud provider.
+
+Non ti serve un link per iniziare a usare Workload Factory, ma in alcuni casi dovrai crearne uno per sbloccare tutte le funzionalità e le capacità di Workload Factory.
+
+
+
+[[why-links-are-beneficial]]
+== Perché i link sono utili
+
+I link sono vantaggiosi perché consentono a Workload Factory di eseguire operazioni che non sono disponibili in modo nativo tramite l'API del tuo cloud provider. I link abilitano funzionalità ONTAP avanzate e l'automazione, che migliorano la gestione dei tuoi sistemi di cloud storage.
+
+Ecco alcuni vantaggi dell'utilizzo dei link:
+
+* Il collegamento consente a NetApp Console di inviare comandi ONTAP direttamente al tuo sistema cloud storage, offrendo funzionalità ONTAP avanzate che vanno oltre quelle offerte nativamente dal tuo cloud provider.
+* I link sfruttano funzioni serverless remote per eseguire codice in risposta agli eventi. Questo approccio serverless elimina la dipendenza da un'istanza in esecuzione nella tua VPC.
+
+
+
+
+[[how-links-work]]
+== Come funzionano i link
+
+I link sfruttano servizi di elaborazione serverless remoti, come AWS Lambda e Oracle Cloud Infrastructure Functions. Questi servizi eseguono codice in risposta agli eventi e gestiscono automaticamente le risorse di calcolo necessarie per tale codice. I link che crei fanno parte del tuo account NetApp e sono associati al corrispondente account del cloud provider.
+
+Dopo aver creato un collegamento, puoi associarlo a uno o più sistemi cloud storage. Ogni sistema cloud storage può essere associato a un solo collegamento nello stesso account NetApp. Se hai più account NetApp, un singolo sistema cloud storage può essere associato a collegamenti aggiuntivi in account NetApp diversi.
+
+Crei e associ collegamenti dalla pagina Collegamenti nella NetApp Console per i tuoi sistemi di cloud storage.
+
+Puoi autenticare i collegamenti utilizzando le credenziali memorizzate nel servizio credenziali di Workload Factory o con il servizio credenziali del tuo cloud provider. Workload Factory non supporta la modifica delle modalità di autenticazione.
+
+
+
+[[costs]]
+== Costi
+
+Ogni transazione eseguita dal servizio di elaborazione serverless del tuo cloud provider comporta un costo. Poiché funge da proxy tra i due sistemi, c'è un costo sia quando il servizio invia una richiesta all'API REST di ONTAP su un file system, sia quando invia la risposta a Workload Factory.
+
+* link:https://aws.amazon.com/lambda/pricing/["Scopri di più sui costi relativi all'utilizzo di AWS Lambda"^]
+* link:https://www.oracle.com/cloud/cloud-native/functions/["Scopri di più sui costi relativi all'utilizzo di Oracle Cloud Infrastructure Functions"^]
+
+
+
+
+[[when-a-link-is-required]]
+== Quando è richiesto un collegamento
+
+Workload Factory richiede un collegamento per visualizzare alcune informazioni ed eseguire alcune attività. Se provi a eseguire un'operazione che richiede un collegamento e non hai associato un collegamento al sistema cloud storage, Workload Factory ti avvisa che l'operazione richiede un collegamento.
+
+Le funzionalità che richiedono un collegamento includono:
+
+* Configurazioni ben strutturate dei sistemi di cloud storage per la manutenzione proattiva, l'affidabilità e l'ottimizzazione del rapporto costi-prestazioni
+* Monitoraggio e allerta degli eventi EMS di ONTAP
+* NetApp Autonomous Ransomware Protection (ARP/AI)
+* Maggiore osservabilità olistica della capacità nei sistemi di cloud storage
+* Replica dei dati, gestione e monitoraggio di volumi e storage VM
+* Provisioning e gestione delle condivisioni SMB/CIFS e delle policy di esportazione NFS
+* Gestione dei volumi iSCSI su un sistema storage cloud
+* Creazione e gestione di policy di snapshot per SLA di protezione personalizzati
+* Miglioramenti alla gestione degli inode per la gestione automatica della capacità
+* Crescita automatica del volume per la scalabilità elastica
+* Creazione e gestione di cloni, per la clonazione istantanea dei dati sul posto
+* Visualizzazione di metriche aggiuntive direttamente dal tuo sistema cloud storage, come la versione del sistema
+* Visualizzazione dei dettagli LIF di storage VM e cluster, inclusi ruoli, endpoint, nodi, indirizzi IP e stato
+
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+Scopri come creare e associare link per:
+
+* link:../fsx-storage/create-link.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/create-link.html["Servizio OCI NetApp Storage"]
+

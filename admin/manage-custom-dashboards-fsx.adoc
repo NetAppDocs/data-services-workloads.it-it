@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-custom-dashboards-fsx.html 
+keywords: manage dashboards, delete dashboard, refresh dashboard, dashboard catalog 
+summary: Accedi al catalogo delle dashboard per visualizzare, aggiornare ed eliminare le dashboard personalizzate in Workload Factory. 
+---
+= Gestisci dashboard personalizzate in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci le tue dashboard personalizzate dal catalogo delle dashboard. Da lì puoi visualizzare i dettagli, condividere le dashboard, aggiornare i dati o eliminare le dashboard che non ti servono più.
+
+.Informazioni su questa attività
+Puoi visualizzare e gestire dashboard personalizzate dal catalogo dashboard. Le dashboard private sono visibili solo a te, mentre quelle pubbliche sono visibili a tutti gli utenti del tuo account Workload Factory. Ogni dashboard mostra dettagli di base come il nome del creatore, la data di creazione e un'etichetta di visibilità (Privata o Pubblica).
+
+Le dashboard personalizzate sono di sola lettura. Non possono modificare le impostazioni di storage o del carico di lavoro.
+
+.Prima di iniziare
+Devi avere almeno una dashboard personalizzata nel tuo account Workload Factory.
+
+
+
+[[access-the-dashboard-catalog]]
+== Accedi al catalogo della dashboard
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Dal menu NetApp Console, seleziona *Workloads* > *Workloads Overview* > *Custom dashboards*.
++
+Il catalogo delle dashboard mostra tutte le dashboard personalizzate nel tuo account Workload Factory.
+
+. Esamina l'elenco del dashboard.
+
+
+
+
+[[change-dashboard-visibility]]
+== Modifica la visibilità del dashboard
+
+Rendi pubblica una dashboard per condividerla con il tuo team. Rendila privata per interromperne la condivisione.
+
+.Passaggi
+. Nella pagina *Custom dashboards*, individua la dashboard che desideri aggiornare.
+. Dal menu a tendina *Azioni* image:icon-action.png["L'icona con i tre puntini che apre il menu delle azioni"] per quella dashboard, seleziona una delle seguenti opzioni:
++
+** *Condividi dashboard* - Rende la dashboard visibile a tutti gli utenti del tuo account Workload Factory
+** *Passa alla dashboard privata* - Rende la dashboard visibile solo a te
+
+
+
+
+.Risultato
+Il pannello di controllo si aggiorna immediatamente. L'etichetta di visibilità sulla scheda del pannello di controllo mostra lo stato attuale.
+
+
+
+[[refresh-dashboard-data]]
+== Aggiorna i dati della dashboard
+
+I dati del dashboard vengono caricati quando apri il dashboard. Puoi aggiornarlo per vedere le informazioni più recenti.
+
+La dashboard ricarica i dati dai tuoi carichi di lavoro. L'ora dell'ultimo aggiornamento cambia per indicare quando i dati sono stati aggiornati.
+
+
+
+[[delete-a-dashboard]]
+== Elimina una dashboard
+
+Elimina le dashboard che non ti servono più. Questa operazione è permanente e non può essere annullata.
+
+.Passaggi
+. Nella pagina *Custom dashboards*, individua la dashboard che desideri rimuovere.
+. Dal menu a tendina *Azioni* di quella dashboard, seleziona *Elimina*.
+. Conferma l'eliminazione.
+
+
+.Risultato
+La dashboard viene rimossa definitivamente dal tuo account Workload Factory e tutti gli utenti perdono l'accesso ad essa.
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+* link:create-custom-dashboard-fsx.html["Crea dashboard personalizzate aggiuntive"]
+* link:troubleshoot-custom-dashboards-fsx.html["Risolvi i problemi delle dashboard personalizzate"]
+

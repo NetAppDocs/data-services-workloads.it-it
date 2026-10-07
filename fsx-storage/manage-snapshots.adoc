@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshots.html 
+keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
+summary: 'Modifica le impostazioni degli Snapshot, abilita l"accesso alle directory ed elimina gli Snapshot per gestire gli Snapshot e la protezione dei dati in Workload Factory.' 
+---
+= Gestisci le Snapshot di un volume FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Modifica le impostazioni degli Snapshot, abilita l'accesso alle directory ed elimina gli Snapshot per gestire gli Snapshot e la protezione dei dati in Workload Factory.
+
+
+
+[[edit-a-snapshot]]
+== Modifica uno Snapshot
+
+Modifica il nome, l'etichetta e il periodo di conservazione di uno snapshot. Se lo snapshot non è già immutabile, puoi renderlo immutabile.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni per il volume con l'istantanea da modificare.
+. Seleziona *Azioni di protezione dei dati* e poi *Gestisci snapshot*.
+. Dalla pagina Gestisci snapshot, seleziona il menu delle azioni per lo snapshot da modificare, quindi seleziona *Modifica*.
+. Nella finestra di dialogo Modifica snapshot, puoi modificare quanto segue:
++
+.. Cambia il nome.
+.. Cambia l'etichetta.
+.. Modifica il periodo di conservazione.
+.. Opzionale: *Rendi immutabile questa snapshot* per impedire che venga eliminata durante il periodo di conservazione.
++
+Se l'istantanea è già immutabile, non puoi modificare questa impostazione.
+
++
+Accetta l'affermazione relativa alle snapshot immutabili.
+
+
+
+. Seleziona *Applica*.
+
+
+
+
+[[access-a-snapshot]]
+== Accedi a uno Snapshot
+
+Abilita l'accesso alla directory degli snapshot per consentire agli utenti di accedere agli snapshot in autonomia.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni per il volume con lo snapshot a cui accedere.
+. Seleziona *Azioni di protezione dei dati* e poi *Gestisci snapshot*.
+. Dalla pagina Gestisci snapshot, seleziona il menu delle azioni per lo snapshot a cui vuoi accedere, quindi seleziona *Accedi*.
+. Nella finestra di dialogo Access snapshot, seleziona *Abilita accesso alla directory snapshot* per accedere a questo snapshot del volume e a tutti gli snapshot del volume.
++
+** Per i volumi NFS: seleziona *Percorso di accesso NFS* per visualizzare il percorso NFS per lo snapshot.
+** Per i volumi SMB/CIFS: seleziona *Percorso di accesso SMB* per visualizzare il percorso SMB per lo Snapshot.
+
+
+. Copia il percorso di accesso.
+. Seleziona *Applica*.
+
+
+
+
+[[restore-data-from-a-snapshot]]
+== Ripristina i dati da una Snapshot
+
+Hai la possibilità di ripristinare i dati da uno Snapshot su un volume esistente o su un nuovo volume.
+
+link:use-snapshots.html["Ripristinare un volume da uno Snapshot"]
+
+
+
+[[delete-a-snapshot]]
+== Elimina una snapshot
+
+Elimina uno Snapshot per liberare spazio.
+
+Le Snapshot immutabili non possono essere eliminate finché il periodo di conservazione non termina.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni per il volume con lo snapshot da eliminare.
+. Seleziona *Azioni di protezione dei dati* e poi *Gestisci snapshot*.
+. Dalla pagina Gestisci snapshot, seleziona il menu delle azioni relativo allo snapshot da eliminare, quindi seleziona *Elimina*.
+. Nella finestra di dialogo Elimina snapshot, digita "delete".
+. Seleziona *Delete* per confermare l'eliminazione.
+
+
+.Informazioni correlate
+* link:use-snapshots.html["Crea uno snapshot"]
+* link:use-snapshots.html["Creare una policy di Snapshot"]
+* link:use-snapshots.html["Ripristinare un volume da uno Snapshot"]
+

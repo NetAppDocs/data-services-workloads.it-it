@@ -1,0 +1,215 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/explore-savings.html 
+keywords: cost, savings, compare costs, EBS, EFS, FSx for Windows file servers FSx for ONTAP 
+summary: 'Scopri i risparmi per i tuoi carichi di lavoro di storage in Amazon Elastic Block Store (EBS) storage, Elastic File System (EFS) e FSx for Windows File Servers rispetto ad AWS FSx for NetApp ONTAP.' 
+---
+= Scopri i risparmi con FSx for ONTAP in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Scopri i risparmi per i tuoi workload di storage che usano Amazon Elastic Block Store (EBS), Elastic File System (EFS) e FSx for Windows File Server rispetto a FSx for NetApp ONTAP.
+
+NetApp Workload Factory include un calcolatore del risparmio di storage per confrontare gli ambienti di storage Amazon con FSx for ONTAP. Puoi esplorare i risparmi con o senza fornire le tue credenziali AWS e personalizzare le impostazioni di configurazione per il tuo ambiente di storage. Quando fornisci le credenziali AWS, puoi selezionare una o più istanze di Amazon Elastic Block Store, ad esempio, e lasciare che Workload Factory esegua il confronto automaticamente. Manuale o automatico, il calcolatore determina quale servizio di storage offre il costo più basso per le tue esigenze di storage.
+
+Se il calcolatore di storage determina che lo storage più conveniente è FSx for ONTAP, puoi creare o salvare configurazioni FSx for ONTAP e utilizzare Codebox per generare modelli Infrastructure-as-Code, indipendentemente dalle autorizzazioni che concedi a Workload Factory.
+
+
+
+[[calculator-options]]
+== Opzioni della calcolatrice
+
+Sono disponibili due opzioni del calcolatore per confrontare i costi tra i tuoi sistemi e FSx for ONTAP: personalizzazione e rilevamento automatico per i tuoi ambienti di storage Amazon.
+
+Scopri i risparmi possibili tramite la personalizzazione: fornisci le impostazioni di configurazione per un ambiente di storage, inclusi il caso d'uso, la regione, il numero di volumi o file system, la quantità di storage, la frequenza degli snapshot, la quantità di dati modificati per snapshot, gli IOPS allocati, il throughput e altro ancora.
+
+Scopri i risparmi per gli ambienti di storage rilevati: Workload Factory si collega ai tuoi ambienti di storage AWS esistenti e importa i dettagli nel calcolatore per un confronto automatico. Per utilizzare la modalità automatica, dovrai concedere le autorizzazioni di Automate. Puoi modificare il caso d'uso, ma tutti gli altri dettagli vengono determinati automaticamente nel calcolo.
+
+Inoltre, puoi link:add-credentials.html["aggiungi le credenziali AWS"^] migliorare la precisione dell'analisi del calcolatore. Seleziona *Calculate savings based on existing resources*. Verrai reindirizzato alla pagina Add credentials. Dopo aver aggiunto le credenziali, seleziona le risorse esistenti da confrontare con FSx for ONTAP e seleziona *Explore savings*.
+
+
+
+[[explore-savings-via-customization]]
+== Scopri i risparmi tramite la personalizzazione
+
+Segui i passaggi nella scheda relativa alla tua selezione dello storage.
+
+[role="tabbed-block"]
+====
+.Amazon Elastic Block Store (EBS)
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon Elastic Block Store (EBS)*.
+. Nel calcolatore del risparmio di storage, inserisci i seguenti dettagli:
++
+.. *Caso d'uso*: obbligatorio. Seleziona un caso d'uso dal menu a tendina. Il caso d'uso selezionato determina le caratteristiche del file system FSx per ONTAP da confrontare.
+.. *Regione*: Facoltativo. Seleziona la regione per la configurazione EBS dal menu a tendina.
+.. *Seleziona il tipo di volume EBS*: facoltativo. Seleziona il tipo di volume EBS utilizzato per la tua configurazione.
+.. *Numero di volumi*: facoltativo. Inserisci il numero di volumi nella configurazione EBS.
+.. *Quantità di storage per volume (TiB)*: Facoltativo. Inserisci la quantità di storage per volume in TiB.
+.. *Frequenza degli Snapshot*: Facoltativa. Seleziona la frequenza degli Snapshot per la tua configurazione EBS.
+.. *Quantità modificata per snapshot (GiB)*: Facoltativo. Solo per lo storage degli snapshot. Inserisci la quantità modificata per snapshot in GiB.
+.. *IOPS allocati per volume*: Facoltativo. Per i volumi gp3, io1 e io2. Inserisci il numero di IOPS allocati per volume.
+.. *Throughput (MiB/s)*: Opzionale. Solo per volumi gp3. Inserisci throughput in MiB/s per volume.
+
+
+
+
+--
+.Amazon FSx for Windows File Server
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon Elastic Block Store (EBS)*.
+. Nel calcolatore del risparmio di storage, inserisci i seguenti dettagli:
++
+.. *Caso d'uso*: obbligatorio. Seleziona un caso d'uso dal menu a tendina. Il caso d'uso selezionato determina le caratteristiche del file system FSx per ONTAP da confrontare.
+.. *Regione*: Facoltativo. Seleziona la regione per la configurazione di FSx for Windows File Server dal menu a discesa.
+.. *Tipo di implementazione*: Opzionale. Seleziona *Zona di disponibilità singola* o *Zone di disponibilità multiple*.
+.. *Tipo di storage*: il tipo di storage SSD è selezionato per impostazione predefinita.
+.. *Capacità di storage (TiB)*: facoltativa. Inserisci la capacità di storage per la configurazione.
+.. *Risparmio dovuto alla deduplicazione (%)*: facoltativo. Inserisci la percentuale di risparmio di capacità che prevedi di ottenere dalla deduplicazione.
+.. *Frequenza degli Snapshot*: Facoltativo. Seleziona la frequenza degli Snapshot per la tua configurazione.
+.. *Quantità modificata per snapshot (GiB)*: Facoltativo. Solo per lo storage degli snapshot. Inserisci la quantità modificata per snapshot in GiB.
+.. *IOPS SSD allocati*: Facoltativo. Inserisci gli IOPS SSD allocati.
+.. *Throughput (MiB/s)*: Facoltativo. Inserisci il throughput in MiB/s.
+
+
+
+
+--
+.Amazon Elastic File System (EFS)
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon Elastic Block Store (EBS)*.
+. Nel calcolatore del risparmio di storage, inserisci i seguenti dettagli:
++
+.. *Caso d'uso*: obbligatorio. Seleziona un caso d'uso dal menu a tendina. Il caso d'uso selezionato determina le caratteristiche del file system FSx per ONTAP da confrontare.
+.. *Regione*: Facoltativo. Seleziona la regione per la configurazione di FSx for Windows File Server dal menu a discesa.
+.. *Tipo di file system*: facoltativo. Seleziona *Regional* o *One zone*.
+.. *Capacità di storage (TiB)*: Facoltativo. Inserisci la capacità di storage della configurazione EFS.
+.. *Dati consultati frequentemente (%)*: Facoltativo. Inserisci la percentuale di dati a cui si accede frequentemente.
+.. *Modalità di throughput*: opzionale. Seleziona *Provisioned throughput* o *Elastic throughput*.
+.. *Throughput (MiB/s)*: Facoltativo. Inserisci il throughput in MiB/s.
+
+
+
+
+--
+====
+Dopo aver fornito i dettagli per la configurazione del tuo sistema storage, rivedi i calcoli e i consigli forniti nella pagina.
+
+Inoltre, scorri fino in fondo alla pagina per visualizzare il report selezionando una delle seguenti opzioni:
+
+* *Esporta PDF*
+* *Invia per email*
+* *Visualizza i calcoli*
+
+
+Per passare a FSx per ONTAP, seguire le istruzioni per <<Distribuisci i file system FSx for ONTAP,distribuire i file system FSx for ONTAP>>.
+
+
+
+[[explore-savings-for-detected-storage-environments]]
+== Scopri i risparmi per gli ambienti di storage rilevati
+
+.Prima di iniziare
+Affinché Workload Factory rilevi gli ambienti di storage Amazon Elastic Block Store (EBS), Elastic File System (EFS) e FSx for Windows File Server nel tuo account AWS, assicurati di link:add-credentials.html["concedere le autorizzazioni di visualizzazione, pianificazione e analisi"^] nel tuo account AWS.
+
+
+NOTE: Questa opzione del calcolatore non supporta i calcoli per gli EBS snapshots e le copie shadow di FSx for Windows File Server. Quando esplori i risparmi tramite la personalizzazione, puoi fornire i dettagli degli EBS snapshots e di FSx for Windows File Server.
+
+Segui i passaggi nella scheda relativa alla tua selezione dello storage.
+
+[role="tabbed-block"]
+====
+.Amazon Elastic Block Store (EBS)
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon Elastic Block Store (EBS)*.
+. Nella scheda *Elastic Block Store (EBS)*, seleziona l'istanza o le istanze da confrontare con FSx for ONTAP e seleziona *Explore savings*.
+. Compare il calcolatore del risparmio di storage. Le seguenti caratteristiche del sistema storage sono precompilate in base all'istanza o alle istanze selezionate:
++
+.. *Caso d'uso*: Il caso d'uso per la tua configurazione. Puoi modificare il caso d'uso se necessario.
+.. *Volumi selezionati*: il numero di volumi nella configurazione EBS
+.. *Quantità totale di storage (TiB)*: la quantità di storage per volume in TiB
+.. *IOPS totali allocati*: per i volumi gp3, io1 e io2
+.. *Throughput totale (MiB/s)*: solo per volumi gp3
+
+
+
+
+--
+.Amazon FSx for Windows File Server
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon FSx for Windows File Server*.
+. Nella scheda *Amazon FSx for Windows File Server*, seleziona l'istanza o le istanze da confrontare con FSx for ONTAP e seleziona *Esplora i risparmi*.
+. Viene visualizzato il calcolatore del risparmio di storage. Le seguenti caratteristiche del sistema storage sono precompilate in base al tipo di implementazione dell'istanza o delle istanze che hai selezionato:
++
+.. *Caso d'uso*: Il caso d'uso per la tua configurazione. Puoi modificare il caso d'uso se necessario.
+.. *File system selezionati*
+.. *Quantità totale di storage (TiB)*
+.. *IOPS SSD provisionati*
+.. *Throughput (MiB/s)*
+
+
+
+
+--
+.Amazon Elastic File System (EFS)
+--
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Da *FSx for ONTAP*, seleziona *Explore savings*, quindi seleziona la scheda *Amazon Elastic File System (EFS)*.
+. Nella scheda *Elastic File System (EFS)*, seleziona l'istanza o le istanze da confrontare con FSx for ONTAP e seleziona *Explore savings*.
+. Compare il calcolatore del risparmio di storage. Le seguenti caratteristiche del sistema storage sono precompilate in base all'istanza o alle istanze selezionate:
++
+.. *Caso d'uso*: Il caso d'uso per la tua configurazione. Puoi modificare il caso d'uso se necessario.
+.. *Numero totale di file system*
+.. *Quantità totale di storage (TiB)*
+.. *Throughput totale sottoposto a provisioning (MiB/s)*
+.. *Throughput elastico totale - lettura (GiB)*
+.. *Throughput elastico totale - scrittura (GiB)*
+
+
+
+
+--
+====
+Dopo aver fornito i dettagli per la configurazione del tuo sistema storage, rivedi i calcoli e i consigli forniti nella pagina.
+
+Inoltre, scorri fino in fondo alla pagina per visualizzare il report selezionando una delle seguenti opzioni:
+
+* *Esporta PDF*
+* *Invia per email*
+* *Visualizza i calcoli*
+
+
+
+
+[[deploy-fsx-for-ontap-file-systems]]
+== Distribuisci i file system FSx for ONTAP
+
+Se desideri passare a FSx for ONTAP per ottenere un risparmio sui costi, seleziona *Crea* per creare direttamente il/i file system dalla procedura guidata Crea un file system FSx for ONTAP oppure seleziona *Salva* per salvare la/le configurazione/i consigliata/e per dopo.
+
+Metodi di implementazione:: Con le autorizzazioni per la creazione del file system, puoi distribuire il file system FSx for ONTAP direttamente da Workload Factory. Puoi anche copiare il contenuto dalla finestra Codebox e distribuire il sistema usando uno dei metodi di Codebox.
++
+--
+Con le autorizzazioni _view, planning, and analysis_, puoi copiare il contenuto dalla finestra Codebox e implementare il file system FSx for ONTAP utilizzando uno dei metodi di Codebox.
+
+--
+

@@ -1,0 +1,271 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-use-overview-dashboard.html 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, visualizzare i consigli sulla capacità, gestire le impostazioni SSD e di throughput e analizzare le tendenze delle prestazioni nei tuoi file system FSx for ONTAP. 
+---
+= Utilizzare la dashboard Panoramica in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizza la dashboard Panoramica per verificare lo stato e la capacità dei tuoi file system FSx for ONTAP. Puoi filtrare i dati, visualizzare i consigli sulla capacità, regolare le impostazioni SSD e di throughput, e analizzare le tendenze delle prestazioni per decidere dove posizionare i volumi e quando aumentare la capacità.
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+È necessario avere link:task-activate-overview-dashboard.html["ha attivato la dashboard Overview"] prima di poterlo utilizzare per monitorare i file system.
+
+
+
+[[filter-the-dashboard]]
+== Filtra la dashboard
+
+Usa i filtri nella parte superiore della dashboard per visualizzare specifici file system. I filtri si applicano alle sezioni latenza, utilizzo, eventi ONTAP e alla tabella dei cluster.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *EDA*.
+. Seleziona la scheda *Overview*.
+. Utilizza i filtri disponibili per restringere la visualizzazione:
++
+** *Account AWS*: Filtra in base a uno o più account AWS associati alle credenziali configurate
+** *Credenziali*: Filtra per credenziali AWS specifiche se ne hai configurate più di una
+** *Regioni*: Filtra per una o più regioni AWS
+
+
+. Quando aggiorni le selezioni del filtro, tutte le informazioni vengono aggiornate per mostrare solo i file system corrispondenti.
+
+
+
+
+[[view-cluster-health-status]]
+== Visualizza lo stato di salute del cluster
+
+Nella parte superiore del pannello di controllo, vedi un riepilogo dello stato di salute e dell'attività dei file system che hai selezionato. Questo appare solo quando almeno un collegamento FSx for ONTAP è connesso ai tuoi file system.
+
+.Informazioni su questa attività
+Lo stato di salute del cluster comprende le seguenti aree chiave:
+
+* *Latenza*: Numero di eventi di latenza rilevati
+* *Elasticità del file system*:
++
+** *Capacità SSD*: mostra quanti file system usano Automate, Recommend o None per gestire la capacità SSD.
+** *Throughput*: mostra quanti file system utilizzano Automate, Recommend o None per gestire il throughput.
+
+
+* *Eventi ONTAP*: Numero di eventi EMS per categoria (Capacità, Disponibilità e protezione, Sicurezza e altro)
+
+
+.Passaggi
+. Esamina lo stato di salute del cluster nella parte superiore della dashboard.
+. Per visualizzare gli eventi di latenza:
++
+** Seleziona *Rivedi* per accedere alla scheda *Latenza*
+** Se il monitoraggio della latenza non è configurato, selezionare *Configura* per impostare le soglie di latenza
++
+Per dettagli sul monitoraggio della latenza, vedere link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"^].
+
+
+
+. Per visualizzare gli eventi ONTAP per i file system FSx for ONTAP, selezionare *Rivedi*.
++
+La scheda di visualizzazione degli eventi ONTAP mostra il numero di eventi EMS per categoria (Capacità, Disponibilità e protezione e Sicurezza e altro). Per un elenco completo degli eventi EMS monitorati, vedere link:https://docs.netapp.com/us-en/ontap-cli-9171/index.html["Documentazione CLI ONTAP"^].
+
+
+
+
+
+[[view-and-apply-capacity-or-throughput-recommendations]]
+== Visualizza e applica i suggerimenti relativi alla capacità o al throughput
+
+Workload Factory esegue automaticamente i suggerimenti per ogni file system FSx for ONTAP. Puoi trovare i file system con suggerimenti filtrando la tabella Clusters.
+
+.Passaggi
+. Nella tabella *Cluster*, filtra per la colonna del tempo o dei dettagli.
++
+I file system con raccomandazioni relative a capacità o throughput vengono visualizzati nella parte superiore della tabella.
+
+. Seleziona un nome di file system nella tabella per aprire i dettagli del cluster.
+. Esamina la raccomandazione e il grafico.
++
+La raccomandazione spiega la modifica suggerita e le motivazioni che la supportano. Ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
+
++
+Il grafico presenta l'utilizzo attuale insieme alle tendenze storiche.
+
+. In alto a destra del grafico, selezionare l'intervallo di tempo per modificare il periodo visualizzato.
++
+Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e i punti decisionali relativi all'automazione (se la modalità di automazione è abilitata). Passando il mouse su un punto decisionale qualsiasi, è possibile visualizzare i dettagli relativi alla raccomandazione di capacità o all'azione di automazione in quel momento.
+
+. Per applicare la raccomandazione, segui le istruzioni fornite nel messaggio di raccomandazione.
+
+
+
+
+[[change-ssd-management-mode]]
+== Modifica la modalità di gestione dell'SSD
+
+Per ogni file system, scegli come gestire la capacità SSD: ricevi consigli manuali oppure consenti il ridimensionamento automatico.
+
+.Passaggi
+. Nella tabella Cluster, individua il nome del file system. Accanto ad esso, apri image:icon-action.png["l'icona del menu delle azioni"] e seleziona *Modifica gestione della capacità SSD*.
+. Seleziona *Abilita gestione della capacità SSD* e poi seleziona *Applica*.
+. Scegli la modalità che preferisci:
++
+** *Solo notifica (modalità consigliata)*
+** *Automatizzare*
+
+
+. Configura i parametri di gestione della capacità SSD:
++
+** *Soglia (%)*: percentuale di utilizzo dell'SSD che attiva un suggerimento
+** *Lookback (%)*: Periodo di dati storici di utilizzo per l'analisi
+** *Previsioni (%)*: Utilizzo previsto per la pianificazione della capacità futura
+
+
+. Seleziona *Applica*.
+
+
+.Risultato
+Il file system passa immediatamente alla nuova modalità. Se scegli Consiglia o Automatizza, il sistema utilizza le impostazioni configurate per analizzare la capacità di storage e prendere decisioni.
+
+
+
+[[change-throughput-management-mode]]
+== Modifica la modalità di gestione del throughput
+
+Per ciascun file system, scegli come gestire l'aumento del throughput.
+
+.Passaggi
+. Nella scheda *Panoramica*, seleziona uno o più file system nella tabella Cluster.
+. Seleziona *Modifica gestione throughput*.
+. Seleziona *Abilita gestione throughput* e poi seleziona *Applica*.
+. Scegli la modalità che preferisci:
++
+** *Solo notifica (modalità consigliata)*
+** *Automatizzare*
+
+
+. Nella finestra di dialogo, configura i parametri di gestione del throughput:
++
+** *Intervallo di valutazione (ore)*: Periodo di tempo per analizzare i modelli di throughput
+** *Metriche (%)*: Soglia percentuale per determinare la violazione
+** *Periodo di violazione consecutiva (ore)*: Durata delle violazioni consecutive prima dell'azione
+** *Latenza minima (ms)*: Soglia di latenza utilizzata per determinare l'aumento del throughput
+** *Throughput massimo (SKU)*: SKU di throughput massimo consentito
+
+
+. Seleziona *Applica*.
+
+
+.Risultato
+I file system selezionati passano immediatamente alla nuova modalità di throughput.
+
+
+
+[[bulk-edit-management-parameters]]
+== Modifica in blocco dei parametri di gestione
+
+Modifica le impostazioni di più file system contemporaneamente così le stesse impostazioni si applicano a tutti i tuoi cluster.
+
+.Passaggi
+. Dalla scheda *Panoramica*, seleziona i file system che desideri modificare nella tabella.
++
+
+TIP: È possibile selezionare singoli file system oppure utilizzare la casella di controllo nell'intestazione per selezionare tutti i file system visibili.
+
+. Seleziona *Modifica gestione della capacità SSD* o *Modifica gestione throughput* sopra la tabella.
+. Scegli la modalità che preferisci.
+. Nella finestra di dialogo di modifica, regola i parametri secondo necessità.
++
+Ciascun campo parametro include una descrizione che ne illustra lo scopo e l'intervallo di validità. La finestra di dialogo indica i valori correnti o predefiniti in base alla selezione effettuata.
+
+. Seleziona *Applica* per applicare le modifiche a tutti i file system selezionati.
+
+
+.Risultato
+I parametri vengono aggiornati per tutti i file system selezionati. I file system in modalità Recommend o Automate utilizzano immediatamente i nuovi parametri per l'analisi e le decisioni.
+
+
+
+[[analyze-capacity-trends-and-decision-points]]
+== Analizzare le tendenze di capacità e i punti decisionali
+
+Utilizza il grafico di utilizzo dell'SSD per vedere come l'uso dello storage cambia nel tempo e individuare i pattern.
+
+.Informazioni su questa attività
+I punti decisionali sul grafico indicano quando:
+
+* *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD.
+* *Punti decisionali dell'automazione*: Il sistema di automazione ha provato ad aumentare la capacità SSD. Questi punti mostrano se l'azione è riuscita o meno.
+
+
+.Passaggi
+. Dalla scheda *Panoramica*, seleziona il nome di un file system nella tabella.
+. Esamina il grafico di utilizzo dell'SSD che mostra l'andamento storico della capacità.
+. Seleziona intervalli di tempo diversi per visualizzare l'andamento della capacità in vari periodi.
+. Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli sui consigli o sulle azioni di automazione in momenti specifici.
+. Utilizza le informazioni ricavate dal grafico per:
++
+** Comprendere con quale frequenza sono necessari gli aggiustamenti di capacità
+** Valuta se la modalità di automazione o quella di raccomandazione si adatta meglio ai tuoi modelli di carico di lavoro
+** Identificare i vincoli di capacità ricorrenti
+** Pianificare le future esigenze di capacità in base alle tendenze di crescita
+** Risoluzione dei problemi relativi ai tentativi di automazione non riusciti
++
+Le cause più comuni di errore includono: autorizzazioni AWS insufficienti, aggiornamento del file system già in corso, storage modificato nelle ultime 6 ore, capacità SSD massima raggiunta o metriche CloudWatch non disponibili.
+
+
+
+
+
+
+
+[[use-the-clusters-table]]
+== Utilizzare la tabella dei cluster
+
+La tabella dei cluster offre una visualizzazione dettagliata di ogni file system FSx for ONTAP con metriche sulle prestazioni e sull'utilizzo.
+
+.Passaggi
+. Dalla scheda *Panoramica*, consultare la tabella dei cluster.
+. Utilizza la casella di ricerca per trovare file system specifici in base al nome.
+. Seleziona le intestazioni di colonna per ordinare i dati.
+. Utilizza *Utilizzo SSD* per identificare i file system che si stanno avvicinando ai limiti di capacità.
+. Utilizza *Utilizzo throughput (P99)* per confrontare la richiesta di throughput con il throughput SKU fornito.
++
+Passa il mouse sopra le intestazioni delle colonne del throughput per visualizzare i dettagli del calcolo.
+
+. Per personalizzare le colonne, seleziona l'icona delle impostazioni delle colonne e scegli quali colonne visualizzare.
+. Per esportare i dati, seleziona l'icona di esportazione per scaricare un file CSV.
+
+
+
+
+[[best-practices]]
+== Best practice
+
+Prendere in considerazione queste raccomandazioni quando si utilizza la dashboard Panoramica:
+
+* *Monitoraggio regolare*: Controlla spesso la dashboard per individuare le tendenze prima che diventino problemi.
+* **Imposta soglie chiare**: scegli soglie di utilizzo SSD e parametri di throughput adatti al tuo carico di lavoro e ai tuoi piani di capacità.
+* **Utilizza i filtri**: applica i filtri per regione e account per concentrarti sulle parti della tua infrastruttura che vuoi esaminare.
+* **Esamina rapidamente i suggerimenti**: filtra la tabella Cluster per trovare i file system con suggerimenti relativi a capacità o throughput. Verificali e agisci di conseguenza per evitare di rimanere senza spazio.
+* **Scegli la modalità corretta**: Usa la modalità **Consiglia** se vuoi approvare personalmente le modifiche di capacità o di throughput. Usa la modalità **Automatizza** se vuoi che il sistema gestisca automaticamente la capacità o il throughput.
+* **Guarda i punti decisionali**: Controlla i punti decisionali sui grafici di capacità per vedere come il sistema prende le decisioni e conferma che le impostazioni funzionano per le tue esigenze.
+* **Modifica in blocco**: Quando gestisci molti file system, usa la modifica in blocco per mantenere le impostazioni coerenti.
+
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+* link:learn-overview-dashboard.html["Scopri la dashboard Panoramica"]
+* link:task-activate-overview-dashboard.html["Attiva la dashboard Panoramica"]
+* link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"]
+

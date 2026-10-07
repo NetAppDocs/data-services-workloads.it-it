@@ -1,0 +1,238 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/optimize-configurations.html 
+keywords: optimize, configuration, storage, compute, application, resiliency assessment, scan, optimization, Microsoft SQL Server, host, instance, FSx for ONTAP 
+summary: 'NetApp Workload Factory for Databases analizza le configurazioni di Microsoft SQL Server, fornendo informazioni e raccomandazioni per aiutarti a raggiungere l"eccellenza operativa.' 
+---
+= Implementa configurazioni di database ben strutturate in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizzando informazioni e suggerimenti sull'analisi della configurazione, sfrutta NetApp Workload Factory per implementare le best practice per le configurazioni del tuo database con Microsoft SQL Server e Oracle. Puoi facilmente verificare lo stato ben architettato, individuare eventuali problemi con le configurazioni del database e correggere quelle non ottimizzate per affidabilità, sicurezza, efficienza, prestazioni e costi.
+
+È inoltre possibile escludere dall'analisi le configurazioni non pertinenti al proprio ambiente per evitare avvisi superflui e risultati imprecisi.
+
+link:optimize-overview.html["Scopri l'analisi della configurazione e lo stato well-architected in Workload Factory."]
+
+
+
+[[about-this-task]]
+== Informazioni su questa attività
+
+NetApp Workload Factory analizza quotidianamente le configurazioni del database. L'analisi giornaliera fornisce stato ben architettato, approfondimenti e raccomandazioni.
+
+Quando concedi le autorizzazioni di visualizzazione, pianificazione e analisi al tuo account AWS, sono disponibili numerosi suggerimenti. Se concedi le autorizzazioni di operazioni e correzione, tutti i suggerimenti sono disponibili e puoi risolvere automaticamente i problemi di configurazione per rispettare le best practice.
+
+Puoi esaminare e risolvere i problemi dall'inventario dei database o dalla dashboard Well-architected all'interno della console di Workload Factory. Poiché i requisiti per le configurazioni dei database variano, puoi escludere dall'analisi le configurazioni specifiche che non si applicano al tuo ambiente di database. Questo ti aiuta a evitare avvisi non necessari e risultati di ottimizzazione imprecisi.
+
+Facoltativamente, è possibile eseguire una valutazione una tantum per esaminare le best practice per le configurazioni del database senza memorizzare le credenziali o registrare risorse.
+
+Puoi anche creare regole personalizzate in linguaggio naturale per convalidare i tuoi ambienti rispetto agli standard della tua organizzazione e alle best practice di NetApp. Prova le regole con una simulazione, poi pianifica la loro esecuzione su tutti i tuoi ambienti. link:../fsx-storage/learn-custom-rules.html["Scopri di più sulle regole personalizzate."^]
+
+.Cosa viene analizzato
+Workload Factory analizza lo stato di corretta architettura delle seguenti configurazioni:
+
+Per le istanze di Microsoft SQL Server:
+
+* Dimensionamento dello storage: include tier di storage, spazio disponibile del file system, dimensione dell'unità di log e dimensione dell'unità TempDB
+* Layout dello storage: include il posizionamento dei file di dati utente, il posizionamento dei file di log e il posizionamento di TempDB
+* Configurazione dello storage: include gestione della capacità, thin provisioning, criterio di tiering, snapshot, stato di Microsoft Multipath I/O (MPIO) e impostazione del timeout MPIO
+* Compute: include il dimensionamento ottimale, le patch del sistema operativo e le impostazioni della scheda di rete come Receive Side Scaling (RSS), l'offload TCP e l'allineamento MTU
+* Applicazione: include licenze Microsoft SQL Server, patch Microsoft SQL Server e impostazioni MAXDOP
+* Resilienza: include snapshot locali, configurazione del backup, replica tra regioni (CRR), Microsoft SQL High Availability e pulizia dei cloni
+* Cloni: includono opzioni per aggiornare ed eliminare i cloni (sandbox) creati all'interno o all'esterno di Workload Factory e risalenti a più di 60 giorni fa
+
+
+Per i database Oracle:
+
+* Dimensionamento dello spazio di storage: include l'allocazione dello spazio di swap e il margine del file system
+* Configurazione dello storage: include gestione della capacità, thin provisioning, policy di tiering, snapshot, efficienze dello storage e configurazioni del sistema operativo per deployment che utilizzano NFS o iSCSI con o senza Automatic Storage Management (ASM), inclusi stato e impostazioni di Microsoft Multipath I/O (MPIO) e le seguenti impostazioni dNFS: abilitazione dNFS, risoluzione IP coerente dNFS, file di configurazione dNFS e dNFS `nosharecache`
+* Layout dello storage: include il posizionamento del redo log, il posizionamento del tablespace temporaneo, il posizionamento dei file di dati, il posizionamento dell'archive log, il posizionamento dei file di controllo e il posizionamento dei file binari, il conteggio dei LUN dei gruppi di dischi ASM
+* Compute: include patch del sistema operativo
+* Applicazione: include gli aggiornamenti critici delle patch Oracle
+* Resilienza: include la replica tra regioni (CRR), snapshot coerenti con l'applicazione, configurazione del backup e pulizia dei cloni
+
+
+L'analisi well-architected per Oracle ti avvisa quando una configurazione dipende da altre ed elenca le azioni per ottimizzare le configurazioni collegate.
+
+
+
+[[perform-a-one-time-assessment-of-your-configurations]]
+== Effettua una valutazione una tantum delle tue configurazioni
+
+Esegui una valutazione una tantum per scoprire lo stato di corretta architettura delle tue istanze di Microsoft SQL Server o dei tuoi database Oracle senza memorizzare credenziali o registrare risorse.
+
+È possibile eseguire lo script e caricare i risultati più volte. Workload Factory aggiorna lo stato e le informazioni dettagliate dell'architettura a ogni caricamento.
+
+Per ogni configurazione, puoi visualizzare il valore corrente e il valore consigliato.
+
+[role="tabbed-block"]
+====
+.Microsoft SQL Server istanze
+--
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Selezionare il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] Quindi selezionare *Database*.
+. Nell'Inventario, selezionare SQL Server come tipo di motore.
+. Seleziona *Valutazione una tantum* > *Informazioni sulla valutazione*. Consulta le informazioni relative alla valutazione una tantum.
+. Seleziona *Download script*.
++
+.. Copia lo script sul tuo host Microsoft SQL Server.
+.. Esegui lo script in PowerShell. Uno script raccoglie metadati da tutte le istanze.
+
+
+. Seleziona *Valutazione una tantum* > *Carica*. Trova il file e caricalo nella console di NetApp Workload Factory.
+. Visualizza i consigli per qualsiasi configurazione. Workload Factory include le best practice e i potenziali problemi nelle raccomandazioni qualora le configurazioni non siano ottimizzate.
+
+
+--
+.Database Oracle
+--
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Selezionare il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] Quindi selezionare *Database*.
+. Nell'Inventario, selezionare Oracle come tipo di motore.
+. Seleziona *Valutazione una tantum* > *Informazioni sulla valutazione*. Consulta le informazioni relative alla valutazione una tantum.
+. Seleziona *Download script*.
++
+.. Copia lo script Python sull'host del database Oracle.
+.. Esegui lo script nella shell appropriata. Un singolo script raccoglie metadati da tutti i database.
+
+
+. Seleziona *Valutazione una tantum* > *Carica*. Trova il file e caricalo nella console di NetApp Workload Factory.
+. Visualizza i consigli per qualsiasi configurazione. Workload Factory include le best practice e i potenziali problemi nelle raccomandazioni qualora le configurazioni non siano ottimizzate.
+
+
+--
+====
+
+
+[[perform-an-on-demand-assessment]]
+== Esegui una valutazione su richiesta
+
+Se concedi le autorizzazioni _operations and remediation_ al tuo account AWS, puoi eseguire una valutazione on-demand dei tuoi database Oracle. Non devi registrare risorse per eseguire questa valutazione.
+
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Selezionare il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] Quindi selezionare *Database*.
+. Nell'Inventario, selezionare Oracle come tipo di motore.
+. Seleziona *Visualizza e correggi*.
+. Nella scheda Stato Well-architected, seleziona *Analizza ora*.
+. Visualizza i consigli per qualsiasi configurazione. Workload Factory include le best practice e i potenziali problemi nelle raccomandazioni qualora le configurazioni non siano ottimizzate.
+
+
+
+
+[[before-you-begin-fixing-dismissing-and-re-activating-configurations]]
+== Prima di iniziare a correggere, ignorare e riattivare le configurazioni
+
+I seguenti requisiti sono necessari per la valutazione continua dell'ambiente del database e la correzione automatica dei problemi di configurazione. Questi requisiti non sono necessari per la valutazione una tantum.
+
+* Devi link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["concedi le autorizzazioni per le operazioni e la remediation"^] nel tuo account AWS.
+* Devi registrare la risorsa in Workload Factory e il tipo di storage deve essere FSx for ONTAP. link:register-instance.html["Scopri come registrare le risorse."]
+* Esaminare ogni raccomandazione prima di correggere un'impostazione o una configurazione. Per RSS e MAXDOP, testare le impostazioni consigliate per verificarne le prestazioni prima di modificare l'ambiente di produzione.
+
+
+
+
+[[fix-a-configuration-issue]]
+== Risolvi un problema di configurazione
+
+Risolvi i problemi di configurazione per gli ambienti SQL Server o Oracle in esecuzione sullo storage FSx for ONTAP.
+
+
+NOTE: La correzione di una configurazione potrebbe causare tempi di inattività o interruzioni del servizio. Assicurati di esaminare attentamente il suggerimento prima di scegliere di correggere una configurazione.
+
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Selezionare il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] Quindi selezionare *Database*.
+. Nell'*Inventario*, seleziona il tipo di motore: Microsoft SQL Server o Oracle.
+. Seleziona le risorse da correggere per configurazioni specifiche.
++
+** Se hai selezionato Microsoft SQL Server, seleziona la scheda *Istanze*.
+** Se hai selezionato Oracle, seleziona la scheda *Databases*.
+
+
+. Seleziona *Visualizza e correggi* per visualizzare i problemi di configurazione dell'istanza.
+. Nella pagina di stato "Well-architected" dell'istanza, esamina i risultati dell'analisi.
++
+Puoi filtrare i problemi di configurazione per categorie, sottocategorie, stato, gravità e tag.
+
++
+Seleziona *Export PDF* per scaricare un report dei risultati.
+
+. Seleziona la freccia del menu a discesa per visualizzare i consigli per qualsiasi configurazione. I consigli includono le best practice, i potenziali rischi delle configurazioni non ottimizzate e considerazioni importanti. Assicurati di esaminare attentamente i consigli.
+. Seleziona *Visualizza e correggi* per i problemi di configurazione quando l'opzione è disponibile.
++
+L'opzione *Seleziona tutto* è quella predefinita, ma puoi selezionare risorse specifiche da correggere.
+
++
+.. Per tutte le configurazioni, ad eccezione della pulizia dei cloni, consultare i dettagli delle raccomandazioni per valutare l'impatto della risoluzione del problema. Alcune operazioni di correzione potrebbero causare tempi di inattività o interruzioni del servizio.
+.. Per la pulizia dei cloni, seleziona i database clonati (sandbox) da aggiornare o eliminare.
++
+*** L'aggiornamento di un clone lo sincronizza con il database di origine. La funzione di aggiornamento è disponibile solo per i cloni creati in Workload Factory.
+*** L'eliminazione di un clone lo rimuove definitivamente, libera spazio di storage e riduce i costi. Puoi eliminare i cloni creati sia all'interno che all'esterno di Workload Factory.
+
+
+
+
+. Seleziona *Continua* per risolvere il problema di configurazione.
+
+
+.Risultato
+Workload Factory inizia a correggere il problema o i problemi. Seleziona la scheda *Monitoraggio processi* per visualizzare lo stato dell'operazione.
+
+
+
+[[dismiss-the-analysis-of-database-configurations]]
+== Ignora l'analisi delle configurazioni del database
+
+Ignora l'analisi di configurazioni di database specifiche che non si applicano al tuo ambiente di database per evitare avvisi non necessari e risultati di ottimizzazione imprecisi. Puoi riattivare un'analisi di configurazione ignorata in qualsiasi momento.
+
+.Passaggi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze della console"^].
+. Selezionare il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro come storage, eda, ai, databases, vmware e amministrazione."] Quindi selezionare *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona il tipo di motore di database: *Microsoft SQL Server* o *Oracle*.
+. Vai all'istanza di SQL Server o al database Oracle con la configurazione da posticipare, seleziona il menu delle azioni e quindi seleziona *Well-architected*.
+. Nella pagina di analisi Well-architected, scorri verso il basso fino alla configurazione da posticipare, seleziona il menu delle azioni e quindi seleziona *Dismiss*.
+. Nella finestra di dialogo di configurazione di ignorazione, seleziona l'opzione *Ignora* e quindi seleziona *Ignora* per confermare l'operazione.
+
+
+.Risultato
+Workload Factory interrompe l'analisi della configurazione.
+
+È possibile riattivare l'analisi in qualsiasi momento. La configurazione non è più inclusa nel punteggio di ottimizzazione totale.
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== Riattivare un'analisi di configurazione ignorata
+
+Puoi riattivare un'analisi di configurazione chiusa in qualsiasi momento. Puoi selezionare una o più configurazioni da riattivare.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Database*.
+. Dal menu Database, seleziona *Inventario*.
+. Nell'inventario, seleziona il tipo di motore di database: *Microsoft SQL Server* o *Oracle*.
+. Vai all'istanza di SQL Server o al database Oracle con la configurazione da posticipare, seleziona il menu delle azioni e quindi seleziona *Well-architected*.
+. Nella pagina di analisi Well-architected, seleziona *Configurazione scartata* per visualizzare solo le configurazioni scartate.
+. Seleziona *Riattiva* per riavviare l'analisi della configurazione per la configurazione posticipata o ignorata.
+
+
+.Risultato
+Workload Factory riattiva l'analisi della configurazione e la esegue ogni giorno a partire da ora.
+
+
+
+[[related-information]]
+== Informazioni correlate
+
+* link:optimize-overview.html["Scopri l'analisi della configurazione delle risorse database e lo stato well-architected in Workload Factory"]
+* link:../fsx-storage/create-link.html["Connettiti a un file system FSx for ONTAP tramite un collegamento"^]
+* link:../fsx-storage/learn-custom-rules.html["Scopri le regole personalizzate"^]
+
