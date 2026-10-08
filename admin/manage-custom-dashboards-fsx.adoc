@@ -28,7 +28,7 @@ Devi avere almeno una dashboard personalizzata nel tuo account Workload Factory.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
-. Dal menu NetApp Console, seleziona *Workloads* > *Workloads Overview* > *Custom dashboards*.
+. Dal menu, seleziona *Panoramica dei carichi di lavoro* e poi *Dashboard personalizzate*.
 +
 Il catalogo delle dashboard mostra tutte le dashboard personalizzate nel tuo account Workload Factory.
 
@@ -62,7 +62,30 @@ Il pannello di controllo si aggiorna immediatamente. L'etichetta di visibilità 
 
 I dati del dashboard vengono caricati quando apri il dashboard. Puoi aggiornarlo per vedere le informazioni più recenti.
 
-La dashboard ricarica i dati dai tuoi carichi di lavoro. L'ora dell'ultimo aggiornamento cambia per indicare quando i dati sono stati aggiornati.
+La dashboard ricarica i dati dai tuoi carichi di lavoro.
+
+
+
+[[edit-dashboards]]
+== Modifica dashboard
+
+Puoi modificare una dashboard per cambiare ciò che mostra, incluse le metriche, i grafici e gli intervalli di tempo.
+
+
+NOTE: Solo chi ha creato la dashboard può modificarla. Durante la modifica, gli altri utenti non potranno visualizzare le modifiche finché non le salverai.
+
+.Passaggi
+. Nella pagina *Dashboard personalizzate*, individua la dashboard che vuoi modificare.
+. Dal menu *Azioni* per quella dashboard, seleziona *Modifica dashboard*.
+. Nella finestra di dialogo dell'IA, descrivi le modifiche che desideri apportare.
++
+Questo processo è simile alla creazione di una nuova dashboard. Puoi modificare i carichi di lavoro, le metriche o gli intervalli di tempo che la dashboard tiene traccia.
+
+. Rivedi le modifiche e seleziona **Salva**.
+
+
+.Risultato
+La dashboard si aggiorna con le tue modifiche. Anche la data dell'ultima modifica si aggiorna.
 
 
 
@@ -85,6 +108,6 @@ La dashboard viene rimossa definitivamente dal tuo account Workload Factory e tu
 [[related-information]]
 == Informazioni correlate
 
-* link:create-custom-dashboard-fsx.html["Crea dashboard personalizzate aggiuntive"]
-* link:troubleshoot-custom-dashboards-fsx.html["Risolvi i problemi delle dashboard personalizzate"]
+* link:../admin/create-custom-dashboard-fsx.html["Crea dashboard personalizzate aggiuntive"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Risolvi i problemi delle dashboard personalizzate"]
 

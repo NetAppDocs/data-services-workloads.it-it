@@ -60,8 +60,8 @@ Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file sy
 
 Dopo aver attivato la dashboard, è possibile:
 
-* link:task-use-overview-dashboard.html["Utilizzare la dashboard Panoramica"] per monitorare lo stato di salute e la capacità del cluster
-* link:task-use-overview-dashboard.html#change-ssd-management-mode["Abilita e configura le modalità di gestione della capacità SSD"] (Consiglia, Automatizza o Nessuno)
-* link:task-use-overview-dashboard.html#change-throughput-management-mode["Abilita e configura le modalità di gestione del throughput"] (Consiglia, Automatizza o Nessuno)
+* link:../fsx-eda/task-use-overview-dashboard.html["Utilizzare la dashboard Panoramica"] per monitorare lo stato di salute e la capacità del cluster
+* link:../fsx-eda/task-use-overview-dashboard.html#change-ssd-management-mode["Abilita e configura le modalità di gestione della capacità SSD"] (Consiglia, Automatizza o Nessuno)
+* link:../fsx-eda/task-use-overview-dashboard.html#change-throughput-management-mode["Abilita e configura le modalità di gestione del throughput"] (Consiglia, Automatizza o Nessuno)
 * Configura i filtri per concentrarti su regioni o account AWS specifici
 

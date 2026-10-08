@@ -25,7 +25,7 @@ Usa queste informazioni per risolvere i problemi comuni che potresti incontrare 
 **Soluzione:** Prova quanto segue:
 
 * Riscrivi la tua richiesta con dettagli più chiari su ciò che vuoi monitorare.
-* Inizia con uno dei prompt di esempio in link:create-custom-dashboard-fsx.html["Crea una dashboard personalizzata"].
+* Inizia con uno dei prompt di esempio in link:../admin/create-custom-dashboard-fsx.html["Crea una dashboard personalizzata"].
 * Suddividi le esigenze di monitoraggio complesse in diverse dashboard più semplici.
 * Specifica i carichi di lavoro, le metriche, gli intervalli di tempo o le dimensioni che vuoi monitorare.
 
@@ -41,8 +41,8 @@ Usa queste informazioni per risolvere i problemi comuni che potresti incontrare 
 
 **Soluzione:**
 
-* **Verifica le autorizzazioni:** Assicurati che il tuo account Workload Factory abbia accesso in lettura ai carichi di lavoro e alle risorse utilizzate dalla dashboard. Esamina i requisiti di autorizzazione in link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["Credenziali e autorizzazioni AWS"].
-* **Verifica le credenziali:** Conferma che le tue credenziali AWS siano valide e non scadute. Per i dettagli, consulta link:../fsx-storage/add-credentials.html["Aggiungi credenziali AWS"].
+* **Verifica le autorizzazioni:** Assicurati che il tuo account Workload Factory abbia accesso in lettura ai carichi di lavoro e alle risorse utilizzate dalla dashboard. Esaminare la link:../admin/learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["requisiti dei permessi"].
+* **Verifica le credenziali:** Conferma che le tue credenziali AWS siano valide e non scadute. Per i dettagli, fai riferimento a link:../fsx-storage/add-credentials.html["Aggiungi credenziali AWS"].
 
 
 

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/manage-custom-rules.html 
-keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
-summary: Visualizza, abilita, disabilita ed elimina le regole architetturali personalizzate dal catalogo delle regole. 
+keywords: manage rules, edit rules, disable rules, delete rules, rule catalog, byor 
+summary: Visualizza, modifica, abilita, disabilita ed elimina le regole architetturali personalizzate dal catalogo delle regole. 
 ---
-= Gestisci le regole personalizzate per NetApp Workload Factory
+= Gestisci le regole personalizzate per Workload Factory in NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Visualizza, abilita, disabilita ed elimina le regole architetturali per
 
 
 [role="lead"]
-Il catalogo delle regole è il punto in cui gestire tutte le tue regole personalizzate. Puoi visualizzare i dettagli di ciascuna regola, verificarne i risultati e attivarla o disattivarla.
+Il catalogo delle regole è il punto in cui gestire tutte le tue regole personalizzate. Puoi rivedere i dettagli delle regole, modificarle, controllarne i risultati e decidere se eseguirle in base a una pianificazione.
 
 
 
@@ -49,24 +49,94 @@ Se il controllo non è andato a buon fine per alcuni elementi, leggi il messaggi
 [[edit-a-custom-rule]]
 == Modifica una regola personalizzata
 
-Puoi modificare la logica, la pianificazione o altre impostazioni di una regola in qualsiasi momento. Quando modifichi una regola, il costruttore di regole si apre con le impostazioni correnti della regola.
+Puoi rinominare una regola in qualsiasi momento. Puoi anche modificare la descrizione, il tipo di risorsa, la pianificazione, la gravità, la logica delle condizioni, l'ambito di valutazione e le linee guida per la risoluzione di una regola.
+
+Puoi rinominare una regola dal catalogo delle regole o dalla scheda dei dettagli della regola. Per modificare qualsiasi altra impostazione di una regola, inizia dal catalogo delle regole.
 
 .Passaggi
 . Nel catalogo delle regole, fai clic sulla regola che desideri modificare.
-. Fai clic su *Modifica*.
+. Esegui una delle seguenti operazioni:
 +
-La regola passa alla modalità bozza e si apre il costruttore di regole.
-
-. Modifica il prompt della regola o usa la conversazione per migliorarla.
-. Esamina l'interpretazione aggiornata e la definizione della regola dell'AI.
+** Per rinominare la regola, aggiorna il nome della regola dal catalogo o dalla scheda dei dettagli della regola.
+** Per modificare altre impostazioni della regola, fai clic su *Modifica*.
 +
-Il sistema mostra cosa è cambiato rispetto alla regola corrente, incluse eventuali chiamate API o la logica.
+La regola si apre in modalità chat con la sua cronologia completa.
 
-. A seconda delle modifiche apportate, esegui una delle seguenti operazioni:
+
+
+. Richiedi le modifiche che desideri apportare o aggiorna la richiesta in chat.
 +
-** Se hai apportato piccole modifiche, fai clic su *Salva* per aggiornare la regola.
-** Se hai apportato modifiche significative, fai clic su *Convalida regola* per testare le modifiche, quindi fai clic su *Pianifica* per salvare e pianificare la regola oppure fai clic su *Salva come bozza* per salvare senza pianificare.
-** Per annullare le modifiche, fai clic su *Ripristina versione precedente*. La regola torna alla definizione originale e esce dalla modalità di modifica.
+Se la creazione della regola non è andata a buon fine in precedenza, puoi riprendere da quella regola e aggiornare la tua richiesta nella chat.
+
+. Esamina la spiegazione e il riepilogo aggiornati delle modifiche.
++
+Il sistema mostra cosa è cambiato rispetto alla regola corrente prima di salvarla.
+
+. Se la regola è in modalità bozza, seleziona *Convalida regola* per testare la logica aggiornata.
+. Esegui una delle seguenti operazioni:
++
+** Per mantenere le modifiche, fai clic su *Salva* per sostituire la regola corrente. Se hai modificato la pianificazione, salva la pianificazione aggiornata. Se non hai modificato la pianificazione, rimarrà invariata.
+** Per scartare le modifiche, fai clic su *Scarta modifiche*. La regola torna alla versione precedente ed esce dalla modalità di modifica.
 
 
 
+
+Mentre modifichi una regola, la regola appare come *In modifica* per te. Gli altri utenti continuano a vedere la regola pianificata corrente e le esecuzioni pianificate proseguono normalmente finché non salvi le modifiche.
+
+
+
+[[pause-a-rule]]
+== Metti in pausa una regola
+
+Metti in pausa una regola per interrompere le valutazioni senza eliminarla. Le regole in pausa restano nel catalogo e puoi riattivarle in qualsiasi momento.
+
+.Passaggi
+. Nel catalogo delle regole, fai clic sulla regola che vuoi mettere in pausa.
+. Esegui una delle seguenti operazioni:
++
+** Per sospendere una regola pianificata, fai clic su *Sospendi*, quindi conferma. La regola smette di essere eseguita secondo la pianificazione.
+** Per riprendere una regola sospesa, fai clic su *Riprendi*, quindi conferma. La regola riprende le valutazioni regolari.
+
+
+
+
+
+
+[[delete-a-custom-rule]]
+== Elimina una regola personalizzata
+
+Elimina una regola in modo permanente quando non ti serve più. Questa operazione non può essere annullata.
+
+.Passaggi
+. Nel catalogo delle regole, fai clic sulla regola che desideri eliminare.
+. Fai clic su *Delete*.
+. Conferma che vuoi eliminare definitivamente la regola.
+
+
+.Risultato
+La regola viene rimossa dal catalogo. Tutta la cronologia delle valutazioni viene eliminata.
+
+
+
+[[run-a-quick-test]]
+== Esegui un test rapido
+
+Esegui un test rapido in qualsiasi momento per verificare la conformità corrente senza aspettare la prossima esecuzione programmata.
+
+.Passaggi
+. Nel catalogo delle regole, fai clic sulla regola che vuoi valutare.
+. Fai clic su *Validate*.
++
+Il sistema valuta tutte le risorse nell'ambito rispetto alla logica della regola.
+
+. Esamina i risultati per vedere lo stato di conformità attuale.
+
+
+I test vengono verificati e compaiono nella cronologia di valutazione della regola.
+
+
+
+[[what-to-do-next]]
+== Cosa fare dopo
+
+link:../fsx-storage/learn-custom-rules.html["Scopri di più sulle regole personalizzate"]
