@@ -15,6 +15,8 @@ Gestisci i collegamenti associati al tuo account Workload Factory. Puoi visualiz
 
 link:../setup/links-overview.html["Scopri di più sui link."]
 
+L'interfaccia utente ti avvisa automaticamente quando è disponibile una versione più recente del collegamento e ti fornisce le istruzioni per l'aggiornamento.
+
 
 
 [[view-the-links-associated-with-your-account]]

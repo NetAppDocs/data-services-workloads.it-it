@@ -11,7 +11,7 @@ summary: Puoi aggiungere, aggiornare o rimuovere i tag del file system FSx for O
 
 
 [role="lead"]
-Gestisci le impostazioni di un file system FSx for ONTAP in NetApp Workload Factory. Puoi gestire i tag del file system, reimpostare la password di fsxadmin quando necessario e aggiornare la capacità di throughput secondo le esigenze.
+Gestisci le impostazioni di un file system FSx for ONTAP in NetApp Workload Factory per mantenere il tuo file system organizzato, sicuro e dimensionato in modo appropriato per il tuo carico di lavoro. Puoi aggiungere o modificare tag, gestire le credenziali ONTAP, reimpostare la password di fsxadmin e aggiornare la capacità di throughput in qualsiasi momento.
 
 
 
@@ -34,6 +34,44 @@ Il numero massimo di tag che puoi applicare a un file system è 50.
 
 
 
+[[manage-ontap-credentials]]
+== Gestisci le credenziali ONTAP
+
+Gestisci le credenziali ONTAP per un file system FSx for ONTAP in NetApp Workload Factory. Workload Factory ha due tipi di credenziali: primarie e con restrizioni. Per impostazione predefinita, il file system utilizza le credenziali ONTAP primarie. Le credenziali con restrizioni vengono utilizzate solo per le operazioni di AI (AIOps) come Ask Me, costruttore di regole e dashboard personalizzate. Puoi aggiungere facoltativamente un set di credenziali con restrizioni e aggiornare uno dei due set di credenziali in qualsiasi momento.
+
+Puoi eseguire le seguenti attività:
+
+* Scegli di aggiungere un set di credenziali con restrizioni, usando un nome utente e una password oppure un ARN segreto.
+* Modifica le credenziali esistenti, inclusi il nome utente e la password, solo la password o il secret ARN.
+
+
+Workload Factory supporta la transizione tra il servizio credenziali di Workload Factory (nome utente e password) e AWS Secrets Manager.
+
+Workload Factory gestisce le credenziali limitate come segue:
+
+* Se non hai fornito credenziali con restrizioni per un file system e poi crei regole o dashboard personalizzate o fai domande con "Ask Me", Workload Factory crea credenziali ONTAP di sola lettura da usare come set di credenziali con restrizioni.
+* Se hai già fornito credenziali con restrizioni per un file system, tali credenziali vengono utilizzate per AIOps.
+
+
+.Prima di iniziare
+Devi associare un collegamento per gestire le credenziali ONTAP. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dal menu *FSx for ONTAP*, seleziona *Inventory*.
+. Nell'*Inventario*, seleziona il menu delle azioni del file system per cui vuoi gestire le credenziali, quindi seleziona *Gestisci*.
+. Dalla panoramica del file system, seleziona il menu Azioni.
++
+image:screenshot-manage-ontap-credentials.png["Uno screenshot del menu Azioni nella scheda Panoramica di un file system."]
+
+. Seleziona *Gestisci credenziali ONTAP*.
+. Aggiorna le credenziali ONTAP primarie o con restrizioni.
+. Seleziona *Applica*.
+
+
+
+
 [[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
 == Reimposta la password fsxadmin di un file system FSx for ONTAP
 
@@ -43,8 +81,8 @@ Se durante la creazione del file system hai specificato un utente alternativo, p
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
-. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Storage*.
-. Dal menu Storage, seleziona *Inventory*.
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
+. Dal menu *FSx for ONTAP*, seleziona *Inventory*.
 . Nell'*Inventory*, seleziona il menu delle azioni del file system per cui vuoi reimpostare la password di fsxadmin, quindi seleziona *Manage*.
 . Dalla panoramica del file system, seleziona il menu Azioni.
 +

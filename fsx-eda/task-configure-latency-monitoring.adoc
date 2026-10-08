@@ -114,7 +114,7 @@ Canali di notifica:
 * *Amazon SNS*: Pubblicato sull'argomento SNS configurato per l'integrazione con altri sistemi
 
 
-Per abilitare le notifiche, fai riferimento a link:../admin/configure-notifications.html#wf-console-email-notifications["Configura le impostazioni di notifica"].
+Per abilitare le notifiche, fai riferimento a link:../admin/configure-notifications.html["Configura le impostazioni di notifica"].
 
 
 
