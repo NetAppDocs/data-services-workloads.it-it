@@ -6811,4 +6811,5 @@
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">Verifica che tu soddisfi i seguenti requisiti:</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">Per filtrare in base ai tag di allocazione AWS, verifica che ai tuoi file system FSx for ONTAP siano stati assegnati dei tag.</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">Viene generato un report in formato CSV che puoi scaricare.</block>
+  <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">Scomposizione dei componenti per gli eventi di latenza</block>
 </blocks>
