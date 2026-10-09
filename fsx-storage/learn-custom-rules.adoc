@@ -24,7 +24,7 @@ Le regole personalizzate ti consentono di impostare, verificare e applicare i tu
 Il costruttore di regole ti consente di creare regole personalizzate utilizzando un linguaggio semplice. Queste regole vengono verificate in tutte le tue risorse. Le regole personalizzate ti aiutano a far rispettare gli standard, i limiti di rischio e i requisiti operativi della tua organizzazione che le regole predefinite potrebbero non coprire.
 
 
-NOTE: Se l'amministratore del tuo account ha disattivato le funzionalità basate sull'intelligenza artificiale, non puoi creare nuove regole né modificare quelle esistenti. Le regole già programmate continuano a essere eseguite. link:../admin/manage-genai-features.html.["Scopri come gestire le funzionalità di intelligenza artificiale"^].
+NOTE: Se l'amministratore del tuo account ha disattivato le funzionalità basate sull'intelligenza artificiale, non puoi creare nuove regole né modificare quelle esistenti. Le regole già programmate continuano a essere eseguite. link:../admin/manage-genai-features.html["Scopri come gestire le funzionalità di intelligenza artificiale"].
 
 
 
@@ -46,9 +46,9 @@ Le regole personalizzate utilizzano l'intelligenza artificiale per trasformare l
 
 Prima di poter creare ed eseguire regole personalizzate, assicurati di avere quanto segue:
 
-Credenziali AWS:: Accesso in sola lettura al tuo ambiente AWS. Le regole personalizzate richiedono autorizzazioni di sola lettura come limite di sicurezza. link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi le credenziali AWS a Workload Factory"^].
+Credenziali AWS:: Accesso in sola lettura al tuo ambiente AWS. Le regole personalizzate richiedono autorizzazioni di sola lettura come limite di sicurezza. link:add-credentials.html["Aggiungi le credenziali AWS a Workload Factory"].
 Credenziali ONTAP:: Utente visualizzatore FSx con permessi di sola lettura. Workload Factory crea un utente di sola lettura su ogni file system FSx for ONTAP, se non ne esiste già uno, consentendogli di eseguire le valutazioni.
-Collegamento o agente:: Necessario solo per le regole che devono connettersi direttamente a ONTAP per verificare le impostazioni a cui le API di AWS non possono accedere. link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Connettiti a un file system FSx for ONTAP tramite un collegamento"^].
+Collegamento o agente:: Necessario solo per le regole che devono connettersi direttamente a ONTAP per verificare le impostazioni a cui le API di AWS non possono accedere. link:create-link.html["Connettiti a un file system FSx for ONTAP tramite un collegamento"].
 
 
 
@@ -110,4 +110,4 @@ Questa regola convalida che i file system rispettino le convenzioni di naming or
 [[what-to-do-next]]
 == Cosa fare dopo
 
-link:../fsx-storage/create-custom-rule.html["Crea una regola personalizzata"] link:../fsx-storage/manage-custom-rules.html["Gestisci le regole personalizzate"]
+link:create-custom-rule.html["Crea una regola personalizzata"] link:manage-custom-rules.html["Gestisci le regole personalizzate"]
