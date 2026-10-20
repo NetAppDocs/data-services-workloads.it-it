@@ -1638,13 +1638,11 @@
   <block id="a42023de78ebfc0b813130624c220f36" category="paragraph">Verrai reindirizzato a Backup and Recovery in NetApp Console, dove potrai modificare la policy di protezione o la pianificazione.</block>
   <block id="d05a91a23b39b2ef83c7f917a0c9c7e5" category="summary">Inizia a usare NetApp Workload Factory for Databases per usare snippet Infrastructure-as-Code, individuare gli host, gestire le risorse e altro ancora.</block>
   <block id="91494b330cfa4716e9d4103109705d0c" category="doc">Guida rapida per NetApp Workload Factory for Databases</block>
-  <block id="32a768a4494b46700624f156e8a8d294" category="paragraph">Con NetApp Workload Factory for Databases, puoi iniziare subito con le autorizzazioni di visualizzazione, pianificazione e analisi. Se vuoi usare Workload Factory per individuare gli host, gestire le risorse e altro ancora, puoi iniziare in pochi passaggi.</block>
   <block id="eb7ed5d3b1a2ff72006245ad37f9817b" category="paragraph">Devi avere un account AWS per utilizzare Databases.</block>
   <block id="c37e590e9c50960a15f3292676cc0c18" category="paragraph">Segui questi passaggi per iniziare.</block>
   <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">Uno</block>
   <block id="ddd0dc114cff37632f8d5d916455e0c4" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Accedi a NetApp Workload Factory</block>
   <block id="ad3b46ea44ef643f0aa6cf10b5cddef7" category="inline-link-macro">registrati</block>
-  <block id="a93f09a9fbe67e564e4ea4ed4468689c" category="paragraph">Dovrai <block ref="88397380b49fccdb6c6bb520250fef48" category="inline-link-macro-rx"></block> e accedere alla NetApp Console.</block>
   <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">Due</block>
   <block id="6c14141954ea3609b0ca84567ff7b1d8" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block>Aggiungi credenziali e autorizzazioni per il carico di lavoro Databases</block>
   <block id="3e704746794b6c6da13402ca9df54660" category="inline-link-macro">Aggiungi manualmente le credenziali a un account</block>
@@ -2060,8 +2058,6 @@
   <block id="2edaf9b54abbf5ae956607d1cce3419f" category="doc">Guida rapida per Workload Factory per EDA</block>
   <block id="0595b103e9174c24b7fffa0491687cc5" category="paragraph">Inizia a utilizzare Workload Factory per EDA configurando il tuo ambiente, abilitando le dashboard di monitoraggio e configurando l'analisi della latenza per ottimizzare le performance di FSx for ONTAP per i tuoi carichi di lavoro EDA.</block>
   <block id="3d784fb83da69a092542ad97e84229a1" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Accedi a Workload Factory</block>
-  <block id="ca5cacfa292d41c429bff08c8d7690dc" category="inline-link-macro">registrati e accedi</block>
-  <block id="2b65dc1fa5bc4ea06844dd06cfbc7774" category="paragraph">Dovrai andare <block ref="fb7d3ecda2cc192b57653cabe8dbab51" category="inline-link-macro-rx"></block> alla NetApp Console.</block>
   <block id="1283af7cc983573ed4713cdd57866991" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Aggiungi credenziali e autorizzazioni per il workload EDA</block>
   <block id="ccfaa839e768aad68d8df43945f3981f" category="inline-link-macro">crea le policy IAM per le autorizzazioni richieste</block>
   <block id="c4f56d16dd663e4eddc3092f24840c99" category="paragraph"><block ref="ba3df41527d282ff668fde47559ede13" category="inline-link-macro-rx"></block> che include la selezione della funzionalità del workload EDA e <block ref="130ddacc98dcbb955ac32d7d05051cd1" category="inline-link-macro-rx"></block>.</block>
@@ -2098,8 +2094,6 @@
   <block id="b888e1d990c199d358b31e27c7359f42" category="doc">Workload Factory per i requisiti EDA</block>
   <block id="d2d53646427e24681e315985224607de" category="paragraph">Assicurati che NetApp Workload Factory e AWS siano configurati correttamente prima di utilizzare NetApp Workload Factory per EDA. Ciò include avere le credenziali di accesso AWS, un file system FSx for ONTAP distribuito e altro ancora.</block>
   <block id="55df1ea48b09b075b4b7dd39f32b38ee" category="list-text">Accesso e account Workload Factory</block>
-  <block id="dabcc89e48ed40f90d46a458bf37e5b0" category="inline-link-macro">Registrati e accedi a NetApp Console.</block>
-  <block id="85efebbb37402ada1347c4bc17a2384b" category="list-text">Dovrai <block ref="71451e2b8c58e5c7388bfcb10516e575" category="inline-link-macro-rx"></block></block>
   <block id="42f4fbe9bc96b7b414265e0b938084d8" category="list-text">Devi aggiungere le credenziali AWS a Workload Factory con autorizzazioni di lettura/scrittura, il che significa che userai Workload Factory in modalità _lettura/scrittura_ per EDA.</block>
   <block id="92b8944386b41a864c3b42d0a5f178da" category="paragraph">Le autorizzazioni per la modalità _Basic_ e la modalità _Read-only_ non sono attualmente supportate.</block>
   <block id="4e63edb8bda7c519ba5aff97d0f43dc4" category="admonition">Sono necessarie anche le credenziali AWS per utilizzare la funzionalità di monitoraggio della latenza, che raccoglie le metriche CloudWatch per l'analisi delle prestazioni dei volumi. Per ricevere notifiche per eventi di latenza, configura le preferenze di notifica nelle impostazioni di Workload Factory. L'analisi AI facoltativa per scenari complessi di latenza è disponibile quando è abilitata l'analisi AI gestita da NetApp. <block ref="9a573596af789d1f770a6210c953bdc7" category="inline-link-macro-rx"></block>.</block>
@@ -5530,8 +5524,6 @@
   <block id="97735cf08bc8cd1817cf2dbadd06154d" category="doc">Guida rapida alla migrazione ad Amazon EVS utilizzando VMware workloads migration advisor</block>
   <block id="546393155194873f3731142e84a340fd" category="inline-link-macro">permessi per NetApp Workload Factory</block>
   <block id="3c32ee37a43b7a6669516fbe2facf360" category="paragraph">Prima di iniziare, dovresti conoscere <block ref="eacf1b6c3c9c77b3898392ba00c514e5" category="inline-link-macro-rx"></block>.</block>
-  <block id="e3f4d5b3a0d16b68c0f95c7031bbab0f" category="inline-link-macro">crea un account con Workload Factory</block>
-  <block id="e33655393b1233c30223f14cc97369ae" category="paragraph">Dovrai <block ref="d5f88bdd528bbedf165d7f1b0ea62185" category="inline-link-macro-rx"></block> e accedere a NetApp Console.</block>
   <block id="27c19be9febabd1e2fb82d7a39784f2d" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Aggiungi credenziali e autorizzazioni</block>
   <block id="e9efaa1e513d13bcfdc3a89da8fdd1f5" category="paragraph">Scegli <block ref="2e888142bf71f7498740798faa35edcf" category="inline-link-macro-rx"></block> per soddisfare le tue esigenze.</block>
   <block id="2c786a1fb129957422c7b03afe2c9e97" category="paragraph">Se scegli di non concedere le autorizzazioni, puoi iniziare a utilizzare Workload Factory for Databases per copiare esempi di codice parzialmente completati dal <block ref="3ad155911ed8e0aa87bea22dfd1f9dea" category="inline-link-macro-rx"></block>.</block>
@@ -6336,8 +6328,6 @@
   <block id="0b2f9e9a00a5dacc2b038c269cb56497" category="paragraph">Workload Factory è accessibile tramite <block ref="7532dfde8c533672ea63a5b546224a97" category="inline-link-macro-rx"></block>. Questa esperienza SaaS ti consente di accedere automaticamente alle funzionalità più recenti non appena vengono rilasciate e di passare facilmente tra gli account e i link di Workload Factory.</block>
   <block id="69989491ca997ec4e156f1dec632e52c" category="section-title">Registrazione e gestione degli accessi</block>
   <block id="f24427e667a0fadb0da6c11099e099d9" category="paragraph">Per usare NetApp Console, devi registrarti con le tue credenziali di NetApp Support Site oppure creare un accesso a NetApp Console. Il primo utente diventa l'amministratore dell'organizzazione e gestisce gli account utente e le autorizzazioni. Puoi aggiornare i ruoli e aggiungere altri amministratori in seguito.</block>
-  <block id="4083085de104c6eb7f6b02c9d3911a87" category="inline-link-macro">Scopri come registrarti e accedere a NetApp Console</block>
-  <block id="4b024ecd880487bbee4fa5734affe09d" category="list-text"><block ref="4b024ecd880487bbee4fa5734affe09d" category="inline-link-macro-rx"></block></block>
   <block id="01d3439f45ec98069c1e0ae140ab3de0" category="inline-link-macro">Scopri NetApp Console Identity Access Management</block>
   <block id="2f3706222de3054edfb52b48d669b7bb" category="list-text"><block ref="2f3706222de3054edfb52b48d669b7bb" category="inline-link-macro-rx"></block></block>
   <block id="d08ccf52b4cdd08e41cfb99ec42e0b29" category="section-title">Autorizzazioni</block>
@@ -6409,9 +6399,6 @@
   <block id="efaef01a8d4ed991197fd08168fbfd81" category="doc">Guida rapida per NetApp Workload Factory</block>
   <block id="32e93a25540f979c60b3b622506c2b83" category="paragraph">NetApp Workload Factory è accessibile agli utenti come servizio dati cloud da NetApp Console. Per iniziare a utilizzare Workload Factory, registrati e crea un account in NetApp Console, quindi aggiungi le credenziali del cloud provider in modo che Workload Factory possa gestire direttamente le tue risorse e ottimizzare i tuoi carichi di lavoro.</block>
   <block id="22e5a7336ebe77138f0282cedcb069ab" category="inline-link-macro">Workload Factory</block>
-  <block id="1927d1929476da1fd85f330219747da8" category="paragraph">Prima di iniziare, dovresti conoscere <block ref="64c9dffcd52d81154557ee623279261c" category="inline-link-macro-rx"></block>.</block>
-  <block id="d33f3e6aa75064a42fd24bc7cd68207c" category="section-title">Registrati e accedi a Workload Factory da NetApp Console</block>
-  <block id="eb35e0ad2267a3e378e80904d60c13db" category="paragraph"><block ref="eb35e0ad2267a3e378e80904d60c13db" category="inline-link-macro-rx"></block></block>
   <block id="70b96a1bd8d5adb4ba241cb5b9fd8489" category="paragraph">Quindi, seleziona il link *Quick start* del tuo cloud provider per iniziare.</block>
   <block id="13c485f3dc852b05615bdb465dc35bb0" category="section-title">Inizia a usare Amazon FSx for NetApp ONTAP</block>
   <block id="c2ca61cdaafcad548af5836df039fcb3" category="inline-link-macro">Guida rapida per Amazon FSx per NetApp ONTAP</block>
@@ -6421,9 +6408,6 @@
   <block id="fd71ccec8830da3d36bd19531c1dffdc" category="paragraph"><block ref="fd71ccec8830da3d36bd19531c1dffdc" category="inline-link-macro-rx"></block></block>
   <block id="e66b3e97aedecd30709f87314c5ccf87" category="section-title">Inizia a usare Google Cloud NetApp Volumes</block>
   <block id="6c98e127eb9f894ba57b9bfc2d5dab1f" category="paragraph"><block ref="6c98e127eb9f894ba57b9bfc2d5dab1f" category="inline-link-macro-rx"></block></block>
-  <block id="2f4902a24a062f32e6a6cfa57616c831" category="summary">Workload Factory è accessibile da NetApp Console. Quando inizi a usare Workload Factory, il primo passo è registrarti usando le tue credenziali esistenti di NetApp Support Site oppure creando un accesso cloud NetApp.</block>
-  <block id="ae09b16571bb5c1b5c1fccf487b44ea7" category="paragraph">NetApp Workload Factory è accessibile da NetApp Console. Per usare Console, registrati o accedi con le tue credenziali di NetApp Support Site, oppure crea un accesso a NetApp Console. Se sei il primo della tua azienda a registrarti, crei una nuova organizzazione come amministratore. Se la tua azienda ha già un'organizzazione, registrati o accedi con le tue credenziali esistenti di NetApp Support Site o con il single-sign-on (SSO) aziendale.</block>
-  <block id="9b2e339c9639747e25e597bf41706151" category="paragraph">Ora hai effettuato l'accesso e puoi iniziare a utilizzare Workload Factory per gestire i tuoi sistemi storage e i carichi di lavoro. Per accedere a Workload Factory, seleziona *Carichi di lavoro* dal menu principale.</block>
   <block id="cd1196d5845aaf259540d322ace00ee9" category="summary">Scopri le novità di Workload Factory nella NetApp Console, come aggiornamenti e miglioramenti per la gestione dei carichi di lavoro, l'amministrazione dei servizi, le funzionalità di storage, le autorizzazioni e altro ancora.</block>
   <block id="83006b8c743f417478830e1d83e1bb41" category="doc">Novità di Workload Factory in NetApp Console</block>
   <block id="74bc5d714652a3ae18c64ee93e4ba085" category="section-title">30 settembre 2026</block>
@@ -6432,7 +6416,6 @@
   <block id="a25d1f48f8818e91526df295a63c6a37" category="sidebar">Inizia a usare NetApp Workload Factory per ottenere il massimo dai tuoi workload di cloud storage. Una volta completata la configurazione, potrai creare, ottimizzare e gestire i tuoi sistemi storage per i tuoi workload, esplorare i risparmi sui costi, usare il co-pilot Infrastructure-as-Code integrato per l'automazione su più piattaforme e gestire i tuoi workload in Workload Factory.</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Inizia</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Note di rilascio</block>
-  <block id="6f63a12bf8b1e666c30303fbc446e01c" category="sidebar">Registrati e accedi</block>
   <block id="90cd2289d496647e57ae167a4e1ded38" category="sidebar">Autorizzazioni per Amazon FSx for NetApp ONTAP</block>
   <block id="a85fa12e8eb81e521af50e170260f365" category="sidebar">Utilizza Workload Factory per il tuo cloud provider</block>
   <block id="bec1e3daee54f5a9410751eb03bd867e" category="sidebar">Gestisci Workload Factory</block>
@@ -6450,7 +6433,6 @@
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Novità</block>
   <block id="4fae35446edac8369786b24141d0a4e4" category="sidebar">Limitazioni note per FSx for ONTAP in Workload Factory</block>
   <block id="18d2e40048280edf4f45b62918292d82" category="sidebar">Scopri di più su Workload Factory in NetApp Console</block>
-  <block id="d73e9a49c2210d74fef5ec0e42ad4292" category="sidebar">Registrati e accedi a Workload Factory</block>
   <block id="78f8c00f462b0fbe742eab283e3fdf7a" category="sidebar">Scopri i link</block>
   <block id="b0e4d816716f19944afffa8c9affdccb" category="sidebar">Scopri di più sulle autorizzazioni</block>
   <block id="955740a91ca876bc1046f09e7108188e" category="sidebar">Usa FSx for ONTAP per i carichi di lavoro di storage</block>
@@ -6563,29 +6545,6 @@
   <block id="4ab00ae468588a563b956d814954695d" category="sidebar">Usa CloudShell</block>
   <block id="25f033e226552b2f5ae002edb8e5fd2f" category="sidebar">Rimuovi le credenziali</block>
   <block id="24974380365a2e3e3af1d901b4f56526" category="paragraph"><block ref="8e78b98d3ec3e8310cb1961b36d417e0" category="inline-link-macro-rx"></block>. Ciò include la selezione delle funzionalità del carico di lavoro e la creazione delle policy IAM per le autorizzazioni richieste.</block>
-  <block id="0946433107c0141c86e12d9acfc94eb5" category="section-title">Registrati a NetApp Console come amministratore iniziale dell'organizzazione</block>
-  <block id="826401015c53957df701460dc5fefb05" category="paragraph">Se la tua azienda non dispone di un'organizzazione NetApp Console, registrati per crearne una. Il primo utente diventa l'amministratore dell'organizzazione e gestisce gli account utente e le autorizzazioni. Puoi aggiornare i ruoli e aggiungere altri amministratori in seguito.</block>
-  <block id="6c479e362a71650f0ec9bfca93ce7f12" category="list-text">Apri un browser web e vai a<block ref="9fa63571706fcef6edc9d423212e6d10" category="inline-link-rx"></block>.</block>
-  <block id="dc346f53e29026800c3b9274294105f6" category="list-text">Se hai un account del sito di supporto NetApp, inserisci direttamente nella pagina di *accesso* l'indirizzo email associato al tuo account.</block>
-  <block id="b1c0e39fde6fd83a65dd3bd95142165f" category="paragraph">La Console ti registra automaticamente durante questo primo accesso utilizzando le tue credenziali del NetApp Support Site.</block>
-  <block id="bf093decf90516c940874ca448e5647c" category="list-text">Se vuoi registrarti creando un accesso a Console, seleziona *Registrati*.</block>
-  <block id="dafbc60d299b7ecf7d1bf490a178f77f" category="list-text">Nella pagina di *Sign up*, inserisci le informazioni richieste e seleziona *Avanti*.</block>
-  <block id="95f99a60f019f663b3b74472e57bd99b" category="admonition">Nel modulo di registrazione sono ammessi solo caratteri inglesi.</block>
-  <block id="422588021a93cfdaa26ce8d7d46dfeda" category="list-text">Controlla la tua casella di posta per un'email da NetApp che include istruzioni per verificare il tuo indirizzo email.</block>
-  <block id="745229ae5b2bced3482332829ac60c32" category="paragraph">Verifica il tuo indirizzo email per completare la registrazione.</block>
-  <block id="9e8f3a5627d6a315be184e88407a8e4b" category="list-text">Dopo aver effettuato l'accesso, esamina e accetta il Contratto di licenza per l'utente finale.</block>
-  <block id="4c93133d0f71016860e62cd5febc8888" category="list-text">Nella pagina *Benvenuto*, crea un'organizzazione.</block>
-  <block id="16a6acfaa9478d613f4568fcc7f798b9" category="list-text">Seleziona *Iniziamo*.</block>
-  <block id="d7398f410905989b0cfbd7c8949dea25" category="inline-link-macro">Scopri come usare Console Assistant.</block>
-  <block id="d3c4045cc716512dce22d4f648f90c3d" category="paragraph">+ Come nuovo utente e amministratore dell'organizzazione, seguirai una procedura guidata per aggiungere risorse di storage, creare un agente Console e altro ancora. <block ref="8411fcab28bea2c0f0cc571757b43362" category="inline-link-macro-rx"></block></block>
-  <block id="11fd5297be439890aa7909ed6b065791" category="inline-link-macro">Scopri la gestione di identità e accessi per NetApp Console</block>
-  <block id="01d4731d174643f3b86d001a74ec91d4" category="paragraph">Come amministratore, dopo aver completato i passaggi inclusi in Console Assistant, dovresti pianificare la tua strategia di identità e accesso, aggiungere utenti alla tua organizzazione e assegnare ruoli. <block ref="e8cd337a181a13b2fbfafad53132bafb" category="inline-link-macro-rx"></block></block>
-  <block id="347778e3054043c713d65df7f9e10e01" category="section-title">Registrati o accedi a NetApp Console se esiste già un'organizzazione</block>
-  <block id="5acfd694e6aaca7505fcdbc950ee0e38" category="paragraph">Se la tua azienda ha già un'organizzazione NetApp Console, registrati o accedi per accedervi. Il metodo di registrazione o di accesso dipende dal fatto che la tua azienda usi la federazione delle identità o abbia credenziali del NetApp Support Site. In caso contrario, crea un accesso a NetApp Console.</block>
-  <block id="7db903b190082d22d5def424cfdf8da1" category="list-text">Se hai un account del Support Site NetApp o se la tua azienda ha configurato single sign-on (SSO), inserisci il tuo indirizzo email associato o le credenziali SSO nella pagina *Log in*. Segui le istruzioni per completare l'accesso.</block>
-  <block id="f6400c3e909c93ba53f8281302a7ffef" category="paragraph">In entrambi i casi, ti registri alla Console contestualmente a questo primo accesso.</block>
-  <block id="adbbbb6561b05ff5263526309e842926" category="inline-link-macro">Scopri come contattare un amministratore dell'organizzazione.</block>
-  <block id="172584f9c60790ff1f0e0a5fce827ebd" category="list-text">Se il sistema ti chiede di creare un'organizzazione, chiudi la finestra di dialogo e comunicalo a un Console admin in modo che possa aggiungerti alla tua organizzazione di Console e concederti l'accesso. <block ref="b322cd1c319c783c8c76cc03c56dbbda" category="inline-link-macro-rx"></block></block>
   <block id="309e95695e9929bae28088a2259c1445" category="paragraph">Puoi configurare le notifiche di Workload Factory usando NetApp Console.</block>
   <block id="4ecef83a6c0c3ac1ae349c42700f3f4d" category="paragraph">Ecco le opzioni di notifica disponibili: * *Notifiche*: configura Workload Factory per inviare notifiche che vengono visualizzate sotto l'icona della campana in NetApp Console. * *Email*: abilita le notifiche email in NetApp Console per ricevere notifiche a qualsiasi indirizzo email associato all'account senza richiedere la configurazione di Amazon SNS. * *Amazon SNS*: configura Workload Factory per inviare notifiche a un topic Amazon SNS.</block>
   <block id="3dba14348891216cbb525a2715282a3a" category="paragraph">Dopo aver configurato NetApp Console per inviare notifiche a un argomento, segui le<block ref="88c7b6108316e02c36e39863bedc2019" category="inline-link-rx"></block> nella documentazione di Amazon SNS per iscriverti all'argomento e ricevere così le notifiche da Workload Factory.</block>
@@ -6922,4 +6881,15 @@
   <block id="5a79cccf92e71cd2b96cbbe67a02e898" category="paragraph">Workload Factory mostra una notifica che indica se la connessione riesce o fallisce</block>
   <block id="43d91f7086bfc8e0d64b9a83a049c1f0" category="list-text">*Funzionalità GenAI disattivate*: Disattiva tutte le funzionalità AI.</block>
   <block id="5853c70be1c7abb4619f6f0a6696316e" category="paragraph"><block ref="5853c70be1c7abb4619f6f0a6696316e" category="inline-link-rx"></block></block>
+  <block id="f0ae5dab2d6ea2ffbd20c9563519edf2" category="paragraph">Con NetApp Workload Factory for Databases, puoi iniziare subito senza bisogno di autorizzazioni. Se vuoi usare Workload Factory per individuare host, gestire risorse e altro ancora, puoi iniziare in pochi passaggi.</block>
+  <block id="e8fa42224c1549b42b010324f9a01216" category="inline-link-macro">accedi alla NetApp Console</block>
+  <block id="d230a33ac93525f8dedc1d4d45abbfab" category="paragraph">Dovrai farlo <block ref="534b2604f29302955349bba67822cd62" category="inline-link-macro-rx"></block>. Se non hai un account, <block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block> a NetApp Console prima e poi accedi.</block>
+  <block id="9090c842809d5b87ef87f89f32e9670b" category="admonition">Non puoi eliminare un volume con cloni figlio finché tutti i cloni figlio non sono stati eliminati o separati in volumi indipendenti.</block>
+  <block id="98929bc2ec4e4b6c1fb3d202f0a1c02d" category="paragraph">Assicurati che tutti i dispositivi a blocchi (LUN) siano inattivi sullo stesso volume prima di archiviare i dati.</block>
+  <block id="a12fbd750c270e54cd66855e6a9c0d66" category="list-text">Nella schermata Recupera spazio per dispositivi a blocchi non utilizzati, seleziona uno o più dispositivi a blocchi per recuperare la capacità.</block>
+  <block id="d9776f0775997b2e698c6975420b5c5d" category="inline-link-macro">Registrati</block>
+  <block id="e573c47809f6acfd1d17e1e175b2815d" category="list-text"><block ref="ae5fdce2a4a121cca2d9cfd9dfdd27a9" category="inline-link-macro-rx"></block> a NetApp Console.</block>
+  <block id="bbd3bc24a9cc71ad8a2822b80bf70ff9" category="paragraph">Prima di iniziare, dovresti avere una buona comprensione di <block ref="64c9dffcd52d81154557ee623279261c" category="inline-link-macro-rx"></block>. Dovresti anche <block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block> a NetApp Console.</block>
+  <block id="80655929466b53d4ebd339eb11bdf59d" category="section-title">Accedi a Workload Factory da NetApp Console</block>
+  <block id="12f44e4fd5c579fdafc7776b94e934d6" category="list-text">Accedi al <block ref="9fa63571706fcef6edc9d423212e6d10" category="inline-link-rx"></block>.</block>
 </blocks>

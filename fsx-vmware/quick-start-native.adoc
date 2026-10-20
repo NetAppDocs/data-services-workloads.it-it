@@ -17,7 +17,7 @@ Prima di iniziare, dovresti conoscere link:../fsx-storage/permissions-reference-
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"] Accedi a Workload Factory
 [role="quick-margin-para"]
-Dovrai link:../setup/sign-up-and-log-in.html["crea un account con Workload Factory"^] e accedere a NetApp Console.
+Dovrai farlo link:https://console.netapp.com["accedi alla NetApp Console"^]. Se non hai un account, link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["registrati"^] a NetApp Console prima e poi accedi.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Aggiungi credenziali e autorizzazioni
 [role="quick-margin-para"]
