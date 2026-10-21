@@ -4,7 +4,7 @@ permalink: fsx-vmware/launch-onboarding-advisor.html
 keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
 summary: Accedi a NetApp Workload Factory per accedere a VMware migration advisor. Segui i passaggi della procedura guidata per creare un piano di distribuzione o un piano di migrazione personalizzato in base alle tue esigenze. 
 ---
-= Crea un piano di distribuzione per VMware Cloud su AWS utilizzando VMware workloads migration advisor
+= Crea un piano di implementazione per VMware Cloud su AWS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

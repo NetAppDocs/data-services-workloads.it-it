@@ -4,7 +4,7 @@ permalink: fsx-vmware/quick-start-evs.html
 keywords: quick start 
 summary: Inizia a utilizzare VMware migration advisor per spostare la tua infrastruttura attuale su Amazon EVS usando Amazon FSx for ONTAP come datastore NFS esterni. 
 ---
-= Guida rapida alla migrazione ad Amazon EVS utilizzando VMware workloads migration advisor
+= Guida rapida alla migrazione ad Amazon EVS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

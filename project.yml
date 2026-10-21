@@ -243,9 +243,9 @@ sidebar:
         url: "/fsx-vmware/quick-start-evs.html"
       - title: Guida rapida alla migrazione ad Amazon EC2
         url: "/fsx-vmware/quick-start-native.html"
-      - title: Guida rapida alla migrazione a VMware Cloud su AWS
+      - title: Guida rapida alla migrazione di VMware Cloud on AWS
         url: "/fsx-vmware/quick-start-vmware.html"
-      - title: Guida rapida per la migrazione a Google Cloud VMware Engine
+      - title: Guida rapida per la migrazione di Google Cloud VMware Engine
         url: "/fsx-vmware/quick-start-gcve.html"
       - title: Esplora il centro di pianificazione VMware
         url: "/fsx-vmware/explore-planning-center.html"
