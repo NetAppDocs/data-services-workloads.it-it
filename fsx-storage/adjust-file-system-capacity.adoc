@@ -50,7 +50,7 @@ Per regolare la capacità di un file system, è necessario prima <<Abilita la ge
 [[enable-automatic-capacity-and-inode-management]]
 == Abilita la gestione automatica della capacità e degli inode
 
-Abilita la gestione della capacità e degli inode per consentire a NetApp Workload Factory di aggiungere automaticamente storage incrementale, un file system FSx for ONTAP e inode (file) a un volume man mano che le esigenze di capacità cambiano nel tempo. Queste funzionalità eliminano la necessità di monitorare manualmente la capacità e gli inode.
+Abilita la gestione della capacità e degli inode per consentire a NetApp Workload Factory di aggiungere automaticamente storage incrementale a un file system FSx for ONTAP e inode (file) a un volume man mano che le esigenze di capacità cambiano nel tempo. Queste funzionalità eliminano la necessità di monitorare manualmente la capacità e gli inode.
 
 Solo un account può gestire queste funzionalità.
 

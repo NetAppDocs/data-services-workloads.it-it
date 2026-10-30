@@ -45,7 +45,7 @@ Se l'utente che fornisci non è l'utente fsxadmin e in seguito devi reimpostare 
 ... *Nome NetBIOS del server SMB*: inserisci il nome NetBIOS del server SMB dell'oggetto computer di Active Directory da creare per la tua storage VM. Questo è il nome di questa storage VM in Active Directory.
 ... *Nome utente*: inserisci il nome utente dell'account di servizio nel tuo Active Directory esistente.
 +
-Non includere un prefisso o un suffisso di dominio. Per  `EXAMPLE\ADMIN`, usa  `ADMIN`.
+Non includere un prefisso o un suffisso di dominio. Per `EXAMPLE\ADMIN`, usa `ADMIN`.
 
 ... *Password*: Inserisci la password per l'account di servizio.
 ... *Unità organizzativa*: Facoltativamente, inserisci il nome dell'unità organizzativa in cui vuoi creare l'account computer per FSx per ONTAP. L'OU è il nome del percorso distinto dell'unità organizzativa a cui vuoi unire il file system.

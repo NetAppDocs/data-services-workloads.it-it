@@ -11,14 +11,14 @@ summary: 'Scopri i cyber vault di NetApp e come implementare un"architettura di 
 
 
 [role="lead"]
-Un volume del cyber vault è una posizione di archiviazione isolata e sicura utilizzata per memorizzare copie di backup dei tuoi dati, proteggendoli da attacchi ransomware e altre minacce informatiche. Nell'ambito della creazione del vault, creerai un volume del cyber vault, disabiliterai tutti i protocolli client, imposterai una relazione di replica tra il volume di origine e il volume del cyber vault e creerai snapshot immutabili sul volume del cyber vault.
+Un volume di cyber vault è una posizione di storage isolata e sicura che memorizza copie di backup dei tuoi dati e li protegge da attacchi ransomware e altre minacce informatiche. Per creare un vault, crea un volume di cyber vault, disabilita tutti i protocolli client, imposta una relazione di replica tra il volume di origine e il volume di cyber vault e crea snapshot immutabili sul volume di cyber vault.
 
 .Che cos'è un cyber vault?
 Un cyber vault è una specifica tecnica di protezione dei dati che prevede l'archiviazione di dati critici in un ambiente isolato, separato dall'infrastruttura IT principale.
 
 Il cyber vault è un repository di dati "air-gapped", immutabile e indelebile, immune alle minacce che colpiscono la rete principale, come malware, ransomware o persino minacce interne. Un cyber vault può essere realizzato tramite Snapshot immutabili e indelebili.
 
-I backup con isolamento fisico (air-gapping) che utilizzano metodi tradizionali prevedono la creazione di spazio e la separazione fisica dei supporti primario e secondario. Spostando i supporti in una sede esterna e/o interrompendo la connettività, i malintenzionati non hanno accesso ai dati. Questo protegge i dati, ma può comportare tempi di ripristino più lunghi.
+I backup con isolamento fisico (air-gapping) che utilizzano metodi tradizionali prevedono la creazione di spazio e la separazione fisica dei supporti primario e secondario. Spostando i supporti in una sede esterna o interrompendo la connettività, i malintenzionati non hanno accesso ai dati. Questo protegge i dati, ma può comportare tempi di ripristino più lunghi.
 
 .vault informatici di FSx for ONTAP
 Amazon FSx for NetApp ONTAP è supportato sia come origine sia come destinazione di un cyber vault.

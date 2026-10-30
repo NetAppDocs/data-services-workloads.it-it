@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-replication.html 
 keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
-summary: Gestisci le relazioni di replica in NetApp Workload Factory. 
+summary: In NetApp Workload Factory, puoi mettere in pausa, riprendere, invertire, arrestare ed eliminare le relazioni di replica, modificare la pianificazione della replica e limitare la velocità di trasferimento. 
 ---
 = Gestisci le relazioni di replica in NetApp Workload Factory
 :allow-uri-read: 
@@ -20,7 +20,7 @@ Gestisci le tue relazioni di replica in NetApp Workload Factory. Puoi sospendere
 
 Modifica la pianificazione della replica del volume di origine in una relazione di replica in NetApp Workload Factory.
 
-Scegli con quale frequenza le Snapshot dal volume di origine vengono trasferite al volume replicato in base agli obiettivi del punto di ripristino (RPO) richiesti.
+Scegli con quale frequenza gli snapshot dal volume di origine vengono trasferiti al volume replicato in base ai tuoi obiettivi del punto di ripristino (RPO).
 
 Quando un cluster ONTAP on-premises è il target della relazione di replica, non puoi modificare la pianificazione della replica.
 
@@ -32,7 +32,7 @@ Quando un cluster ONTAP on-premises è il target della relazione di replica, non
 . Dalla panoramica del file system, selezionare la scheda *Relazioni di replica*.
 . Nella scheda Relazioni di replica, seleziona il menu Azioni della pianificazione della relazione di replica da modificare.
 . Seleziona *Modifica intervallo di replica*.
-. Nella finestra di dialogo Modifica intervallo di replica, seleziona la frequenza di trasferimento degli Snapshot dal volume di origine. Puoi scegliere tra le seguenti frequenze:
+. Nella finestra di dialogo Modifica intervallo di replica, seleziona la frequenza di trasferimento degli snapshot dal volume di origine. Seleziona una delle seguenti frequenze:
 +
 ** Ogni 5 minuti
 ** Ogni ora
@@ -51,7 +51,7 @@ Quando un cluster ONTAP on-premises è il target della relazione di replica, non
 
 Limitare la velocità di trasferimento massima è facoltativo, ma consigliato. Senza un limite, le prestazioni della rete e delle applicazioni potrebbero diminuire.
 
-In alternativa, consigliamo una velocità di trasferimento illimitata per i file system FSx for ONTAP per i carichi di lavoro critici, ad esempio quelli utilizzati principalmente per il disaster recovery.
+Per carichi di lavoro critici, come i file system FSx for ONTAP utilizzati principalmente per il ripristino di emergenza, si consiglia una velocità di trasferimento illimitata.
 
 .Prima di iniziare
 Valuta quanta larghezza di banda allocare per la replica.
@@ -118,7 +118,7 @@ La relazione si mette in pausa e il suo stato viene visualizzato come "In pausa"
 [[resume-a-paused-replication-relationship]]
 == Riprendi una relazione di replica sospesa
 
-Quando riprendi una relazione di replica, tutte le modifiche apportate al volume di destinazione mentre la replica era interrotta vengono eliminate. Il volume di destinazione passa da lettura/scrittura a sola lettura e riceve di nuovo gli aggiornamenti dal volume di origine all'intervallo di replica pianificato.
+Quando riprendi una relazione di replica, tutte le modifiche apportate al volume di destinazione durante l'interruzione della replica vengono eliminate. Il volume di destinazione passa dalla modalità di lettura/scrittura alla modalità di sola lettura e riceve nuovamente gli aggiornamenti dal volume di origine all'intervallo di replica pianificato.
 
 
 NOTE: I dati scritti sul volume sorgente originale tra l'ultima replica dei dati e il momento in cui il volume sorgente viene disabilitato non vengono conservati.
@@ -152,7 +152,7 @@ Le operazioni inverse sono supportate per quanto segue:
 
 Dopo aver interrotto la replica e apportato modifiche al volume di destinazione, puoi replicare tali modifiche nel volume di origine. Questa procedura è comune negli scenari di disaster recovery, in cui lavori sul volume di destinazione per un certo periodo di tempo e vuoi invertire i ruoli dei volumi.
 
-Quando inverti e riprendi una replica, i ruoli di origine e destinazione dei volumi si scambiano: il volume di destinazione diventa il nuovo volume di origine e il volume di origine diventa il nuovo volume di destinazione. L'operazione di inversione sovrascrive anche il contenuto del nuovo volume di destinazione con il contenuto del nuovo volume di origine. Se inverti una replica due volte, viene ristabilita la direzione di replica originale.
+Quando inverti e riprendi una replica, i ruoli di origine e di destinazione dei volumi si scambiano: il volume di destinazione diventa il nuovo volume di origine e il volume di origine diventa il nuovo volume di destinazione. L'operazione di inversione sovrascrive anche il contenuto del nuovo volume di destinazione con il contenuto del nuovo volume di origine. Se inverti una replica due volte, viene ristabilita la direzione di replica originale.
 
 []
 ====
@@ -203,7 +203,7 @@ Lo stato della replica del volume cambia in *Broken*. Il volume di destinazione 
 [[delete-a-replication-relationship]]
 == Eliminare una relazione di replica
 
-Elimina una relazione di replica in NetApp Workload Factory. Quando elimini una relazione di replica, viene rimossa la relazione di replica tra il volume di origine e il volume di destinazione. Dopo l'eliminazione della relazione di replica, entrambi i volumi continuano a esistere indipendentemente con i dati correnti che contengono.
+Elimina una relazione di replica in NetApp Workload Factory. Quando elimini una relazione di replica, la relazione tra il volume di origine e il volume di destinazione viene rimossa. Dopo aver eliminato la relazione, entrambi i volumi continuano a esistere in modo indipendente con i dati correnti che contengono.
 
 Quando elimini una relazione di replica, FSx for ONTAP elimina anche gli Snapshot di replica comuni dei volumi di origine e di destinazione.
 

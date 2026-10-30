@@ -16,12 +16,12 @@ Utilizza NetApp Workload Factory per semplificare la gestione delle risorse di s
 .Informazioni su questa attività
 Dalla console di NetApp Workload Factory, puoi gestire i gruppi di initiator (igroups) per controllare l'accesso dei client ai dispositivi a blocchi. Puoi anche visualizzare i dettagli dei dispositivi a blocchi, aumentarne la capacità, creare cloni, gestire l'accesso dei client, archiviare dati per dispositivi a blocchi inattivi ed eliminare dispositivi a blocchi.
 
-Controllare il diagramma dello storage a blocchi per verificare quanto segue:
+Usa il diagramma dello storage a blocchi per verificare quanto segue:
 
 * Connessioni client
 * Stato del dispositivo a blocchi
 * Relazione nodo-client
-* Potenziali connessioni client errate
+* Connessioni client potenzialmente errate
 
 
 .Prima di iniziare
@@ -100,9 +100,9 @@ Visualizza in qualsiasi momento i dettagli di un dispositivo a blocchi esistente
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
 . Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Carichi di lavoro* > *Archiviazione* > *FSx for ONTAP*.
 . Da *FSx for ONTAP*, seleziona la scheda *Dispositivi a blocchi*.
-. Vai al menu delle azioni del dispositivo a blocchi e seleziona *Visualizza dettagli*.
+. Vai al menu delle azioni per il dispositivo di blocco e seleziona *Visualizza dettagli*.
 +
-Vengono visualizzate le informazioni generali, sul consumo, sull'accesso e sulla protezione del dispositivo a blocchi.
+Workload Factory visualizza i dettagli generali, il consumo, l'accesso e le informazioni di protezione per il dispositivo a blocchi.
 
 
 

@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/edit-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: Aggiorna i dettagli del punto di accesso S3, gestisci i tag e abilita o disabilita la tabella di inventario per un volume in FSx for ONTAP. 
+---
+= Modifica i punti di accesso S3 per un volume FSx for ONTAP in NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Aggiorna i dettagli del punto di accesso S3 e gestisci i tag per un volume FSx for ONTAP in NetApp Console.
+
+È inoltre possibile abilitare o disabilitare la *tabella di inventario* per il punto di accesso. La tabella di inventario genera metadati per tutti gli oggetti accessibili al punto di accesso S3 e comporta costi di richiesta AWS S3. Per ulteriori informazioni, consulta link:https://aws.amazon.com/s3/pricing/["Documentazione sui prezzi di Amazon S3"^].
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"], *Workloads* > *Volumes explorer*.
+. Seleziona il menu Azioni per il volume per cui vuoi modificare i punti di accesso S3, poi seleziona *Azioni avanzate* e quindi *Gestisci punti di accesso S3*.
+. Dalla schermata *Manage S3 access points*, seleziona il menu azioni e poi seleziona *Edit access point*.
+. Effettua gli aggiornamenti e quindi seleziona *Applica*.
++
+Per configurare l'infrastruttura per la funzionalità della tabella di registro, è necessario selezionare *Internet* come configurazione di rete per il punto di accesso S3. link:setup-journal-table.html["Scopri come configurare l'infrastruttura della tabella Journal"].
+
+

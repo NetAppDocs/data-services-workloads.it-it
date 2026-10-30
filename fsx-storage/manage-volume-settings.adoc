@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-volume-settings.html 
 keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
-summary: I tag possono aiutarti a categorizzare le tue risorse. Puoi aggiungere, modificare e rimuovere i tag dei volumi in qualsiasi momento per i volumi FSx for ONTAP. 
+summary: 'In NetApp Workload Factory, puoi modificare i carichi di lavoro dei volumi, modificare i tag dei volumi, aggiornare l"efficienza dello storage e gestire le impostazioni dei file immutabili per i volumi FSx for ONTAP.' 
 ---
 = Gestisci le impostazioni del volume in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: I tag possono aiutarti a categorizzare le tue risorse. Puoi aggiungere,
 
 
 [role="lead"]
-Personalizza le impostazioni dei volumi FSx for ONTAP in NetApp Workload Factory per adattarle alle esigenze della tua organizzazione. Puoi gestire i tag dei volumi per categorizzare le risorse, ad esempio impostando i carichi di lavoro dei volumi, aggiornare le impostazioni di efficienza dello storage per ottimizzare lo spazio e il risparmio sui costi e gestire le impostazioni dei file immutabili per controllare la conservazione dei dati e proteggerli da modifiche non autorizzate.
+Personalizza le impostazioni dei volumi FSx for ONTAP in NetApp Workload Factory per adattarle alle esigenze della tua organizzazione. Puoi impostare i carichi di lavoro e i tag dei volumi per categorizzare le risorse, aggiornare le impostazioni di efficienza dello storage per ottimizzare lo spazio e ridurre i costi e gestire le impostazioni dei file immutabili per controllare la conservazione dei dati e proteggerli da modifiche non autorizzate.
 
 
 
@@ -78,7 +78,7 @@ I volumi utilizzano thin provisioning indipendentemente dal fatto che tu abiliti
 
 Quando la funzionalità è abilitata, puoi aggiornare alcune impostazioni dei file immutabili per un volume, come il criterio e i periodi di conservazione, il periodo di autocommit e la modalità append del volume.
 
-Nota che l'abilitazione dei file immutabili è possibile solo durante link:create-volume.html["creazione del volume"].
+Puoi abilitare i file immutabili solo durante link:create-volume.html["creazione del volume"].
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
@@ -89,7 +89,7 @@ Nota che l'abilitazione dei file immutabili è possibile solo durante link:creat
 +
 ** *Periodo di conservazione*: seleziona *Non specificato* o *Specifica il periodo*.
 +
-*** *Non specificato*: il periodo minimo predefinito è di "0" anni e il periodo massimo predefinito è di "30 anni".
+*** *Non specificato*: Il periodo minimo predefinito è di 0 anni e il periodo massimo predefinito è di 30 anni.
 *** *Specifica il periodo*: Opzione per definire la policy di conservazione, i periodi minimo e massimo, la funzionalità autocommit e la funzionalità volume append mode. Fornisci i seguenti dettagli:
 +
 **** *Politica di conservazione*: questo periodo deve essere maggiore o uguale al periodo di conservazione minimo e minore o uguale al periodo di conservazione massimo.
@@ -100,10 +100,10 @@ Nota che l'abilitazione dei file immutabili è possibile solo durante link:creat
 
 ** *Autocommit*: abilita o disabilita la funzione per eseguire automaticamente il commit dei file in WORM che non sono stati modificati durante il periodo di Autocommit.
 ** *Eliminazione privilegiata*: Abilita o disabilita la funzione. L'abilitazione della funzione consente a un amministratore SnapLock di eliminare un volume WORM non ancora scaduto. Questa funzione è supportata solo nella modalità di conservazione Enterprise.
-** *Modalità di aggiunta al volume*: abilita o disabilita la funzione. Abilitando la modalità di aggiunta al volume, puoi aggiungere nuovi contenuti ai file WORM.
+** *Modalità di aggiunta del volume*: abilita o disabilita la funzione. Attivando la modalità di aggiunta del volume, puoi aggiungere nuovi contenuti ai file WORM.
 
 
-. Fai clic su *Applica*.
+. Seleziona *Applica*.
 
 
 

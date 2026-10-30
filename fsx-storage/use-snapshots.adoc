@@ -71,7 +71,7 @@ Per impostazione predefinita, ogni volume è associato alla policy di Snapshot `
 Personalizzando una policy, puoi specificare quando creare Snapshot, quante copie conservare e come denominarle.
 
 .Prima di iniziare
-* Una volta creata una policy di Snapshot, non puoi modificarne l'associazione con le VM di storage, ma puoi sempre aggiungere o rimuovere la policy dai volumi.
+* Una volta creata una policy di snapshot, la sua associazione con le VM di storage non può essere modificata, ma è sempre possibile aggiungere o rimuovere la policy dai volumi.
 * Prima di utilizzare gli snapshot, considera quanto segue sulla capacità degli snapshot:
 +
 ** Per la maggior parte dei set di dati, una capacità aggiuntiva del 20% è sufficiente per conservare le snapshot fino a quattro settimane. Man mano che i dati invecchiano, è meno probabile che vengano usati per i ripristini.

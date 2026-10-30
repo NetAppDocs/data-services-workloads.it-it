@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/data-protection-overview.html 
 keywords: overview 
-summary: FSx for ONTAP supporta snapshot, NetApp Autonomous Ransomware with AI, la replica dei volumi e i backup in NetApp Workload Factory. 
+summary: FSx for ONTAP supporta snapshot, NetApp Autonomous Ransomware Protection with AI, replica dei volumi e backup in NetApp Workload Factory. 
 ---
 = Tipi di protezione dei dati in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: FSx for ONTAP supporta snapshot, NetApp Autonomous Ransomware with AI, 
 
 
 [role="lead"]
-FSx for ONTAP supporta snapshot, NetApp Autonomous Ransomware Protection with AI, replica e backup per la protezione dei dati. Ti consigliamo di utilizzare una combinazione di tipi di protezione dei dati per prepararti all'inevitabile e salvaguardare i tuoi dati.
+FSx for ONTAP supporta snapshot, NetApp Autonomous Ransomware Protection with AI, replica e backup per la protezione dei dati. Ti consigliamo di utilizzare una combinazione di tipi di protezione dei dati per salvaguardare i tuoi dati.
 
 
 
@@ -24,17 +24,17 @@ La protezione dei dati per i tuoi carichi di lavoro ti aiuta a garantire il ripr
 Uno snapshot crea un'immagine point-in-time di sola lettura di un volume all'interno del volume di origine come copia snapshot. Puoi utilizzare la copia snapshot per recuperare singoli file o per ripristinare l'intero contenuto di un volume. Gli snapshot sono alla base di tutti i metodi di backup. La copia snapshot creata sul tuo volume viene utilizzata per mantenere sincronizzati il volume replicato e il file di backup con le modifiche apportate al volume di origine.
 
 .NetApp Protezione autonoma dal ransomware con AI
-NetApp Autonomous Ransomware Protection with AI (ARP/AI) utilizza l'analisi dei carichi di lavoro negli ambienti NAS (NFS/SMB) per rilevare e avvisare in caso di attività anomale che potrebbero indicare un attacco ransomware. Quando sospetta un attacco, ARP/AI crea anche nuove snapshot immutabili, oltre alla protezione esistente fornita dalle snapshot pianificate.
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) utilizza l'analisi dei workload negli ambienti NAS (NFS/SMB) per rilevare e segnalare attività anomale che potrebbero indicare un attacco ransomware. Se viene sospettato un attacco, ARP/AI crea nuove snapshot immutabili oltre alla protezione esistente fornita dalle snapshot pianificate.
 
 .Replica
 La replica crea una copia secondaria dei tuoi dati su un altro file system FSx for ONTAP e aggiorna continuamente i dati secondari. I tuoi dati restano aggiornati e disponibili ogni volta che ti servono, ad esempio per il disaster recovery.
 
-Puoi scegliere di creare sia volumi replicati su un altro file system FSx for ONTAP sia file di backup nel cloud. Oppure puoi scegliere di creare solo volumi replicati o solo file di backup: la scelta è tua.
+Puoi creare sia volumi replicati su un altro file system FSx for ONTAP sia file di backup nel cloud, oppure puoi creare solo volumi replicati o solo file di backup.
 
 .Backup
 Puoi creare backup dei tuoi dati nel cloud per proteggerli e conservarli a lungo termine. Se necessario, puoi ripristinare un volume, una cartella o singoli file dal backup nello stesso file system di lavoro o in uno diverso.
 
-Il diagramma seguente mostra una rappresentazione visiva della protezione dei dati per lo storage FSx per ONTAP tramite snapshot, replica tra regioni e backup su storage a oggetti.
+Il diagramma mostra la protezione dei dati per lo storage FSx for ONTAP tramite snapshot, replica tra regioni e backup su storage a oggetti.
 
 image:diagram-fsx-data-protection.png["Lo screenshot mostra la protezione dei dati per lo storage FSx for ONTAP tramite snapshot, replica tra regioni e backup su storage a oggetti."]
 
@@ -43,7 +43,7 @@ image:diagram-fsx-data-protection.png["Lo screenshot mostra la protezione dei da
 [[best-practices-for-protecting-your-workload-data]]
 == Best practice per proteggere i dati del tuo workload
 
-FSx for ONTAP offre diverse opzioni di protezione dei dati che possono essere combinate per raggiungere gli obiettivi selezionati in termini di punto di ripristino e tempo di ripristino. Per la migliore protezione possibile, ti consigliamo di utilizzare sia gli snapshot del volume sia i backup del volume.
+FSx for ONTAP offre diverse opzioni di protezione dei dati che puoi combinare per raggiungere gli obiettivi di punto e tempo di ripristino che hai selezionato. Per la migliore protezione possibile, ti consigliamo di utilizzare sia gli snapshot del volume sia i backup del volume.
 
 Un recovery point objective (RPO) descrive quanto è recente l'ultima copia garantita dei tuoi dati, che dipende dalla frequenza con cui vengono effettuate le copie. Un recovery time objective (RTO) definisce quanto tempo serve per ripristinare i tuoi dati.
 
@@ -59,14 +59,14 @@ Gli snapshot sono versioni virtuali point-in-time di un volume che vengono creat
 [[protect-your-workload-data-with-netapp-autonomous-ransomware-protection-with-ai]]
 == Proteggi i dati del tuo workload con NetApp Autonomous Ransomware Protection with AI
 
-NetApp Autonomous Ransomware Protection with AI (ARP/AI) rappresenta un importante ulteriore livello di difesa se il software antivirus non è riuscito a rilevare un'intrusione. L'impostazione di una policy ARP/AI la abilita per tutte le VM di storage e per tutti i volumi esistenti e appena creati. Una volta abilitata, ARP/AI rileva e protegge tutti i volumi e le VM di storage. Se un'estensione di file viene segnalata come anomala, dovresti valutare l'avviso.
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) rappresenta un importante ulteriore livello di difesa se il software antivirus non è riuscito a rilevare un'intrusione. L'impostazione di una policy ARP/AI la abilita per tutte le VM di storage e per tutti i volumi esistenti e appena creati. Dopo averla abilitata, ARP/AI rileva e protegge tutti i volumi e tutte le VM di storage. Se un'estensione di file viene contrassegnata come anomala, dovresti valutare l'avviso.
 
 
 
 [[protect-your-workload-data-with-volume-replication]]
 == Proteggi i dati del tuo workload con la replica dei volumi
 
-La replica del volume crea una copia dei dati più recenti di un volume, inclusi tutti i relativi snapshot, in una regione diversa. Se non puoi permetterti RTO di diverse ore per un'operazione di ripristino completo del volume da un backup del volume, prendi in considerazione l'esecuzione di una replica del volume. Anche se la replica del volume garantisce la disponibilità di dati recenti in una regione diversa da usare, devi configurare i client in modo che utilizzino il volume nell'altra regione.
+La replica del volume crea una copia dei dati più recenti di un volume, inclusi tutti i relativi snapshot, in una regione diversa. Se non puoi permetterti RTO di più ore per un'operazione di ripristino completo del volume da un backup del volume, valuta l'esecuzione di una replica del volume. Sebbene la replica del volume garantisca la disponibilità di dati recenti in una regione diversa da usare, devi adattare i client per utilizzare il volume nell'altra regione.
 
 
 
@@ -80,11 +80,11 @@ I backup di volume forniscono copie point-in-time indipendenti del tuo volume. P
 [[recommendations-for-protecting-your-workload-data]]
 == Raccomandazioni per proteggere i dati del tuo workload
 
-Considera le seguenti raccomandazioni per proteggere i dati del tuo workload.
+Considera questi suggerimenti per proteggere i dati del tuo carico di lavoro.
 
 * Usa la replica dei volumi per il disaster recovery: se la tua applicazione richiede un RTO basso, valuta l'utilizzo della replica dei volumi per replicare i dati in un'altra regione.
-* Utilizza i backup del volume insieme agli snapshot: usare insieme queste due funzionalità ti garantisce di poter ripristinare i file dagli snapshot ed eseguire ripristini completi in caso di perdita del volume usando i backup.
+* Utilizza i backup di volume insieme agli snapshot: l'utilizzo congiunto di queste due funzionalità ti garantisce la possibilità di ripristinare i file dagli snapshot ed eseguire ripristini completi dai backup in caso di perdita di un volume.
 * Definisci una policy di backup: assicurati che la policy di backup soddisfi i requisiti aziendali in termini di anzianità e frequenza dei backup. Consigliamo di mantenere un minimo di due backup giornalieri per ogni volume.
 * Definisci una pianificazione degli snapshot: è meno probabile che gli snapshot meno recenti vengano utilizzati per ripristinare i dati. Ti consigliamo di definire una pianificazione degli snapshot che tenga conto del rendimento decrescente del mantenimento degli snapshot meno recenti rispetto al costo di una capacità snapshot aggiuntiva.
-* Abilita una policy ARP/AI per il tuo file system o per singoli volumi per aggiungere un ulteriore livello di protezione e salvaguardare i tuoi dati dagli attacchi ransomware.
+* Abilita una policy ARP/AI per il tuo file system o per singoli volumi per aggiungere un ulteriore livello di protezione contro gli attacchi ransomware.
 

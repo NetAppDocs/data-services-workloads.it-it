@@ -31,11 +31,11 @@ Esamina le policy di tiering disponibili prima di modificare la policy di tierin
 
 * *Bilanciato (Auto)*: policy di tiering predefinita quando crei un volume utilizzando l'interfaccia utente. Mantiene i dati a cui accedi più di frequente nel tier di storage SSD e sposta i dati a cui accedi meno di frequente e le Snapshot nel tier di storage del capacity pool al termine del periodo di raffreddamento. Consigliato per carichi di lavoro primari generali.
 * *Ottimizzato in termini di costi (Tutti)*: sposta tutti gli snapshot e i dati nel tier di storage del pool di capacità. Consigliato per destinazioni secondarie.
-* *Prestazioni ottimizzate (solo Snapshot)*: i tier spostano solo i dati Snapshot nel tier di storage del capacity pool. Consigliato per workload a bassa latenza come i database mission-critical.
+* *Ottimizzato per le prestazioni (solo Snapshot)*: i tier trasferiscono solo i dati snapshot nel tier di storage del capacity pool. Consigliato per carichi di lavoro a bassa latenza come i database mission-critical.
 * *None*: mantiene i dati del volume nel tier di storage SSD, impedendone lo spostamento nel tier di storage del capacity pool.
 
 
-Tieni presente che alcune policy di tiering prevedono un periodo di raffreddamento minimo associato che definisce il tempo, o _giorni di raffreddamento_, durante il quale i dati utente in un volume devono rimanere inattivi perché i dati siano considerati "freddi" e spostati nel tier di storage del capacity pool. Il periodo di raffreddamento inizia quando i dati vengono scritti sul disco.
+Alcune politiche di tiering prevedono un periodo di raffreddamento minimo che definisce il tempo, o _giorni di raffreddamento_, durante il quale i dati utente in un volume devono rimanere inattivi affinché siano considerati "freddi" e spostati nel tier di storage del pool di capacità. Il periodo di raffreddamento inizia quando i dati vengono scritti sul disco.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].

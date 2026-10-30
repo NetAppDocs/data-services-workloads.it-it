@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-volume-capacity.html 
 keywords: volume size, rebalance volume capacity, adjust volume capacity, volume autogrow, manage volume capacity, FlexVol volume, FlexGroup volume 
-summary: 'Scopri come gestire la capacità dei volumi, inclusa la regolazione manuale delle dimensioni dei volumi e l"utilizzo del dimensionamento automatico dei volumi in Workload Factory.' 
+summary: 'Regola manualmente le dimensioni del volume, attiva l"espansione automatica del volume e ribilancia la capacità dei volumi FlexVol e FlexGroup in Workload Factory.' 
 ---
 = Gestisci la capacità del volume in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Scopri come gestire la capacità dei volumi, inclusa la regolazione ma
 
 
 [role="lead"]
-La capacità del volume deve essere regolata in base alle esigenze. Puoi regolare manualmente le dimensioni del volume oppure attivare il dimensionamento automatico del volume per lasciare che Workload Factory gestisca la capacità del volume per te. Controlla il bilanciamento della capacità del volume FlexVol o FlexGroup e riequilibra la capacità del volume per distribuire i file in modo uniforme su tutti i volumi FlexVol di un nodo o su tutti i costituenti, così che tutti i nodi partecipino al carico di lavoro di un singolo volume FlexGroup.
+Regola la capacità del volume in base alle tue esigenze. Aumenta o diminuisci manualmente le dimensioni del volume, attiva l'autogrow del volume per consentire a Workload Factory di gestire la capacità per te oppure riequilibra la capacità dei volumi FlexVol e FlexGroup per distribuire i file in modo uniforme tra tutti i volumi FlexVol di un nodo o tra tutti i costituenti, in modo che tutti i nodi partecipino al carico di lavoro di un singolo volume FlexGroup.
 
 
 
@@ -43,7 +43,7 @@ Specifica la dimensione massima di crescita del volume e l'unità. La dimensione
 [[adjust-volume-capacity-manually]]
 == Regola manualmente la capacità del volume
 
-Puoi regolare la capacità del volume aumentando o diminuendo la dimensione allocata di un volume. La tabella seguente mostra le dimensioni minime e massime del volume per tipo di volume:
+Puoi regolare la capacità del volume aumentando o diminuendo la dimensione di provisioning di un volume. Le dimensioni minime e massime variano a seconda del tipo di volume:
 
 [cols="1,1,1"]
 |===
@@ -76,9 +76,9 @@ Per regolare la capacità del volume, devi associare un collegamento. link:creat
 [[rebalance-volume-capacity-for-flexvol-and-flexgroup-volumes]]
 == Ribilancia la capacità del volume per FlexVol e FlexGroup volumi
 
-Il ribilanciamento della capacità dei volumi è supportato per i volumi FlexVol e i volumi FlexGroup. Il ribilanciamento di un volume ridistribuisce la capacità quando nel tempo si sviluppano squilibri dovuti all'aggiunta di nuovi file e alla crescita dei file. Dopo che avvii manualmente l'operazione di ribilanciamento, selezioniamo i file e li spostiamo automaticamente e senza interruzioni. Le operazioni di trasferimento dei volumi consumano risorse del file system.
+Il ribilanciamento della capacità dei volumi è supportato per i volumi FlexVol e i volumi FlexGroup. Il ribilanciamento di un volume ridistribuisce la capacità quando nel tempo si creano squilibri dovuti all'aggiunta di nuovi file e alla crescita dei file. Dopo che avvii manualmente l'operazione di ribilanciamento, Workload Factory seleziona i file e li sposta automaticamente e senza interruzioni. Le operazioni di trasferimento dei volumi consumano risorse del file system.
 
-Ciascun tipo di volume e le relative operazioni di ribilanciamento differiscono come segue.
+Il ribilanciamento varia a seconda del tipo di volume.
 
 .FlexVol volumi
 FlexVol volume sono contenitori logici che offrono flessibilità nella gestione dei dati, consentendo l'espansione, la riduzione, lo spostamento e la copia efficiente. Puoi usarli in ambienti NAS e SAN.
@@ -88,11 +88,11 @@ Un volume FlexVol può essere bilanciato rispetto ad altri volumi FlexVol all'in
 .FlexGroup volumi
 I volumi FlexGroup, d'altro canto, sono container NAS scalabili progettati per prestazioni elevate e distribuzione automatica del carico. Sono costituiti da più volumi membri (costituenti) che condividono il traffico in modo trasparente. I volumi FlexGroup offrono una capacità enorme, superando i limiti di FlexVol, con una capacità fino a 60 PB e 400 miliardi di file. Semplificano la gestione offrendo un container con un singolo namespace.
 
-La capacità è distribuita su diversi componenti in un scale-out FSx for ONTAP file system con due o più coppie ad alta disponibilità (HA). Ciascun componente è un container che determina la dimensione massima di un singolo file. FSx for ONTAP distribuisce i file in modo uniforme su tutti i componenti, in modo che tutti i nodi partecipino al carico di lavoro di un singolo FlexGroup volume.
+In un file system FSx for ONTAP scale-out con due o più coppie ad alta disponibilità (HA), la capacità è distribuita tra diversi componenti. Ciascun componente è un container che determina la dimensione massima di un singolo file. FSx for ONTAP distribuisce i file in modo uniforme su tutti i componenti, in modo che tutti i nodi partecipino al carico di lavoro di un singolo FlexGroup volume.
 
 Quando i componenti non sono distribuiti uniformemente su tutti i nodi, le prestazioni del volume FlexGroup diminuiscono.
 
-La verifica del bilanciamento della capacità del FlexGroup volume comprende la valutazione della disposizione corrente dei costituenti. Quando riequilibri la capacità del volume, NetApp Workload Factory progetta una nuova disposizione dei costituenti con un numero pari di costituenti per distribuire uniformemente i dati tra tutte le coppie HA. Il servizio esegue il piano di riequilibrio, migliorando così le operazioni di lettura e scrittura.
+La verifica del bilanciamento della capacità del volume FlexGroup include la valutazione del layout corrente dei componenti. Quando riequilibri la capacità del volume, NetApp Workload Factory progetta un nuovo layout dei componenti con un numero pari di componenti per distribuire i dati in modo uniforme tra tutte le coppie HA. Il servizio esegue il piano di riequilibrio, migliorando così le operazioni di lettura e scrittura.
 
 
 NOTE: Il ribilanciamento non è supportato per i volumi SAN come iSCSI e NVMe.
@@ -139,7 +139,7 @@ NOTE: Un amministratore di Workload Factory può <<Interrompere un'operazione di
 .Prima di iniziare
 * <<Verifica il bilanciamento dei tuoi volumi,Controlla il bilanciamento di un volume>> prima di riequilibrare i volumi.
 * Per ribilanciare un volume, devi link:create-link.html["crea e associa un collegamento o associa un collegamento esistente al file system"^]. Dopo aver associato il collegamento, torna a questa procedura.
-* Tieni presente che gli snapshot esistenti sui volumi che ribilanci diventano parziali e non puoi usarli per ripristinare i dati del volume, ma puoi usare i nuovi snapshot creati dopo il ribilanciamento per ripristinare i dati del volume.
+* Gli snapshot esistenti sui volumi che riequilibri diventano parziali e non puoi usarli per ripristinare i dati del volume, ma puoi usare i nuovi snapshot creati dopo il riequilibrio per ripristinare i dati del volume.
 * FlexVol volumi è preferibile ribilanciarli tutti insieme per distribuire uniformemente tutte le risorse dei volumi. I volumi deselezionati non partecipano attivamente alla procedura di bilanciamento.
 
 
@@ -147,7 +147,7 @@ NOTE: Un amministratore di Workload Factory può <<Interrompere un'operazione di
 ====
 .FlexVol volume
 --
-Un FlexVol volume può essere bilanciato rispetto ad altri FlexVol volume all'interno di un nodo in un file system FSx for ONTAP. Quando il file system ha più di un FlexVol volume per nodo e viene selezionato un singolo FlexVol volume, il FlexVol volume viene bilanciato nel contesto di tutti i FlexVols, ma solo il volume selezionato può essere spostato.
+Un volume FlexVol può essere bilanciato rispetto ad altri volumi FlexVol all'interno di un nodo in un file system FSx for ONTAP. Quando il file system ha più di un volume FlexVol per nodo e viene selezionato un singolo volume FlexVol, il volume FlexVol viene bilanciato nel contesto di tutti i FlexVols, ma solo il volume selezionato può essere spostato.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].

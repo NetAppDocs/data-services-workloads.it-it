@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/learn-fsx-ontap.html 
 keywords: Amazon FSx for NetApp ONTAP, FSx, storage, aws 
-summary: 'Amazon FSx for NetApp ONTAP è un servizio completamente gestito che consente ai clienti di avviare ed eseguire file system come backend di storage per i tuoi carichi di lavoro all"interno di Workload Factory.' 
+summary: Scopri Amazon FSx per NetApp ONTAP, un servizio completamente gestito che ti consente di avviare ed eseguire file system come backend di storage per i tuoi carichi di lavoro in Workload Factory. 
 ---
 = Scopri di più su Amazon FSx per NetApp ONTAP in NetApp Workload Factory
 :allow-uri-read: 
@@ -24,9 +24,9 @@ FSx for ONTAP è il componente _Storage_ in Workload Factory.
 
 FSx for ONTAP offre le seguenti funzionalità:
 
-* *Servizio completamente gestito*: offre un servizio completamente gestito integrato con la console di Workload Factory.
+* *Servizio gestito completo*: fornisce un servizio gestito completamente integrato con la console di Workload Factory.
 * *Alta disponibilità*: garantisce un'elevata disponibilità per ogni file system FSx for ONTAP, supportando implementazioni con zone di disponibilità singole e multiple.
-* *Snapshot automatici*: proteggono i dati con Snapshot automatici ed efficienti, ovvero copie point-in-time quasi istantanee, di sola lettura e a basso consumo di spazio del file system o dei volumi.
+* *Snapshot automatici*: proteggono i dati con snapshot automatici ed efficienti, che sono copie point-in-time di sola lettura del file system o dei volumi, quasi istantanee ed efficienti in termini di spazio.
 * *Replica dei volumi*: offre il disaster recovery con replica tra regioni in Amazon Web Services.
 * *Backup efficienti*: aggiunge un ulteriore livello di protezione con una copia dei dati in un'altra regione per le emergenze.
 * *Clonazione rapida*: accelera lo sviluppo delle applicazioni grazie alla clonazione rapida.
@@ -35,7 +35,7 @@ FSx for ONTAP offre le seguenti funzionalità:
 * *Cache in-memory e cache NVMe*: include una cache in-memory e una cache NVMe uniche, che migliorano le prestazioni dei dati a cui accedi frequentemente.
 * *Centinaia di migliaia di IOPS*: offre centinaia di migliaia di IOPS con i dischi SSD, garantendo che lo storage e i carichi di lavoro ricevano risultati tempestivi.
 * *Thin Provisioning*: consente di predisporre la capacità in anticipo, risparmiando sui costi finché non serve più capacità.
-* *Deduplicazione e compressione*: rimuove i dati duplicati e comprime i dati per ridurre la quantità di storage fisico necessaria per i file system FSx for ONTAP, con conseguente risparmio sui costi.
+* *Deduplicazione e compressione*: rimuove i dati duplicati e comprime i dati per ridurre la quantità di storage fisico richiesta per i file system FSx for ONTAP, con conseguente risparmio sui costi.
 * *Tiering dei dati*: consente di ridurre i costi di storage spostando i dati a cui accedi meno frequentemente dal tier di storage SSD primario ad alte prestazioni al tier di storage secondario del pool di capacità.
 
 
@@ -77,7 +77,7 @@ AWS gestisce il tuo account FSx for ONTAP, non Workload Factory. Fai riferimento
 [[regions]]
 == Regioni
 
-Workload factory è supportato in tutte le regioni commerciali in cui è supportato FSx for ONTAP. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Visualizza le regioni Amazon supportate."^]
+Workload Factory è supportato in tutte le regioni commerciali in cui è supportato FSx for ONTAP. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Visualizza le regioni Amazon supportate."^]
 
 Le seguenti regioni AWS non sono supportate:
 

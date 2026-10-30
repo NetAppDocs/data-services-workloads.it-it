@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshots.html 
 keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
-summary: 'Modifica le impostazioni degli Snapshot, abilita l"accesso alle directory ed elimina gli Snapshot per gestire gli Snapshot e la protezione dei dati in Workload Factory.' 
+summary: 'Modifica i nomi, le etichette e i periodi di conservazione degli snapshot, rendi gli snapshot immutabili, abilita l"accesso alla directory degli snapshot ed elimina gli snapshot dei volumi FSx for ONTAP.' 
 ---
 = Gestisci le Snapshot di un volume FSx for ONTAP
 :allow-uri-read: 
@@ -26,7 +26,7 @@ Modifica il nome, l'etichetta e il periodo di conservazione di uno snapshot. Se 
 . Seleziona il menu Azioni per il volume con l'istantanea da modificare.
 . Seleziona *Azioni di protezione dei dati* e poi *Gestisci snapshot*.
 . Dalla pagina Gestisci snapshot, seleziona il menu delle azioni per lo snapshot da modificare, quindi seleziona *Modifica*.
-. Nella finestra di dialogo Modifica snapshot, puoi modificare quanto segue:
+. Nella finestra di dialogo Modifica una snapshot, modifica le seguenti impostazioni:
 +
 .. Cambia il nome.
 .. Cambia l'etichetta.
@@ -48,7 +48,7 @@ Accetta l'affermazione relativa alle snapshot immutabili.
 [[access-a-snapshot]]
 == Accedi a uno Snapshot
 
-Abilita l'accesso alla directory degli snapshot per consentire agli utenti di accedere agli snapshot in autonomia.
+Abilita l'accesso alla directory degli snapshot in modo che gli utenti possano accedervi autonomamente.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
@@ -56,7 +56,7 @@ Abilita l'accesso alla directory degli snapshot per consentire agli utenti di ac
 . Seleziona il menu Azioni per il volume con lo snapshot a cui accedere.
 . Seleziona *Azioni di protezione dei dati* e poi *Gestisci snapshot*.
 . Dalla pagina Gestisci snapshot, seleziona il menu delle azioni per lo snapshot a cui vuoi accedere, quindi seleziona *Accedi*.
-. Nella finestra di dialogo Access snapshot, seleziona *Abilita accesso alla directory snapshot* per accedere a questo snapshot del volume e a tutti gli snapshot del volume.
+. Nella finestra di dialogo Access snapshot, seleziona *Enable snapshot directory access* per accedere a questo snapshot del volume e a tutti gli snapshot del volume.
 +
 ** Per i volumi NFS: seleziona *Percorso di accesso NFS* per visualizzare il percorso NFS per lo snapshot.
 ** Per i volumi SMB/CIFS: seleziona *Percorso di accesso SMB* per visualizzare il percorso SMB per lo Snapshot.
@@ -71,7 +71,7 @@ Abilita l'accesso alla directory degli snapshot per consentire agli utenti di ac
 [[restore-data-from-a-snapshot]]
 == Ripristina i dati da una Snapshot
 
-Hai la possibilità di ripristinare i dati da uno Snapshot su un volume esistente o su un nuovo volume.
+Puoi ripristinare i dati da uno snapshot su un volume esistente o su un nuovo volume.
 
 link:use-snapshots.html["Ripristinare un volume da uno Snapshot"]
 
@@ -82,7 +82,7 @@ link:use-snapshots.html["Ripristinare un volume da uno Snapshot"]
 
 Elimina uno Snapshot per liberare spazio.
 
-Le Snapshot immutabili non possono essere eliminate finché il periodo di conservazione non termina.
+Non puoi eliminare gli snapshot immutabili finché il periodo di conservazione non termina.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].

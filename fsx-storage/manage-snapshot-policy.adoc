@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshot-policy.html 
 keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
-summary: Gestisci le policy di Snapshot per i volumi FSx for ONTAP in Workload Factory. Una policy di Snapshot definisce come il sistema crea gli Snapshot per un volume. 
+summary: Assegna, modifica, rimuovi ed elimina le policy di snapshot e abilita snapshot immutabili e la conservazione a lungo termine per i volumi FSx for ONTAP in Workload Factory. 
 ---
 = Gestisci le policy di snapshot per i volumi in NetApp Workload Factory
 :allow-uri-read: 
@@ -27,7 +27,7 @@ Per impostazione predefinita, ogni volume è associato alla policy di Snapshot `
 Puoi assegnare una policy di Snapshot a un singolo volume per creare Snapshot pianificati per tale volume.
 
 .Prima di iniziare
-Devi associare un collegamento per assegnare una policy di snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+Devi associare un collegamento per assegnare una policy di snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
@@ -39,7 +39,7 @@ Devi associare un collegamento per assegnare una policy di snapshot. link:create
 . Nella pagina di gestione delle policy di Snapshot, seleziona il menu delle azioni della policy di Snapshot e quindi seleziona *Assign policy to volume*.
 . Nella finestra di dialogo Assegna policy di Snapshot, seleziona una policy di Snapshot da assegnare al volume e controlla la pianificazione della policy.
 +
-Se la policy contiene Snapshot immutabili e vuoi usarla, accetta la dichiarazione.
+Se la policy contiene snapshot immutabili e vuoi usarla, accetta la dichiarazione.
 
 . Seleziona *Assegna*.
 
@@ -52,10 +52,10 @@ La policy di Snapshot è assegnata al volume.
 [[change-a-snapshot-policy]]
 == Modificare una policy di Snapshot
 
-Puoi modificare il nome della policy di Snapshot, la pianificazione e il numero di copie da conservare, nonché abilitare o disabilitare gli Snapshot immutabili. Non puoi abilitare o disabilitare la condivisione della policy tra le VM di storage. Questa opzione è disponibile solo durante la creazione della policy di Snapshot.
+Puoi modificare il nome del criterio di snapshot, la pianificazione e il numero di copie da conservare, nonché abilitare o disabilitare gli snapshot immutabili. Non puoi abilitare o disabilitare la condivisione del criterio tra VM di storage. Puoi impostare questa opzione solo quando crei un criterio di snapshot.
 
 .Prima di iniziare
-Per visualizzare i criteri snapshot esistenti, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+Per visualizzare i criteri snapshot esistenti, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
@@ -80,7 +80,7 @@ La policy di Snapshot è stata aggiornata.
 Blocca le Snapshot per impedirne l'eliminazione durante il periodo di conservazione.
 
 .Prima di iniziare
-Devi associare un collegamento per abilitare gli snapshot immutabili. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+Devi associare un collegamento per abilitare gli snapshot immutabili. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].
@@ -148,7 +148,7 @@ NOTE: La modifica della conservazione a lungo termine non è disponibile quando 
 Rimuovi una policy di Snapshot da un volume perché non vuoi più Snapshot del volume o perché vuoi eliminare una policy di Snapshot assegnata a più volumi. Per <<Elimina una policy di Snapshot,eliminare una policy di Snapshot>> assegnata a più di un volume, devi rimuoverla manualmente da tutti i volumi.
 
 .Prima di iniziare
-Devi associare un collegamento per rimuovere una policy snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+Devi associare un collegamento per rimuovere una policy snapshot. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
 
 .Passaggi
 . Accedi al link:https://console.netapp.com["NetApp Console"^].

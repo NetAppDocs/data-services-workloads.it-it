@@ -130,7 +130,7 @@ sidebar:
           - title: Creare e collegare punti di accesso S3
             url: "/fsx-storage/create-s3-access-points.html"
           - title: Gestisci i punti di accesso S3
-            url: "/fsx-storage/manage-s3-access-points.html"
+            url: "/fsx-storage/edit-s3-access-points.html"
           - title: Configurare l'infrastruttura della tabella del giornale
             url: "/fsx-storage/setup-journal-table.html"
         - title: Suddividi un volume clonato

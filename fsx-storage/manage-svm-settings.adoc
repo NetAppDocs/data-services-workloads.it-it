@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-svm-settings.html 
 keywords: edit storage vm settings, vm tags, svm tags, storage vm settings, storage vm password, svm password 
-summary: Puoi aggiungere, aggiornare o rimuovere i tag di una VM di storage in qualsiasi momento. 
+summary: Configurare Active Directory, gestire i tag e reimpostare la password per una VM di storage in un file system FSx for ONTAP. 
 ---
 = Gestisci le impostazioni delle VM di storage in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Puoi aggiungere, aggiornare o rimuovere i tag di una VM di storage in q
 
 
 [role="lead"]
-Gestisci le impostazioni di una VM di storage in NetApp Workload Factory. Configura e aggiorna Active Directory per una VM di storage, puoi aggiornare la password della VM di storage e gestire i tag per la VM di storage.
+Gestisci le impostazioni di una VM di storage in NetApp Workload Factory. Puoi configurare e aggiornare Active Directory, reimpostare la password della VM di storage e gestire i tag della VM di storage.
 
 
 
@@ -32,7 +32,7 @@ Gli stessi passaggi si applicano alla configurazione e all'aggiornamento di Acti
 +
 .. *Dominio Active Directory a cui unirsi*: Inserisci il fully qualified domain name (FQDN) della tua Active Directory.
 .. *Indirizzi IP DNS*: Inserisci fino a tre indirizzi IP separati da virgole.
-.. *Nome NetBIOS del server SMB*: immetti il nome NetBIOS del server SMB dell'oggetto computer di Active Directory da creare per la tua storage VM. Questo è il nome di questa SVM in Active Directory.
+.. *Nome NetBIOS del server SMB*: immetti il nome NetBIOS del server SMB dell'oggetto computer di Active Directory da creare per la tua storage VM. Questo è il nome della storage VM in Active Directory.
 .. *Nome utente*: inserisci il nome utente dell'account di servizio nel tuo Active Directory esistente.
 +
 Non includere un prefisso o un suffisso di dominio. Per  `EXAMPLE\ADMIN`, usa  `ADMIN`.

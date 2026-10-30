@@ -18,17 +18,17 @@ I dati sono accessibili sia sul clone che sul volume d'origine durante la divisi
 .Informazioni su questa attività
 L'operazione di divisione del clone prevede le seguenti fasi:
 
-* Non è possibile creare nuove copie snapshot del volume FlexClone durante l'operazione di suddivisione.
-* Un volume FlexClone non può essere separato dal volume d'origine se fa parte di una relazione di protezione dei dati.
-* Se porti il FlexClone volume offline mentre è in corso la suddivisione, l'operazione di suddivisione viene sospesa; quando riporti il FlexClone volume online, l'operazione di suddivisione riprende.
+* Non puoi creare nuove copie Snapshot del volume FlexClone durante l'operazione di suddivisione.
+* Non puoi separare un volume FlexClone dal suo volume d'origine se appartiene a una relazione di protezione dei dati.
+* Se porti offline il volume FlexClone durante la divisione, l'operazione di divisione viene sospesa. Quando riporti online il volume FlexClone, l'operazione di divisione riprende.
 * Dopo la divisione, sia il volume FlexVol d'origine che il clone richiedono l'intera allocazione di spazio determinata dalle rispettive garanzie di volume.
-* Dopo che un volume FlexClone viene separato dal suo volume d'origine, i due non possono essere riuniti.
+* Dopo aver separato un volume FlexClone dal suo volume d'origine, non puoi più riunirli.
 
 
 .Prima di iniziare
 Prima di suddividere un volume clonato, tieni presente quanto segue:
 
-* Per dividere un volume clonato, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il collegamento, torna a questa procedura.
+* Per dividere un volume clonato, devi associare un collegamento. link:create-link.html["Scopri come associare un collegamento esistente o creare e associare un nuovo collegamento"^]. Dopo aver associato il link, torna a questa operazione.
 * Il volume FlexClone deve essere online quando inizia l'operazione di suddivisione.
 * Il volume d'origine deve essere online affinché lo split riesca.
 
