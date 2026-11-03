@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: gcnv/view-storage-pools.html 
+keywords: view storage pools, storage pools, gcnv 
+summary: Visualizza i pool di storage di Google Cloud NetApp Volumes e i relativi dettagli in NetApp Workload Factory. 
+---
+= Visualizza i pool di storage di Google Cloud NetApp Volumes in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Visualizza i pool di storage di Google Cloud NetApp Volumes e i relativi dettagli in NetApp Workload Factory.
+
+.Passaggi
+. Accedi al link:https://console.netapp.com["NetApp Console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger serve per passare a Workloads, la voce di menu di Workload Factory"] *Archiviazione* > *Google Cloud NetApp Volumes*.
+. Utilizza i filtri *Progetti*, *Credenziali* e *Regioni* per limitare i pool di storage visualizzati.
+. Esamina la tabella dei pool di storage, che mostra dettagli quali nome, stato, livello di servizio e capacità.
++
+Il livello di servizio di un pool di storage può essere Standard, Premium, Extreme, Flex File o Flex Unified. La modalità mostra Default o ONTAP per i pool di storage Flex Unified e Default per tutti gli altri livelli di servizio.
+
+. Seleziona il nome di un pool di storage per aprirne i dettagli, inclusi il throughput e la descrizione.
+

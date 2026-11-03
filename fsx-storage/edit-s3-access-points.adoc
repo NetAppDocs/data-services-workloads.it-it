@@ -7,7 +7,7 @@ summary: Aggiorna i dettagli del punto di accesso S3, gestisci i tag e abilita o
 = Modifica i punti di accesso S3 per un volume FSx for ONTAP in NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

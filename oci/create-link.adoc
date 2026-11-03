@@ -4,7 +4,7 @@ permalink: oci/create-link.html
 keywords: connect, connection, link, associate link, create link, authenticate link, oci nss 
 summary: Puoi creare e associare collegamenti per fornire un rapporto di trust e connettività tra un account NetApp Workload Factory e un sistema storage Oracle Cloud Infrastructure NetApp Storage Service. 
 ---
-= Connettiti a un sistema storage NetApp Storage Service di Oracle Cloud Infrastructure tramite un collegamento
+= Connettiti a un sistema storage OCI NetApp Storage Service tramite un collegamento
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -311,6 +311,8 @@ sidebar:
       url: "/gcnv/add-roles.html"
     - title: Aggiungi le credenziali di Google Cloud NetApp Volumes
       url: "/gcnv/add-credentials.html"
+    - title: Visualizza i pool di storage di Google Cloud NetApp Volumes
+      url: "/gcnv/view-storage-pools.html"
     - title: Analisi della configurazione per Google Cloud NetApp Volumes
       url: "/gcnv/configuration-analysis.html"
     - title: Migliora le configurazioni del pool di storage
@@ -327,6 +329,10 @@ sidebar:
       url: "/oci/create-discover-systems.html"
     - title: Connettiti a un sistema di storage OCI
       url: "/oci/create-link.html"
+    - title: Analisi della configurazione per il servizio di storage OCI NetApp
+      url: "/oci/configuration-analysis.html"
+    - title: Migliora le configurazioni di OCI NetApp Storage Service
+      url: "/oci/improve-configurations.html"
     - title: Riferimento alle autorizzazioni per OCI NetApp Storage Service
       url: "/oci/permissions-oci.html"
   - title: Gestisci Workload Factory
