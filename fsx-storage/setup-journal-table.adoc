@@ -61,7 +61,7 @@ Il {uuid} è un identificatore casuale di 8 caratteri generato al momento della 
 Per abilitare la funzionalità della tabella Journal, segui questi passaggi:
 
 * Disporre di un volume esistente con un punto di accesso S3. link:create-volume.html["Crea un volume con un punto di accesso S3"]
-* Impostare la configurazione di rete su *Internet* per il punto di accesso S3. link:manage-s3-access-points.html["Modifica la configurazione di rete per il punto di accesso S3"].
+* Impostare la configurazione di rete su *Internet* per il punto di accesso S3. link:edit-s3-access-points.html["Modifica la configurazione di rete per il punto di accesso S3"].
 * link:add-credentials.html["Concedi le autorizzazioni per le operazioni e la remediation"^] alle tue credenziali di Workload Factory.
 * Aggiungi le seguenti autorizzazioni della policy IAM all'account AWS che utilizzi per eseguire il deployment di CloudFormation per configurare la tabella Journal.
 +

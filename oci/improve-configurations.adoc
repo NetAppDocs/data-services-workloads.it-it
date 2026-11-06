@@ -39,7 +39,7 @@ Workload Factory analizza lo stato di corretta architettura delle seguenti confi
 [[before-you-begin]]
 == Prima di iniziare
 
-* Devi link:add-credentials.html["concedi le autorizzazioni per le operazioni e la remediation"] nel tuo account OCI.
+* Devi link:add-credentials-oci.html["concedi le autorizzazioni per le operazioni e la remediation"] nel tuo account OCI.
 * link:create-link.html["Connettiti a un sistema OCI NSS tramite un collegamento"] per l'analisi più completa delle risorse del file system.
 
 

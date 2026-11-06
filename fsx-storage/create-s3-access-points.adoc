@@ -52,4 +52,4 @@ Facoltativamente, è possibile utilizzare la funzionalità Tabella di registro c
 
 Altri argomenti correlati:
 
-link:manage-s3-access-points.html["Modifica o elimina i punti di accesso S3 per un volume in NetApp Workload Factory"]
+link:edit-s3-access-points.html["Modifica o elimina i punti di accesso S3 per un volume in NetApp Workload Factory"]

@@ -114,5 +114,5 @@ Puoi abilitare i file immutabili solo durante link:create-volume.html["creazione
 * link:create-volume.html["Crea un volume in Workload Factory"]
 * link:manage-volume-capacity.html["Gestisci la capacità del volume in Workload Factory"]
 * link:change-tiering-policy.html["Modifica il criterio di tiering del volume in Workload Factory"]
-* link:manage-s3-access-points.html["Gestisci i punti di accesso S3 in Workload Factory"]
+* link:edit-s3-access-points.html["Gestisci i punti di accesso S3 in Workload Factory"]
 
