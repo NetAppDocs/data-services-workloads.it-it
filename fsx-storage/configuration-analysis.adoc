@@ -96,7 +96,7 @@ La replica tra regioni garantisce che i tuoi dati vengano replicati in un'altra 
 
 * *Margine di capacità SSD*
 +
-La capacità del tier di storage SSD non dovrebbe superare l'80% di utilizzo. Questo potrebbe influire sulle letture e scritture dei dati nel tier di storage della capacity pool e sul throughput del tuo file system. Quando la capacità si esaurisce, i volumi di dati diventano di sola lettura. Anche i servizi che cercano di scrivere nuovi dati non riescono.
+La capacità del tier di storage SSD non deve superare l'80% di utilizzo. Il superamento di questa soglia potrebbe influire sulle operazioni di lettura e scrittura dei dati nel tier di storage del capacity pool e ridurre il throughput del tuo file system. Quando la capacità si esaurisce, i volumi di dati diventano di sola lettura. Anche i servizi che tentano di scrivere nuovi dati non riescono più a farlo.
 
 * *Etichette della policy di replica*
 +

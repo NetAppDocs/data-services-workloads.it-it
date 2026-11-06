@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: oci/create-cyber-vault.html 
+keywords: create cyber vault, volume cyber vault, protect data cyber vault, cyber vault setup 
+summary: 'Scopri i cyber vault di NetApp e come implementare un"architettura di cyber vault per proteggere i tuoi dati da ransomware e minacce informatiche.' 
+---
+= Proteggi i dati di OCI NetApp Storage Service con un cyber vault
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un volume di cyber vault è una posizione di storage isolata e sicura che memorizza copie di backup dei tuoi dati e li protegge da attacchi ransomware e altre minacce informatiche. Per creare un vault, crea un volume di cyber vault, disabilita tutti i protocolli client, imposta una relazione di replica tra il volume di origine e il volume di cyber vault e crea snapshot immutabili sul volume di cyber vault.
+
+
+
+[[what-is-a-cyber-vault]]
+== Che cos'è un cyber vault?
+
+Un cyber vault è una specifica tecnica di protezione dei dati che prevede l'archiviazione di dati critici in un ambiente isolato, separato dall'infrastruttura IT principale.
+
+Il cyber vault è un repository di dati "air-gapped", immutabile e indelebile, immune alle minacce che colpiscono la rete principale, come malware, ransomware o persino minacce interne. Un cyber vault può essere realizzato tramite Snapshot immutabili e indelebili.
+
+I backup con isolamento fisico (air-gapping) che utilizzano metodi tradizionali prevedono la creazione di spazio e la separazione fisica dei supporti primario e secondario. Spostando i supporti in una sede esterna o interrompendo la connettività, i malintenzionati non hanno accesso ai dati. Questo protegge i dati, ma può comportare tempi di ripristino più lunghi.
+
+
+
+[[oci-netapp-storage-service-cyber-vaults]]
+== OCI NetApp Storage Service cyber vault
+
+OCI NetApp Storage Service è supportato come origine e destinazione per un cyber vault.
+
+
+
+[[implementation]]
+== Implementazione
+
+Workload Factory ti assiste nella creazione di un'architettura di cyber vault. Dopo che contatti NetApp per esprimere il tuo interesse a implementare un cyber vault, uno specialista di NetApp ti contatta per discutere i tuoi requisiti.
+
+Per iniziare, invia un'e-mail a ng-CyberVault@netapp.com.
+
+.Informazioni correlate
+Per ulteriori informazioni sui cyber vault e su come configurare questa architettura, consulta link:https://docs.netapp.com/us-en/netapp-solutions-dataops/cyber-vault/ontap-cyber-vault-overview.html["Documentazione di ONTAP cyber vault"^].
