@@ -1833,11 +1833,6 @@
   <block id="8eb98f7a0459d22ab367426190a3fb48" category="admonition">Puoi vedere un'analisi dettagliata dei componenti solo quando un collegamento è associato al file system FSx for ONTAP. Se non c'è un collegamento, puoi comunque visualizzare i grafici per latenza, IOPS e throughput.</block>
   <block id="eb40849137a407e18ca35f8df5165003" category="admonition">I valori di latenza dall'analisi QoS di ONTAP e CloudWatch potrebbero differire leggermente perché raccolgono i dati in modi diversi. L'analisi di base utilizza i dati di ONTAP per identificare la causa principale.</block>
   <block id="6373f94eea8c31352a32986b39528f84" category="section-title">Analisi AI</block>
-  <block id="a0e9b8268d276ba4360cd030f4a16beb" category="paragraph">Mentre un'analisi di base può identificare la fonte della latenza, situazioni più complesse che coinvolgono dati o componenti del cluster spesso richiedono un'indagine più approfondita. L'analisi basata sull'intelligenza artificiale fornisce questa risoluzione dei problemi più approfondita, individuando criticità come volumi sovraccarichi, configurazioni inadeguate o la necessità di aumentare la capacità—problematiche che un'analisi di base potrebbe non rilevare.</block>
-  <block id="8aa7f64b5600149a4f1b16f3cd4cdf44" category="paragraph">La disponibilità dell'analisi tramite IA dipende dalla configurazione del tuo account:</block>
-  <block id="79280f8412f92a7b9f71d47cf17b93e8" category="list-text">*NetApp-crediti AI gestiti abilitati*: Puoi eseguire analisi AI senza ulteriori configurazioni Bedrock.</block>
-  <block id="b22abc9ad9d115a1ead6c959afc1a6d3" category="list-text">*Disabilitato dall'amministratore*: le opzioni AI non sono disponibili.</block>
-  <block id="10fe983c3658bd7369e2e51b32dd02b0" category="paragraph">Se i crediti AI gestiti da NetApp sono abilitati ma il tuo budget mensile è stato raggiunto, l'analisi AI non è disponibile e viene visualizzato un messaggio.</block>
   <block id="f7cc2329f80f5595e6165f0ae01f89d8" category="paragraph">Quando esegui un'analisi basata sull'IA, il sistema fornisce:</block>
   <block id="f825ff4432099d6f44cdb5f8f4bfc6db" category="list-text">*Potenziale causa principale*: Spiegazione dettagliata di cosa sta causando il problema di latenza</block>
   <block id="102e5bfcdb00d2737ee47f8cfa62267e" category="list-text">*Clienti interessati*: Elenco dei nomi delle istanze EC2 interessate dalla latenza</block>
@@ -2047,29 +2042,23 @@
   <block id="2edaf9b54abbf5ae956607d1cce3419f" category="doc">Guida rapida per Workload Factory per EDA</block>
   <block id="0595b103e9174c24b7fffa0491687cc5" category="paragraph">Inizia a utilizzare Workload Factory per EDA configurando il tuo ambiente, abilitando le dashboard di monitoraggio e configurando l'analisi della latenza per ottimizzare le performance di FSx for ONTAP per i tuoi carichi di lavoro EDA.</block>
   <block id="3d784fb83da69a092542ad97e84229a1" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Accedi a Workload Factory</block>
-  <block id="1283af7cc983573ed4713cdd57866991" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Aggiungi credenziali e autorizzazioni per il workload EDA</block>
   <block id="ccfaa839e768aad68d8df43945f3981f" category="inline-link-macro">crea le policy IAM per le autorizzazioni richieste</block>
   <block id="c4f56d16dd663e4eddc3092f24840c99" category="paragraph"><block ref="ba3df41527d282ff668fde47559ede13" category="inline-link-macro-rx"></block> che include la selezione della funzionalità del workload EDA e <block ref="130ddacc98dcbb955ac32d7d05051cd1" category="inline-link-macro-rx"></block>.</block>
-  <block id="9d416a07e693910e3f444835dcc86a81" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> Configura il tuo ambiente per soddisfare i requisiti EDA</block>
   <block id="fecfde27c537152de469ba41e82d7a28" category="paragraph">Ti serve un file system FSx for ONTAP distribuito e rilevato che contenga almeno un volume configurato come condivisione NFS.</block>
   <block id="7601729d359de4f5cd6af27402c9e70e" category="inline-link-macro">Scopri di più sui requisiti dell'EDA</block>
   <block id="5e94cb9cffa115d28cda939423c02585" category="paragraph"><block ref="633f3927c4cf021a7edd95ab9b5813a6" category="inline-link-macro-rx"></block>.</block>
-  <block id="76fe6a2921854a310876f2886d0744fa" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> Abilita la dashboard Panoramica</block>
   <block id="208586cd32a8a0d00042653ba4659b8e" category="paragraph">Abilita la dashboard Panoramica per monitorare lo stato di salute, la capacità e il throughput dei cluster FSx for ONTAP. Accetta la richiesta di consenso per consentire a Workload Factory di iniziare a raccogliere le metriche CloudWatch.</block>
   <block id="9c2a400f16596db71684b7bf853679f6" category="inline-link-macro">Scopri come attivare la dashboard Overview</block>
   <block id="ba484746496fd986236ce05e4941b11e" category="paragraph"><block ref="b8ebfe6424e9d27bf3ad5b5b28bbc547" category="inline-link-macro-rx"></block>.</block>
-  <block id="6a95e8fe1af51766347f08a14a5010e7" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block>Configura la dashboard dei progetti</block>
   <block id="ac8c955f7158cbf6e26b2fe132a5da5a" category="paragraph">Configura la dashboard Progetti per monitorare lo stato del sistema, le prestazioni e l'utilizzo dello spazio di archiviazione, consentendoti di ottimizzare efficacemente il tuo ambiente EDA.</block>
   <block id="cdf7ca0f732e877c2df79adf8b2dec38" category="inline-link-macro">Scopri come configurare la dashboard dei progetti</block>
   <block id="54aae42a8d9b94a669be4faf760989f4" category="paragraph"><block ref="df110d106150b671a1fd119c3817e75e" category="inline-link-macro-rx"></block>.</block>
   <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">Sei</block>
-  <block id="47fc6ce38b51022ce7378bb818bcbdbc" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block>Configura l'analisi della latenza di FSx for ONTAP</block>
   <block id="eccc4e57aadb72693d5183af6a022273" category="paragraph">Imposta soglie di latenza per identificare e risolvere in modo proattivo i problemi di prestazioni prima che influiscano sui tempi di esecuzione della simulazione. Configura avvisi di warning e critici, imposta notifiche email o SNS per ricevere avvisi in real-time, sfrutta l'analisi di base automatizzata e, facoltativamente, utilizza l'analisi AI per scenari complessi.</block>
   <block id="7a13522750dff612c4af95a525a5075b" category="inline-link-macro">Scopri come configurare il monitoraggio della latenza</block>
   <block id="e92f1fd565b0115330969e68f1df5c93" category="inline-link-macro">analizzare le tendenze di latenza</block>
   <block id="679aabdd1ec95ed7b75c71ce374528d5" category="paragraph"><block ref="fb26305f25ca1288ccacde22bbaccb07" category="inline-link-macro-rx"></block>. Dopo aver rilevato gli eventi, è possibile <block ref="17d96e1b2696eabecce662ae85cda8e7" category="inline-link-macro-rx"></block> utilizzare il grafico interattivo.</block>
   <block id="12e67aac3e7f9227cc35f8f047d7dc74" category="inline-image-macro">Sette</block>
-  <block id="28d16b2155b937481f163959c1136c11" category="paragraph-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block> Integra con altri servizi</block>
   <block id="434c0bf5962496285865a6a2af2512b4" category="paragraph">Integra EDA con altri servizi, come un portale di servizi o Perforce Helix Core, utilizzando l'API REST di Workload Factory.</block>
   <block id="dce6d9a52d216801c96ea309acf6ac73" category="inline-link-macro">Scopri come integrare EDA con Perforce</block>
   <block id="79d86c078f10e35b854431eab12b31a6" category="paragraph"><block ref="46b2e9ce515b7538a0db67e1aa1bc892" category="inline-link-macro-rx"></block>.</block>
@@ -2130,7 +2119,6 @@
   <block id="e83c229f37cf36a4d502c243dffb6c3d" category="list-text">Vengono visualizzati al massimo 200 eventi. Gli eventi più vecchi vengono rimossi man mano che ne vengono aggiunti di nuovi.</block>
   <block id="3378724912de6e334800d398b5316fcf" category="list-text">Gli eventi vengono visualizzati anche senza un collegamento al file system. È necessario un collegamento per visualizzare i dettagli dell'analisi di base o eseguire l'analisi AI.</block>
   <block id="85af8e40cac423345858be0210476d20" category="list-text">Seleziona la scheda *Latenza*.</block>
-  <block id="f06921222f3510361d45443110e72880" category="list-text">Esamina le informazioni relative a ciascun evento nella tabella.</block>
   <block id="391d5001f0e7f63a7def2cbcdfbf9795" category="list-text">Per visualizzare i dettagli di un evento di latenza, selezionare l'evento nella colonna *Gravità*. Si apre un pannello di analisi della latenza per quell'evento.</block>
   <block id="256e5511799cf87e5ea3d5686def55a5" category="list-text">Per ordinare la tabella, selezionare un'intestazione di colonna qualsiasi. Per impostazione predefinita, gli eventi critici vengono visualizzati per primi, ordinati per ora, seguiti dagli eventi di avviso, anch'essi ordinati per ora.</block>
   <block id="039dfdde9abd9ac1aa8a2a98cfb44323" category="inline-image-macro">L'icona del menu di azione</block>
@@ -2290,10 +2278,6 @@
   <block id="5626a4ecac9741d9b0e61d578ebf1561" category="list-text">Quando aggiorni le selezioni del filtro, tutte le informazioni vengono aggiornate per mostrare solo i file system corrispondenti.</block>
   <block id="fb3123e7d905f809c3bdf82e3ceca6af" category="section-title">Visualizza lo stato di salute del cluster</block>
   <block id="9a30a7ccabea3f518b310e693e0fc96d" category="paragraph">Nella parte superiore del pannello di controllo, vedi un riepilogo dello stato di salute e dell'attività dei file system che hai selezionato. Questo appare solo quando almeno un collegamento FSx for ONTAP è connesso ai tuoi file system.</block>
-  <block id="7da261fafbc98c685b2c0c780ccdbcf1" category="paragraph">Lo stato di salute del cluster comprende le seguenti aree chiave:</block>
-  <block id="ac97fe213f96cc9db6b4ee38d70f798b" category="list-text">*Latenza*: Numero di eventi di latenza rilevati</block>
-  <block id="3e245db3deb2fe7b566f9dfe8f122ad3" category="list-text">*Elasticità del file system*:</block>
-  <block id="a51f6183fddbec434723cff9a6cb22f0" category="list-text">*Eventi ONTAP*: Numero di eventi EMS per categoria (Capacità, Disponibilità e protezione, Sicurezza e altro)</block>
   <block id="c569953f651916e8d6fb2a2e26996486" category="list-text">Esamina lo stato di salute del cluster nella parte superiore della dashboard.</block>
   <block id="45cd3072594a40004f1648f957b11b4f" category="list-text">Per visualizzare gli eventi di latenza:</block>
   <block id="9bab24fe4c951c13841b658922a21a8b" category="list-text">Seleziona *Rivedi* per accedere alla scheda *Latenza*</block>
@@ -2329,11 +2313,6 @@
   <block id="91455d18a42b79b1a34df0d97bfbaffd" category="list-text">*Latenza minima (ms)*: Soglia di latenza utilizzata per determinare l'aumento del throughput</block>
   <block id="0a2daf37cc4cac8c9a3da95290e9a399" category="list-text">*Throughput massimo (SKU)*: SKU di throughput massimo consentito</block>
   <block id="6b482ace535080820ca5dea3bb557cb6" category="paragraph">I file system selezionati passano immediatamente alla nuova modalità di throughput.</block>
-  <block id="84a7874f129070a914f70dd3d70a6716" category="section-title">Analizzare le tendenze di capacità e i punti decisionali</block>
-  <block id="65bd457971cf8d44b2a0e065d040b668" category="paragraph">Utilizza il grafico di utilizzo dell'SSD per vedere come l'uso dello storage cambia nel tempo e individuare i pattern.</block>
-  <block id="4dbca2bab9fb0222adee0d079e0d2127" category="paragraph">I punti decisionali sul grafico indicano quando:</block>
-  <block id="232af3ec8ca37d39f0b49ddb6c81830a" category="list-text">*Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD.</block>
-  <block id="adcae559988943cef6bf4b9ce78904b2" category="list-text">*Punti decisionali dell'automazione*: Il sistema di automazione ha provato ad aumentare la capacità SSD. Questi punti mostrano se l'azione è riuscita o meno.</block>
   <block id="e307894bdae8efc4f4fdacf666cf2573" category="section-title">Utilizzare la tabella dei cluster</block>
   <block id="27e86a81d2f78cd7f4181479163bbbeb" category="paragraph">La tabella dei cluster offre una visualizzazione dettagliata di ogni file system FSx for ONTAP con metriche sulle prestazioni e sull'utilizzo.</block>
   <block id="88dc1144edaa697995919551780b6e93" category="list-text">Dalla scheda *Panoramica*, consultare la tabella dei cluster.</block>
@@ -6497,11 +6476,8 @@
   <block id="e920df7cb27871af178ff85a428a8b4e" category="list-text">In *Configurazione avanzata*, configura i parametri di gestione del throughput:</block>
   <block id="39122245b5363dc3871538d2ef59784e" category="list-text">*Finestra di violazioni consecutive (ore)*: durata delle violazioni consecutive prima dell'intervento</block>
   <block id="a9d111294543c201d767519d991c1b8d" category="list-text">*Metriche di violazione consecutive (%)*: Soglia percentuale per determinare le violazioni consecutive</block>
-  <block id="d385fd0ac858ff17553d407851f64c48" category="paragraph">Se la gestione della capacità SSD è disattivata, il grafico mostra solo l'utilizzo passato e non visualizza raccomandazioni o decisioni di automazione.</block>
-  <block id="1de4de358ec9c3a1cd36180e2c13a443" category="list-text">Dalla scheda *Panoramica*, seleziona il nome di un file system nella tabella. Nella visualizzazione dei dettagli del cluster, seleziona l'opzione *Throughput* o *Capacità SSD* per cambiare la visualizzazione del grafico.</block>
   <block id="a01346bc61a98c025144199b0893e264" category="paragraph">Se selezioni *Throughput*, il grafico mostra il throughput e l'utilizzo del client, così puoi confrontare la domanda con il livello di throughput configurato e le soglie.</block>
   <block id="e56ecd5b4053d7385c23bb7c3422bdd5" category="paragraph">Se selezioni *Capacità SSD*, il grafico mostra l'utilizzo dell'SSD, inclusi i trend storici della capacità e i punti decisionali relativi alla capacità.</block>
-  <block id="d73906b15c9fc84c1806084ce8720a42" category="paragraph">Seleziona intervalli di tempo diversi per visualizzare le tendenze di throughput o capacità in periodi diversi. . Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli sui consigli o sulle azioni di automazione in momenti specifici. . Usa le informazioni del grafico per: * Capire con quale frequenza sono necessari aggiustamenti della capacità * Valutare se la modalità di automazione o di raccomandazione si adatta meglio ai tuoi modelli di workload * Identificare vincoli di capacità ricorrenti * Pianificare le future esigenze di capacità in base alle tendenze di crescita * Risolvere i problemi relativi ai tentativi di automazione non riusciti</block>
   <block id="d84848ea25e8f980ed30c066f0e2cab7" category="list-text"><block ref="d84848ea25e8f980ed30c066f0e2cab7" category="inline-link-macro-rx"></block></block>
   <block id="3784e1d30d90c571998c16706c434e4f" category="list-text"><block ref="3784e1d30d90c571998c16706c434e4f" category="inline-link-macro-rx"></block></block>
   <block id="274d09f174202ef30839bc1b86c8644b" category="list-text"><block ref="274d09f174202ef30839bc1b86c8644b" category="inline-link-macro-rx"></block></block>
@@ -7079,4 +7055,54 @@
   <block id="8ffb616052b2a6d32c605e71b735673b" category="list-text"><block ref="8ffb616052b2a6d32c605e71b735673b" category="inline-link-macro-rx"></block></block>
   <block id="58ff05ec25b45f54f79eb1afc9e31b9c" category="list-text">Impostare la configurazione di rete su *Internet* per il punto di accesso S3. <block ref="f5b1c6fb53ebc8db45e1c55bd4e00f01" category="inline-link-macro-rx"></block>.</block>
   <block id="97ae532f4c2d5ecc574a56c593c13125" category="list-text">Devi <block ref="87275d1fa5a6199604efc8de3f9418ba" category="inline-link-macro-rx"></block> nel tuo account OCI.</block>
+  <block id="da3e6d90947db5a87778a986ff1db5ba" category="section-title">Workload Factory per i miglioramenti EDA</block>
+  <block id="0c8274ed6d395bfacc0daf3070e64c0c" category="paragraph">Questi miglioramenti riguardano i dettagli del volume nell'analisi della latenza, un controllo della pressione del file system, i punti decisionali del throughput e la possibilità di eseguire nuovamente un'analisi della latenza.</block>
+  <block id="f65838a0505e6828c4b2c1ae8ce1218d" category="section-title">Visualizza i dettagli del volume durante l'analisi della latenza</block>
+  <block id="34649924d5b9e1477b2428d04da725a3" category="paragraph">In Workload Factory puoi visualizzare ulteriori dettagli sul volume mentre analizzi un evento di latenza, così puoi vedere come è configurato il volume. La pagina Analisi dettagliata della latenza mostra *Tipo di volume* (RW o DP) e *Stile di volume* (FlexVol o FlexGroup).</block>
+  <block id="7d36db06649fc95af5dde34418ae17ae" category="inline-link-macro">Scopri come analizzare le tendenze della latenza</block>
+  <block id="10686b705e0e365002c272bd2719b69a" category="paragraph"><block ref="10686b705e0e365002c272bd2719b69a" category="inline-link-macro-rx"></block></block>
+  <block id="59d6e00f849e1dd27d91bb4c786299b8" category="section-title">Controlla la pressione del file system per un evento di latenza</block>
+  <block id="6f204454acf5d87a64a6daf9900777eb" category="paragraph">In Workload Factory, puoi verificare se la pressione sul file system ha influito sulle prestazioni quando si è verificato un evento di latenza, così puoi decidere se analizzare il file system. Per un volume con un avviso di latenza, puoi visualizzare i dati di CloudWatch dei 40 minuti precedenti all'evento e aprire il file system per approfondire.</block>
+  <block id="dfa004f6c9736368068fe71bacbee74e" category="inline-link-macro">Scopri i controlli della pressione del file system</block>
+  <block id="c6351fb1f8b9c7124503e2dd773f4a6f" category="paragraph"><block ref="c6351fb1f8b9c7124503e2dd773f4a6f" category="inline-link-macro-rx"></block></block>
+  <block id="f8240ccc3d3033d0a4d027c0acb6a2fd" category="section-title">Esamina i punti decisionali relativi al throughput per EDA</block>
+  <block id="8591045ae6ed3a89acd6e3756c7561dc" category="paragraph">Puoi rivedere i punti decisionali relativi al throughput del client nella dashboard EDA Overview, così puoi vedere quando Workload Factory ha consigliato o applicato una modifica del throughput. Passa il mouse su un punto decisionale per visualizzare i dettagli, ad esempio lo SKU corrente e quello consigliato oppure le metriche che hanno superato la soglia nell'intervallo di tempo.</block>
+  <block id="8f60994adbdba3c89dc164460dbd5fe7" category="inline-link-macro">Scopri come esaminare i punti decisionali relativi al throughput</block>
+  <block id="08935aa85ac8d6983a754c391dc22299" category="paragraph"><block ref="08935aa85ac8d6983a754c391dc22299" category="inline-link-macro-rx"></block></block>
+  <block id="afaff13c48c5bdfb3e3a3820005ef966" category="section-title">Esegui nuovamente un'analisi della latenza</block>
+  <block id="b70ddd63a19670949b4be40fd2900e16" category="paragraph">Puoi eseguire di nuovo un'analisi della latenza in Workload Factory per un volume, così puoi aggiornare i risultati dopo aver esaminato il problema o apportato una modifica. Seleziona *Esegui di nuovo l'analisi* per avviare una nuova analisi e aggiornare i risultati.</block>
+  <block id="fcd2af0b46a1f067a85293a63ec8e674" category="inline-link-macro">Impara ad analizzare i problemi di latenza</block>
+  <block id="5e2edfccf304d8ab47ad0fd4e7d469b9" category="paragraph"><block ref="5e2edfccf304d8ab47ad0fd4e7d469b9" category="inline-link-macro-rx"></block></block>
+  <block id="224009967bde255805cbcd6d65368b81" category="paragraph">Mentre un'analisi di base può identificare la causa della latenza, situazioni più complesse che coinvolgono dati o componenti del cluster spesso richiedono un'indagine più approfondita. L'analisi basata sull'intelligenza artificiale fornisce questa risoluzione dei problemi più approfondita, individuando criticità come volumi sovraccarichi, configurazioni inadeguate o la necessità di aumentare la capacità, problematiche che un'analisi di base potrebbe non rilevare.</block>
+  <block id="faffdafc286086cc0dbf1bbb1be9ad24" category="section-title">pressione del file system</block>
+  <block id="b174f2d4d910ae1039afecd55cf7605d" category="paragraph">Per i volumi con un avviso di latenza, puoi eseguire un controllo on-demand per verificare se il file system era sottoposto a una pressione sufficiente da influire sulle prestazioni al momento dell'evento. Il controllo esamina i 40 minuti di dati di CloudWatch precedenti all'evento e restituisce *Sotto pressione* o *Non sotto pressione*. Un risultato *Sotto pressione* significa che c'è una probabilità superiore all'80% che la pressione sul file system abbia influito su prestazioni e latenza. Il controllo include anche un collegamento alla risorsa FSx for ONTAP, così puoi esaminare le metriche correlate.</block>
+  <block id="e886df54588d52e0380fc881467880b0" category="section-title">Comprendere i punti decisionali relativi al throughput</block>
+  <block id="d5b00b16ab6db83fdf23282158c24ffc" category="paragraph">Il grafico del throughput del client mostra quando il sistema ha consigliato modifiche al throughput o lo ha regolato automaticamente. Questi indicatori compaiono anche nella legenda del grafico. Se la gestione del throughput è disattivata, il grafico mostra solo il throughput passato e non visualizza consigli o modifiche automatiche.</block>
+  <block id="1478d9dba08b46cdbef08e98cdb80335" category="list-text">Viene visualizzato quando il sistema rileva che il throughput deve aumentare. Passa il mouse su un punto decisionale per visualizzare i dettagli. Se si verificano più raccomandazioni con lo stesso timestamp, il punto mostra il numero di raccomandazioni e i dettagli di quella più recente.</block>
+  <block id="0c990789e7c8c34746cdf8245924ae90" category="list-text">Viene visualizzato quando il sistema di automazione tenta di aumentare il throughput. Passa il mouse su un punto decisionale per visualizzare i dettagli. Se l'aumento ha avuto successo, viene mostrato anche il nuovo SKU. Se non riesce, viene mostrata invece una breve spiegazione. Se si verificano più errori contemporaneamente, il punto mostra il numero di errori e i dettagli di quello più recente.</block>
+  <block id="c6f02cbeb83957a98e034aa44ac8d06b" category="paragraph">Usa il grafico del throughput del client per:</block>
+  <block id="bcc32ea0c2c748a56864977ad681aae4" category="list-text">Verifica con quale frequenza hai bisogno di un throughput maggiore</block>
+  <block id="627aca367632fb159e4a6c08e87b8226" category="list-text">Scegli se la modalità automatica o quella di raccomandazione è più adatta alle tue esigenze</block>
+  <block id="c44c2990e89eee02f130dbf8adf9df07" category="list-text">Identifica i limiti di throughput ricorrenti</block>
+  <block id="47c3141ddd1f9f9483f34cdb8af8ae43" category="list-text">Pianifica le future esigenze di throughput in base alla crescita dell'utilizzo nel tempo</block>
+  <block id="2825d743c065d395cd4879e2dfe972bd" category="paragraph-title"><block ref="b89db254b5f489dc0a965897dd00fa63" category="inline-image-macro-rx" type="image"></block> Aggiungi credenziali e autorizzazioni per il workload EDA</block>
+  <block id="c5da6783663d36c551b7323656ca0692" category="paragraph-title"><block ref="4b6bbaeae9b6799ee02ea5158d279251" category="inline-image-macro-rx" type="image"></block> Configura il tuo ambiente per soddisfare i requisiti EDA</block>
+  <block id="017f2723eafcf7cc580b9fe943460a85" category="paragraph-title"><block ref="569b2be0fb2eea776857d64ee5106536" category="inline-image-macro-rx" type="image"></block> Abilita la dashboard Panoramica</block>
+  <block id="02ce3aa38a5f2efb9553af62a0a5e716" category="paragraph-title"><block ref="f610d23a86677ccfb4c33a40915b9811" category="inline-image-macro-rx" type="image"></block>Configura la dashboard dei progetti</block>
+  <block id="b64c4174569364d10f20f68eab56a270" category="paragraph-title"><block ref="f09591425c0f3fd757475086b083ff7d" category="inline-image-macro-rx" type="image"></block>Configura l'analisi della latenza di FSx for ONTAP</block>
+  <block id="f5b334c5b74f89dabdc34df73fc51042" category="paragraph-title"><block ref="16098bde15117a589097874ab29ed657" category="inline-image-macro-rx" type="image"></block> Integra con altri servizi</block>
+  <block id="77940ad0aaabd15b52dda5e8a86f480b" category="list-text">Per aggiornare i risultati, seleziona *Run analysis again*. Per il volume viene avviata una nuova analisi e il pannello si aggiorna al termine dell'analisi.</block>
+  <block id="6f751f6512545197043d490e308e9992" category="section-title">Analizza le tendenze di capacità e throughput e i punti decisionali</block>
+  <block id="67033c99fa50f0a89f11f15d3c03c253" category="paragraph">Analizza nel tempo l'andamento della capacità e del throughput per individuare modelli e pianificare modifiche della capacità o del throughput.</block>
+  <block id="322cceacdd52c951c88a1d93df7f0dd8" category="list-text">Dalla scheda *Panoramica*, seleziona il nome di un file system nella tabella.</block>
+  <block id="ddbda74454b43f792ee3816b12e08af9" category="list-text">Nella vista Dettagli del cluster, seleziona l'opzione *Throughput* o *Capacità SSD* per cambiare la visualizzazione del grafico.</block>
+  <block id="d92136d041599b752e93710c829f0583" category="list-text">Seleziona intervalli di tempo diversi per visualizzare le tendenze di throughput o capacità in periodi diversi.</block>
+  <block id="8d33ce28efafbfe7600930c556bcfd55" category="list-text">Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli sui consigli o sulle azioni di automazione in momenti specifici.</block>
+  <block id="4d43a6d1e695bf0a99e5bc33d3ca3fda" category="list-text">Utilizza le informazioni ricavate dal grafico per:</block>
+  <block id="8aa0b0a22cf225f503177c8f1de7df3c" category="list-text">Comprendere con quale frequenza sono necessari gli aggiustamenti di capacità</block>
+  <block id="dc036d0aefd6c43f7e0e90f879128e16" category="list-text">Valuta se la modalità di automazione o quella di raccomandazione si adatta meglio ai tuoi modelli di carico di lavoro</block>
+  <block id="274e06045627d8934cd9bb52e8c64f53" category="list-text">Identificare i vincoli di capacità ricorrenti</block>
+  <block id="38e979158d55ae25a36aba4d97b0a8b4" category="list-text">Pianificare le future esigenze di capacità in base alle tendenze di crescita</block>
+  <block id="2814ccd9bf1ef1faffa5931e29ee7f74" category="list-text">Risoluzione dei problemi relativi ai tentativi di automazione non riusciti</block>
+  <block id="f2abe5914eba19478c3b813d9def8548" category="sidebar">Analisi della latenza di FSx for ONTAP</block>
 </blocks>
